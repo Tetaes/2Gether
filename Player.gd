@@ -58,6 +58,10 @@ func move(dir):
 		if collider.is_in_group('ice'):
 			#move 2 spaces
 			move_tween(dir,2)
+		#if it's fire
+		elif collider.is_in_group('fire'):
+			#restart
+			get_tree().reload_current_scene()
 	
 	#rotate and squish players
 	squish_tween(dir)

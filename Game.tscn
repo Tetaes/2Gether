@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Wall.tscn" type="PackedScene" id=2]
@@ -6,54 +6,35 @@
 [ext_resource path="res://GoalDetect.gd" type="Script" id=4]
 [ext_resource path="res://Game.gd" type="Script" id=5]
 [ext_resource path="res://ice.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Fire.tscn" type="PackedScene" id=7]
 
-[node name="Node2D" type="Node2D"]
+[node name="Game" type="Node2D"]
 script = ExtResource( 5 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2( -30, -60 )
+anchor_mode = 0
+current = true
+zoom = Vector2( 0.5, 0.5 )
 
 [node name="Ices" type="Node2D" parent="."]
 
 [node name="Ice" parent="Ices" groups=[
 "ice",
 ] instance=ExtResource( 6 )]
-position = Vector2( 96, 96 )
-
-[node name="Ice2" parent="Ices" groups=[
-"ice",
-] instance=ExtResource( 6 )]
-position = Vector2( 192, 128 )
-
-[node name="Ice3" parent="Ices" groups=[
-"ice",
-] instance=ExtResource( 6 )]
-position = Vector2( 256, 64 )
-
-[node name="WinDialog" type="AcceptDialog" parent="."]
-margin_left = 270.0
-margin_top = 160.0
-margin_right = 384.0
-margin_bottom = 224.0
-window_title = "Complete!"
-dialog_text = "Good job!"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+position = Vector2( -96, 32 )
 
 [node name="Players" type="Node2D" parent="."]
 
 [node name="Player" parent="Players" groups=[
 "player",
 ] instance=ExtResource( 1 )]
-position = Vector2( 80, 48 )
+position = Vector2( 144, 112 )
 
 [node name="Player2" parent="Players" groups=[
 "player",
 ] instance=ExtResource( 1 )]
-position = Vector2( 336, 80 )
-
-[node name="Camera2D" type="Camera2D" parent="."]
-anchor_mode = 0
-current = true
-zoom = Vector2( 0.5, 0.5 )
+position = Vector2( 432, 112 )
 
 [node name="Walls" type="Node2D" parent="."]
 
@@ -61,25 +42,103 @@ zoom = Vector2( 0.5, 0.5 )
 position = Vector2( 112, 16 )
 
 [node name="Wall2" parent="Walls" instance=ExtResource( 2 )]
-position = Vector2( 176, 176 )
+position = Vector2( 48, 176 )
 
 [node name="Wall3" parent="Walls" instance=ExtResource( 2 )]
-position = Vector2( 112, 176 )
+position = Vector2( 208, 16 )
+
+[node name="Wall49" parent="Walls" instance=ExtResource( 2 )]
+position = Vector2( 240, 16 )
+
+[node name="Wall50" parent="Walls" instance=ExtResource( 2 )]
+position = Vector2( 240, 208 )
+
+[node name="Wall51" parent="Walls" instance=ExtResource( 2 )]
+position = Vector2( 48, 208 )
+
+[node name="Wall52" parent="Walls" instance=ExtResource( 2 )]
+position = Vector2( 48, 16 )
+
+[node name="Wall53" parent="Walls" instance=ExtResource( 2 )]
+position = Vector2( 336, 16 )
+
+[node name="Wall54" parent="Walls" instance=ExtResource( 2 )]
+position = Vector2( 336, 208 )
+
+[node name="Wall55" parent="Walls" instance=ExtResource( 2 )]
+position = Vector2( 528, 16 )
+
+[node name="Wall56" parent="Walls" instance=ExtResource( 2 )]
+position = Vector2( 528, 208 )
+
+[node name="Wall11" parent="Walls" instance=ExtResource( 2 )]
+position = Vector2( 240, 48 )
+
+[node name="Wall12" parent="Walls" instance=ExtResource( 2 )]
+position = Vector2( 240, 80 )
+
+[node name="Wall13" parent="Walls" instance=ExtResource( 2 )]
+position = Vector2( 240, 112 )
+
+[node name="Wall14" parent="Walls" instance=ExtResource( 2 )]
+position = Vector2( 240, 144 )
+
+[node name="Wall41" parent="Walls" instance=ExtResource( 2 )]
+position = Vector2( 80, 144 )
+
+[node name="Wall42" parent="Walls" instance=ExtResource( 2 )]
+position = Vector2( 112, 144 )
+
+[node name="Wall43" parent="Walls" instance=ExtResource( 2 )]
+position = Vector2( 144, 144 )
+
+[node name="Wall44" parent="Walls" instance=ExtResource( 2 )]
+position = Vector2( 112, 112 )
+
+[node name="Wall45" parent="Walls" instance=ExtResource( 2 )]
+position = Vector2( 112, 80 )
+
+[node name="Wall46" parent="Walls" instance=ExtResource( 2 )]
+position = Vector2( 400, 144 )
+
+[node name="Wall47" parent="Walls" instance=ExtResource( 2 )]
+position = Vector2( 464, 112 )
+
+[node name="Wall48" parent="Walls" instance=ExtResource( 2 )]
+position = Vector2( 496, 144 )
+
+[node name="Wall15" parent="Walls" instance=ExtResource( 2 )]
+position = Vector2( 240, 176 )
+
+[node name="Wall16" parent="Walls" instance=ExtResource( 2 )]
+position = Vector2( 80, 208 )
+
+[node name="Wall17" parent="Walls" instance=ExtResource( 2 )]
+position = Vector2( 112, 208 )
+
+[node name="Wall18" parent="Walls" instance=ExtResource( 2 )]
+position = Vector2( 144, 208 )
+
+[node name="Wall19" parent="Walls" instance=ExtResource( 2 )]
+position = Vector2( 176, 208 )
+
+[node name="Wall20" parent="Walls" instance=ExtResource( 2 )]
+position = Vector2( 208, 208 )
 
 [node name="Wall4" parent="Walls" instance=ExtResource( 2 )]
 position = Vector2( 48, 48 )
 
 [node name="Wall5" parent="Walls" instance=ExtResource( 2 )]
-position = Vector2( 80, 176 )
+position = Vector2( 48, 144 )
 
 [node name="Wall6" parent="Walls" instance=ExtResource( 2 )]
 position = Vector2( 48, 112 )
 
 [node name="Wall7" parent="Walls" instance=ExtResource( 2 )]
-position = Vector2( 144, 80 )
+position = Vector2( 176, 16 )
 
 [node name="Wall8" parent="Walls" instance=ExtResource( 2 )]
-position = Vector2( 144, 48 )
+position = Vector2( 144, 16 )
 
 [node name="Wall9" parent="Walls" instance=ExtResource( 2 )]
 position = Vector2( 80, 16 )
@@ -87,12 +146,95 @@ position = Vector2( 80, 16 )
 [node name="Wall10" parent="Walls" instance=ExtResource( 2 )]
 position = Vector2( 48, 80 )
 
+[node name="Wall21" parent="Walls" instance=ExtResource( 2 )]
+position = Vector2( 400, 16 )
+
+[node name="Wall22" parent="Walls" instance=ExtResource( 2 )]
+position = Vector2( 336, 176 )
+
+[node name="Wall23" parent="Walls" instance=ExtResource( 2 )]
+position = Vector2( 496, 16 )
+
+[node name="Wall24" parent="Walls" instance=ExtResource( 2 )]
+position = Vector2( 528, 48 )
+
+[node name="Wall25" parent="Walls" instance=ExtResource( 2 )]
+position = Vector2( 528, 80 )
+
+[node name="Wall26" parent="Walls" instance=ExtResource( 2 )]
+position = Vector2( 528, 112 )
+
+[node name="Wall27" parent="Walls" instance=ExtResource( 2 )]
+position = Vector2( 528, 144 )
+
+[node name="Wall28" parent="Walls" instance=ExtResource( 2 )]
+position = Vector2( 528, 176 )
+
+[node name="Wall29" parent="Walls" instance=ExtResource( 2 )]
+position = Vector2( 368, 208 )
+
+[node name="Wall30" parent="Walls" instance=ExtResource( 2 )]
+position = Vector2( 400, 208 )
+
+[node name="Wall31" parent="Walls" instance=ExtResource( 2 )]
+position = Vector2( 432, 208 )
+
+[node name="Wall32" parent="Walls" instance=ExtResource( 2 )]
+position = Vector2( 464, 208 )
+
+[node name="Wall33" parent="Walls" instance=ExtResource( 2 )]
+position = Vector2( 496, 208 )
+
+[node name="Wall34" parent="Walls" instance=ExtResource( 2 )]
+position = Vector2( 336, 48 )
+
+[node name="Wall35" parent="Walls" instance=ExtResource( 2 )]
+position = Vector2( 336, 144 )
+
+[node name="Wall36" parent="Walls" instance=ExtResource( 2 )]
+position = Vector2( 336, 112 )
+
+[node name="Wall37" parent="Walls" instance=ExtResource( 2 )]
+position = Vector2( 464, 16 )
+
+[node name="Wall38" parent="Walls" instance=ExtResource( 2 )]
+position = Vector2( 432, 16 )
+
+[node name="Wall39" parent="Walls" instance=ExtResource( 2 )]
+position = Vector2( 368, 16 )
+
+[node name="Wall40" parent="Walls" instance=ExtResource( 2 )]
+position = Vector2( 336, 80 )
+
 [node name="Goals" type="Node2D" parent="."]
 
 [node name="Goal" parent="Goals" instance=ExtResource( 3 )]
-position = Vector2( 128, 160 )
+position = Vector2( 64, 160 )
 script = ExtResource( 4 )
 
 [node name="Goal2" parent="Goals" instance=ExtResource( 3 )]
-position = Vector2( 288, 128 )
+position = Vector2( 480, 32 )
 script = ExtResource( 4 )
+
+[node name="Fires" type="Node2D" parent="."]
+
+[node name="Fire" parent="Fires" groups=[
+"fire",
+] instance=ExtResource( 7 )]
+position = Vector2( 160, 96 )
+
+[node name="Fire2" parent="Fires" groups=[
+"fire",
+] instance=ExtResource( 7 )]
+position = Vector2( 416, 64 )
+
+[node name="WinDialog" type="AcceptDialog" parent="."]
+margin_left = 231.425
+margin_top = 80.0
+margin_right = 345.425
+margin_bottom = 144.0
+window_title = "Complete!"
+dialog_text = "Good job!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
