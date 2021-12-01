@@ -13,5 +13,5 @@ func _process(_delta):
 		
 		#if all goals have players
 		if goals == 0:
-			$WinDialog.popup()
+			$WinMessage/WinDialog.popup()
 			game_clear = true
