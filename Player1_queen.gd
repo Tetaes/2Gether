@@ -92,3 +92,7 @@ func squish_tween(dir):
 		squish, Vector2(1.0,1.0),
 		1.0/speed, Tween.TRANS_BACK, Tween.EASE_IN_OUT)
 	tween.start()
+
+
+func _on_Goal2_body_entered(body):
+	pass # Replace with function body.
