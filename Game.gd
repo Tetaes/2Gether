@@ -1,17 +1,31 @@
 extends Node2D
 
-var game_clear = false
 
-func _process(_delta):
-	if game_clear == false:
-		
-		#check every goal, if a player is on it then minus 1
-		var goals = $Goals.get_child_count()
-		for i in $Goals.get_children():
-			if i.occupied:
-				goals -= 1
-		
-		#if all goals have players
-		if goals == 0:
-			$WinMessage/WinDialog.popup()
-			game_clear = true
+# Declare member variables here. Examples:
+# var a = 2
+# var b = "text"
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	var level = load("res://Assets/map/map_desert/desert_2.tscn").instance()
+	add_child(level)
+
+func reloadlevel(name):
+	var level
+	var reallevelname = name.split("@")
+	#print("res://Assets/map/map_"+ (reallevelname[0].split("_"))[0] + "/" + reallevelname[0] + ".tscn")
+	if len(reallevelname) == 1:
+		level = load("res://Assets/map/map_"+ (reallevelname[0].split("_"))[0] + "/" + reallevelname[0] + ".tscn").instance()
+	else:
+		level = load("res://Assets/map/map_"+ (reallevelname[1].split("_"))[0] + "/" + reallevelname[1] + ".tscn").instance()
+	add_child(level)
+	get_node("/root/Game/GlobalShaders/Death").visible = true
+	get_node("/root/Game/GlobalShaders/Death").resetclock() 
+	yield(get_tree().create_timer(1.0), "timeout")
+	get_node("/root/Game/GlobalShaders/Death").visible = false
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
