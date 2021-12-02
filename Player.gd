@@ -72,8 +72,6 @@ func move(dir):
 		elif collider.is_in_group('fire'):
 			#restart
 			get_node("/root/Game").reloadlevel(get_node("../../").get_name())
-			get_node("../../").queue_free()
-			get_node("../../").remove_child(self)
 	
 	#rotate and squish players
 	squish_tween(dir)
