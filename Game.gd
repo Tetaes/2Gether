@@ -8,7 +8,7 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var level = load("res://Assets/map/map_desert/desert_3.tscn").instance()
+	var level = load("res://Assets/map/map_desert/desert_6.tscn").instance()
 	add_child(level)
 
 var reloadBuffer = true
