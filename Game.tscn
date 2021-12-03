@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Death.gd" type="Script" id=1]
 [ext_resource path="res://Game.gd" type="Script" id=2]
+[ext_resource path="res://Menu.gd" type="Script" id=3]
+[ext_resource path="res://Start.gd" type="Script" id=4]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -19,6 +21,13 @@ void fragment(){
 shader = SubResource( 1 )
 shader_param/curtime = null
 
+[sub_resource type="DynamicFontData" id=5]
+font_path = "res://Fonts/Renogare-Regular.otf"
+
+[sub_resource type="DynamicFont" id=6]
+size = 80
+font_data = SubResource( 5 )
+
 [node name="Game" type="Node2D"]
 script = ExtResource( 2 )
 
@@ -33,3 +42,28 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Menu" type="Control" parent="."]
+margin_right = 1280.0
+margin_bottom = 720.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Start" type="Button" parent="Menu"]
+margin_left = 456.0
+margin_top = 464.0
+margin_right = 824.0
+margin_bottom = 608.0
+custom_fonts/font = SubResource( 6 )
+text = "Start"
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="Menu/Start"]
+
+[connection signal="pressed" from="Menu/Start" to="Menu" method="_on_Start_pressed"]
+[connection signal="tween_all_completed" from="Menu/Start/Tween" to="Menu/Start" method="_on_Tween_tween_all_completed"]
