@@ -1,17 +1,51 @@
 extends Node2D
 
-var game_clear = false
 
-func _process(_delta):
-	if game_clear == false:
+# Declare member variables here. Examples:
+# var a = 2
+# var b = "text"
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	#comment line 12 and 13 and uncomment line 14 to see menu
+	var level = load("res://Assets/map/map_forest/forest_1.tscn").instance()
+	add_child(level)
+	#pass
+
+var reloadBuffer = true
+
+func reloadlevel(name):
+	
+	if reloadBuffer:
 		
-		#check every goal, if a player is on it then minus 1
-		var goals = $Goals.get_child_count()
-		for i in $Goals.get_children():
-			if i.occupied:
-				goals -= 1
+		reloadBuffer = false
 		
-		#if all goals have players
-		if goals == 0:
-			$WinMessage/WinDialog.popup()
-			game_clear = true
+		var level
+		var reallevelname = name.split("@")
+		
+		get_node("/root/Game/" + name).queue_free()
+		get_node("/root/Game/" + name).remove_child(self)
+		
+		#print("res://Assets/map/map_"+ (reallevelname[0].split("_"))[0] + "/" + reallevelname[0] + ".tscn")
+		#print(reallevelname)
+		if len(reallevelname) == 1:
+			level = load("res://Assets/map/map_"+ (reallevelname[0].split("_"))[0] + "/" + reallevelname[0] + ".tscn").instance()
+		else:
+			print("/root/Game/" + reallevelname[1])
+			level = load("res://Assets/map/map_"+ (reallevelname[1].split("_"))[0] + "/" + reallevelname[1] + ".tscn").instance()
+		add_child(level)
+		
+		buffer()
+		
+		get_node("/root/Game/GlobalShaders/Death").visible = true
+		get_node("/root/Game/GlobalShaders/Death").resetclock() 
+		yield(get_tree().create_timer(1.0), "timeout")
+		get_node("/root/Game/GlobalShaders/Death").visible = false
+
+func buffer():
+	yield(get_tree().create_timer(0.15), "timeout")
+	reloadBuffer = true
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
