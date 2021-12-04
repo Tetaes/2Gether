@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Snow Tiles.png-845516a8b6ce7d9bb81c8a417305b6ea.stex"
+path="res://.import/Dungeon Gate Sprite.png-35b8992f31c69e15c2eabb0a263e820a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/map/map_winter/assets/Snow Tiles.png"
-dest_files=[ "res://.import/Snow Tiles.png-845516a8b6ce7d9bb81c8a417305b6ea.stex" ]
+source_file="res://Assets/map/map_desert/assets/Dungeon Gate Sprite.png"
+dest_files=[ "res://.import/Dungeon Gate Sprite.png-35b8992f31c69e15c2eabb0a263e820a.stex" ]
 
 [params]
 

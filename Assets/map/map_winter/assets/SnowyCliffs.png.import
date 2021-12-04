@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Snow Tiles.png-845516a8b6ce7d9bb81c8a417305b6ea.stex"
+path="res://.import/SnowyCliffs.png-41cd8d4f9544608df4c9b3d411a1ea7a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/map/map_winter/assets/Snow Tiles.png"
-dest_files=[ "res://.import/Snow Tiles.png-845516a8b6ce7d9bb81c8a417305b6ea.stex" ]
+source_file="res://Assets/map/map_winter/assets/SnowyCliffs.png"
+dest_files=[ "res://.import/SnowyCliffs.png-41cd8d4f9544608df4c9b3d411a1ea7a.stex" ]
 
 [params]
 
