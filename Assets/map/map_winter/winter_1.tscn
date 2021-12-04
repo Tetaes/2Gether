@@ -100,15 +100,21 @@ tile_data = PoolIntArray( 262162, 536870922, 0, 262163, 536870928, 0, 262165, 53
 
 [node name="Ices" type="Node2D" parent="."]
 
-[node name="Ice" parent="Ices" groups=["ice"] instance=ExtResource( 8 )]
+[node name="Ice" parent="Ices" groups=[
+"ice",
+] instance=ExtResource( 8 )]
 position = Vector2( -100, 60 )
 
 [node name="Players" type="Node2D" parent="."]
 
-[node name="Player1" parent="Players" groups=["player"] instance=ExtResource( 3 )]
+[node name="Player1" parent="Players" groups=[
+"player",
+] instance=ExtResource( 3 )]
 position = Vector2( 176, 176 )
 
-[node name="Player2" parent="Players" groups=["player"] instance=ExtResource( 7 )]
+[node name="Player2" parent="Players" groups=[
+"player",
+] instance=ExtResource( 7 )]
 position = Vector2( 464, 176 )
 
 [node name="Walls" type="Node2D" parent="."]
@@ -298,10 +304,14 @@ position = Vector2( 512, 96 )
 
 [node name="Fires" type="Node2D" parent="."]
 
-[node name="Fire" parent="Fires" groups=["fire"] instance=ExtResource( 5 )]
+[node name="Fire" parent="Fires" groups=[
+"fire",
+] instance=ExtResource( 5 )]
 position = Vector2( 192, 160 )
 
-[node name="Fire2" parent="Fires" groups=["fire"] instance=ExtResource( 5 )]
+[node name="Fire2" parent="Fires" groups=[
+"fire",
+] instance=ExtResource( 5 )]
 position = Vector2( 448, 128 )
 
 [node name="WinMessage" type="CanvasLayer" parent="."]

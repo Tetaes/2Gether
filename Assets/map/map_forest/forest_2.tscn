@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Character/King.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Character/Queen.tscn" type="PackedScene" id=2]
@@ -12,6 +12,8 @@
 [ext_resource path="res://Fire.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Goal.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Assets/map/map_forest/assets/Sidewall_forest.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Portal1.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Portal2.tscn" type="PackedScene" id=14]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -58,6 +60,7 @@ shader_param/wave_freq = 10.0
 shader_param/wave_width = 0.25
 
 [node name="forest_1" type="Node2D"]
+position = Vector2( 2, 0 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 7 )
 
@@ -140,6 +143,33 @@ tile_set = ExtResource( 9 )
 cell_size = Vector2( 1, 1 )
 format = 1
 tile_data = PoolIntArray( 3539474, 536870961, 0, 13566543, 536870959, 0, 22151708, 536870959, 0, 22675998, 536870955, 0 )
+
+[node name="Portals" type="Node2D" parent="."]
+scale = Vector2( 2, 2 )
+
+[node name="PortalPair" type="Node2D" parent="Portals"]
+
+[node name="Portal1" parent="Portals/PortalPair" groups=[
+"portal1",
+] instance=ExtResource( 13 )]
+position = Vector2( 72, 88 )
+
+[node name="Portal2" parent="Portals/PortalPair" groups=[
+"portal2",
+] instance=ExtResource( 14 )]
+position = Vector2( 104, 88 )
+
+[node name="PortalPair2" type="Node2D" parent="Portals"]
+
+[node name="Portal1" parent="Portals/PortalPair2" groups=[
+"portal1",
+] instance=ExtResource( 13 )]
+position = Vector2( 232, 72 )
+
+[node name="Portal2" parent="Portals/PortalPair2" groups=[
+"portal2",
+] instance=ExtResource( 14 )]
+position = Vector2( 232, 104 )
 
 [node name="Ices" type="Node2D" parent="."]
 
@@ -332,17 +362,19 @@ position = Vector2( 32, 64 )
 [node name="Wall-ingame-king" type="Node2D" parent="."]
 position = Vector2( 32, 64 )
 
-[node name="Wall_1" parent="Wall-ingame-king" instance=ExtResource( 4 )]
-position = Vector2( 144, 80 )
-
-[node name="Wall_3" parent="Wall-ingame-king" instance=ExtResource( 4 )]
-position = Vector2( 144, 144 )
-
-[node name="Wall_2" parent="Wall-ingame-king" instance=ExtResource( 4 )]
-position = Vector2( 464, 112 )
-
 [node name="Wall_4" parent="Wall-ingame-king" instance=ExtResource( 4 )]
-position = Vector2( 400, 112 )
+position = Vector2( -120, 40 )
+
+[node name="Sidewalls" type="Node2D" parent="."]
+position = Vector2( -35, 8.5 )
+
+[node name="Sidewall" parent="Sidewalls" instance=ExtResource( 12 )]
+position = Vector2( 211, 167.5 )
+rotation = -6.28318
+
+[node name="Sidewall3" parent="Sidewalls" instance=ExtResource( 12 )]
+position = Vector2( 499, 167.5 )
+rotation = 1.57079
 
 [node name="Goals" type="Node2D" parent="."]
 position = Vector2( 32, 64 )
@@ -360,18 +392,6 @@ position = Vector2( 416, 96 )
 "fire",
 ] instance=ExtResource( 10 )]
 position = Vector2( -104, 56 )
-
-[node name="Sidewalls" type="Node2D" parent="."]
-visible = false
-position = Vector2( -35, 8.5 )
-
-[node name="Sidewall" parent="Sidewalls" instance=ExtResource( 12 )]
-position = Vector2( 211, 167.5 )
-rotation = -6.28318
-
-[node name="Sidewall3" parent="Sidewalls" instance=ExtResource( 12 )]
-position = Vector2( 499, 167.5 )
-rotation = 1.57079
 
 [node name="WinMessage" type="CanvasLayer" parent="."]
 

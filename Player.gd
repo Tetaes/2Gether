@@ -120,7 +120,39 @@ func move(dir,amt):
 				#restart
 				get_node("/root/Game").reloadlevel(get_node("../../").get_name())
 				break
+			
+			#if it's a portal
+			elif collider.is_in_group('portal2') or collider.is_in_group('portal1'):
 				
+				#check if player is INSIDE the portal from a previous move
+				#by making ray very small
+				ray.cast_to = move_vector*0.1
+				ray.force_raycast_update()
+				
+				if not ray.is_colliding():
+					
+					ray.cast_to = move_vector
+					ray.force_raycast_update()
+					
+					if collider.is_in_group('portal2'):
+						var path = str(collider.get_path())
+						path.erase(path.length() - 1, 1)
+						move_teleport(get_node(path + "1").get_position() * 2.0 + Vector2(-32,-64))
+						break
+					
+					elif collider.is_in_group('portal1'):
+						var path = str(collider.get_path())
+						path.erase(path.length() - 1, 1)
+						move_teleport(get_node(path + "2").get_position() * 2.0 + Vector2(-32,-64))
+						break
+				
+				else:
+					get_node(str(collider.get_path()) + "/CollisionShape2D").set_deferred("disabled", true)
+					yield(get_tree().create_timer(0.01), "timeout")
+					move(dir,1)
+					get_node(str(collider.get_path()) + "/CollisionShape2D").set_deferred("disabled", false)
+					
+					
 		#print(blocks)
 	
 	#rotate and squish players
@@ -131,6 +163,12 @@ func move(dir,amt):
 func move_tween(dir,mult):
 	tween.interpolate_property(self, 'position',
 		position, position + inputs[dir] * grid_size * mult,
+		1.0/speed, Tween.TRANS_CIRC, Tween.EASE_IN_OUT)
+	tween.start()
+
+func move_teleport(newpos):
+	tween.interpolate_property(self, 'position',
+		position, newpos,
 		1.0/speed, Tween.TRANS_CIRC, Tween.EASE_IN_OUT)
 	tween.start()
 
