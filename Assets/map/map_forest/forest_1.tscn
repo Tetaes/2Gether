@@ -8,9 +8,10 @@
 [ext_resource path="res://WinDialog.gd" type="Script" id=6]
 [ext_resource path="res://level.gd" type="Script" id=7]
 [ext_resource path="res://Goal2.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Assets/map/map_forest/tileset_forest.tres" type="TileSet" id=9]
+[ext_resource path="res://Assets/map/map_forest/assets/tileset_forest.tres" type="TileSet" id=9]
 [ext_resource path="res://Fire.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Goal.tscn" type="PackedScene" id=11]
+
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
