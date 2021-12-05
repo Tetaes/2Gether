@@ -1,0 +1,458 @@
+[gd_scene load_steps=19 format=2]
+
+[ext_resource path="res://Character/King.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Character/Queen.tscn" type="PackedScene" id=2]
+[ext_resource path="res://ice.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/map/map_forest/assets/Wall_forest.tscn" type="PackedScene" id=4]
+[ext_resource path="res://GoalDetect.gd" type="Script" id=5]
+[ext_resource path="res://WinDialog.gd" type="Script" id=6]
+[ext_resource path="res://level.gd" type="Script" id=7]
+[ext_resource path="res://Goal2.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Assets/map/map_forest/assets/tileset_forest.tres" type="TileSet" id=9]
+[ext_resource path="res://Fire.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Goal.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Assets/map/map_forest/assets/Sidewall_forest.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Portal1.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Portal2.tscn" type="PackedScene" id=14]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform float wave_speed = 0.0; //wave loop speed
+uniform float wave_freq = 4.0; //wave vertical freq
+uniform float wave_width = 0.0; //wave width 
+void fragment(){
+	vec2 scale_UV = SCREEN_UV;
+	vec2 wave_uv_offset;
+	wave_uv_offset.x = cos((TIME*wave_speed)+UV.x+UV.y*wave_freq*4.0)*wave_width*0.01;
+	wave_uv_offset.y = sin((TIME*wave_speed)+UV.x+UV.y*wave_freq*2.0)*wave_width*0.01;
+	//COLOR = vec4(wave_uv_offset,0.0,1.0);
+	vec3 col1 = textureLod(SCREEN_TEXTURE,scale_UV+wave_uv_offset, 1.0).xyz;
+	vec3 col2 = vec3(0.15,0.15,0.15);
+	COLOR = vec4((col1-col2),1.0);
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/wave_speed = 0.0
+shader_param/wave_freq = 4.0
+shader_param/wave_width = 0.0
+
+[sub_resource type="Shader" id=3]
+code = "shader_type canvas_item;
+
+uniform float wave_speed = 2.0; //wave loop speed
+uniform float wave_freq = 10.0; //wave vertical freq
+uniform float wave_width = 0.25; //wave width 
+void fragment(){
+	vec2 scale_UV = SCREEN_UV;
+	vec2 wave_uv_offset;
+	wave_uv_offset.x = cos((TIME*wave_speed)+UV.x+UV.y*wave_freq*2.0)*wave_width*0.01;
+	wave_uv_offset.y = sin((TIME*wave_speed)+UV.x+UV.y*wave_freq*2.0)*wave_width*0.01;
+	//COLOR = vec4(wave_uv_offset,0.0,1.0);
+	COLOR = texture(SCREEN_TEXTURE,scale_UV);
+}"
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = SubResource( 3 )
+shader_param/wave_speed = 2.0
+shader_param/wave_freq = 10.0
+shader_param/wave_width = 0.25
+
+[node name="forest_3" type="Node2D"]
+position = Vector2( 2, 0 )
+scale = Vector2( 2, 2 )
+script = ExtResource( 7 )
+
+[node name="shaders" type="CanvasLayer" parent="."]
+
+[node name="blur" type="ColorRect" parent="shaders"]
+material = SubResource( 2 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="king" type="ColorRect" parent="shaders"]
+material = SubResource( 4 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 704.0
+margin_top = 128.0
+margin_right = -128.0
+margin_bottom = -144.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="queen" type="ColorRect" parent="shaders"]
+material = SubResource( 4 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 128.0
+margin_top = 128.0
+margin_right = -704.0
+margin_bottom = -144.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="bg-ingame_queen" type="TileMap" parent="."]
+tile_set = ExtResource( 9 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( 393222, 8, 0, 393223, 13, 0, 393224, 13, 0, 393225, 13, 0, 393226, 13, 0, 393227, 13, 0, 393228, 13, 0, 393229, 13, 0, 393230, 13, 0, 393231, 11, 0, 458758, 14, 0, 458759, 16, 0, 458760, 16, 0, 458761, 16, 0, 458762, 16, 0, 458763, 16, 0, 458764, 16, 0, 458765, 16, 0, 458766, 16, 0, 458767, 15, 0, 524294, 14, 0, 524295, 16, 0, 524296, 16, 0, 524297, 16, 0, 524298, 16, 0, 524299, 16, 0, 524300, 16, 0, 524301, 16, 0, 524302, 16, 0, 524303, 15, 0, 589830, 14, 0, 589831, 16, 0, 589832, 16, 0, 589833, 16, 0, 589834, 16, 0, 589835, 16, 0, 589836, 16, 0, 589837, 16, 0, 589838, 16, 0, 589839, 15, 0, 655366, 14, 0, 655367, 16, 0, 655368, 16, 0, 655369, 16, 0, 655370, 16, 0, 655371, 16, 0, 655372, 16, 0, 655373, 16, 0, 655374, 16, 0, 655375, 15, 0, 720902, 14, 0, 720903, 16, 0, 720904, 16, 0, 720905, 16, 0, 720906, 16, 0, 720907, 16, 0, 720908, 16, 0, 720909, 16, 0, 720910, 16, 0, 720911, 15, 0, 786438, 14, 0, 786439, 16, 0, 786440, 16, 0, 786441, 16, 0, 786442, 16, 0, 786443, 16, 0, 786444, 16, 0, 786445, 16, 0, 786446, 16, 0, 786447, 15, 0, 851974, 14, 0, 851975, 16, 0, 851976, 16, 0, 851977, 16, 0, 851978, 16, 0, 851979, 16, 0, 851980, 16, 0, 851981, 16, 0, 851982, 16, 0, 851983, 15, 0, 917510, 14, 0, 917511, 16, 0, 917512, 16, 0, 917513, 16, 0, 917514, 16, 0, 917515, 16, 0, 917516, 16, 0, 917517, 16, 0, 917518, 16, 0, 917519, 15, 0, 983046, 9, 0, 983047, 12, 0, 983048, 12, 0, 983049, 12, 0, 983050, 12, 0, 983051, 12, 0, 983052, 12, 0, 983053, 12, 0, 983054, 12, 0, 983055, 10, 0 )
+
+[node name="bg-ingame_king" type="TileMap" parent="."]
+position = Vector2( 288, 0 )
+tile_set = ExtResource( 9 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( 393222, 8, 0, 393223, 13, 0, 393224, 13, 0, 393225, 13, 0, 393226, 13, 0, 393227, 13, 0, 393228, 13, 0, 393229, 13, 0, 393230, 13, 0, 393231, 11, 0, 458758, 14, 0, 458759, 16, 0, 458760, 16, 0, 458761, 16, 0, 458762, 16, 0, 458763, 16, 0, 458764, 16, 0, 458765, 16, 0, 458766, 16, 0, 458767, 15, 0, 524294, 14, 0, 524295, 16, 0, 524296, 16, 0, 524297, 16, 0, 524298, 16, 0, 524299, 16, 0, 524300, 16, 0, 524301, 16, 0, 524302, 16, 0, 524303, 15, 0, 589830, 14, 0, 589831, 16, 0, 589832, 16, 0, 589833, 16, 0, 589834, 16, 0, 589835, 16, 0, 589836, 16, 0, 589837, 16, 0, 589838, 16, 0, 589839, 15, 0, 655366, 14, 0, 655367, 16, 0, 655368, 16, 0, 655369, 16, 0, 655370, 16, 0, 655371, 16, 0, 655372, 16, 0, 655373, 16, 0, 655374, 16, 0, 655375, 15, 0, 720902, 14, 0, 720903, 16, 0, 720904, 16, 0, 720905, 16, 0, 720906, 16, 0, 720907, 16, 0, 720908, 16, 0, 720909, 16, 0, 720910, 16, 0, 720911, 15, 0, 786438, 14, 0, 786439, 16, 0, 786440, 16, 0, 786441, 16, 0, 786442, 16, 0, 786443, 16, 0, 786444, 16, 0, 786445, 16, 0, 786446, 16, 0, 786447, 15, 0, 851974, 14, 0, 851975, 16, 0, 851976, 16, 0, 851977, 16, 0, 851978, 16, 0, 851979, 16, 0, 851980, 16, 0, 851981, 16, 0, 851982, 16, 0, 851983, 15, 0, 917510, 14, 0, 917511, 16, 0, 917512, 16, 0, 917513, 16, 0, 917514, 16, 0, 917515, 16, 0, 917516, 16, 0, 917517, 16, 0, 917518, 16, 0, 917519, 15, 0, 983046, 9, 0, 983047, 12, 0, 983048, 12, 0, 983049, 12, 0, 983050, 12, 0, 983051, 12, 0, 983052, 12, 0, 983053, 12, 0, 983054, 12, 0, 983055, 10, 0 )
+
+[node name="bg-back_1" type="TileMap" parent="."]
+tile_set = ExtResource( 9 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( 0, 28, 0, 1, 28, 0, 2, 28, 0, 3, 28, 0, 4, 28, 0, 5, 28, 0, 6, 28, 0, 7, 28, 0, 8, 28, 0, 9, 28, 0, 10, 28, 0, 11, 28, 0, 12, 28, 0, 13, 28, 0, 14, 28, 0, 15, 28, 0, 16, 28, 0, 17, 28, 0, 18, 28, 0, 19, 28, 0, 20, 28, 0, 21, 28, 0, 22, 28, 0, 23, 28, 0, 24, 28, 0, 25, 28, 0, 26, 28, 0, 27, 28, 0, 28, 28, 0, 29, 28, 0, 30, 28, 0, 31, 28, 0, 32, 28, 0, 33, 28, 0, 34, 28, 0, 35, 28, 0, 36, 28, 0, 37, 37, 0, 38, 36, 0, 39, 28, 0, 65536, 28, 0, 65537, 28, 0, 65538, 28, 0, 65539, 28, 0, 65540, 28, 0, 65541, 28, 0, 65542, 28, 0, 65543, 28, 0, 65544, 28, 0, 65545, 28, 0, 65546, 28, 0, 65547, 28, 0, 65548, 28, 0, 65549, 28, 0, 65550, 32, 0, 65551, 65, 0, 65552, 65, 0, 65553, 65, 0, 65554, 65, 0, 65555, 65, 0, 65556, 65, 0, 65557, 65, 0, 65558, 65, 0, 65559, 65, 0, 65560, 65, 0, 65561, 65, 0, 65562, 65, 0, 65563, 65, 0, 65564, 65, 0, 65565, 65, 0, 65566, 65, 0, 65567, 65, 0, 65568, 65, 0, 65569, 65, 0, 65570, 65, 0, 65571, 65, 0, 65572, 65, 0, 65573, 67, 0, 65574, 36, 0, 65575, 28, 0, 131072, 28, 0, 131073, 28, 0, 131074, 28, 0, 131075, 24, 0, 131076, 28, 0, 131077, 28, 0, 131078, 28, 0, 131079, 28, 0, 131080, 28, 0, 131081, 28, 0, 131082, 28, 0, 131083, 28, 0, 131084, 28, 0, 131085, 28, 0, 131086, 34, 0, 131087, 66, 0, 131088, 66, 0, 131089, 66, 0, 131090, 66, 0, 131091, 66, 0, 131092, 66, 0, 131093, 66, 0, 131094, 66, 0, 131095, 66, 0, 131096, 66, 0, 131097, 66, 0, 131098, 66, 0, 131099, 66, 0, 131100, 66, 0, 131101, 66, 0, 131102, 66, 0, 131103, 66, 0, 131104, 66, 0, 131105, 66, 0, 131106, 66, 0, 131107, 66, 0, 131108, 66, 0, 131109, 67, 0, 131110, 36, 0, 131111, 28, 0, 196608, 28, 0, 196609, 28, 0, 196610, 28, 0, 196611, 28, 0, 196612, 28, 0, 196613, 28, 0, 196614, 28, 0, 196615, 28, 0, 196616, 28, 0, 196617, 28, 0, 196618, 28, 0, 196619, 28, 0, 196620, 28, 0, 196621, 28, 0, 196622, 28, 0, 196623, 28, 0, 196624, 28, 0, 196625, 28, 0, 196626, 28, 0, 196627, 28, 0, 196628, 28, 0, 196629, 28, 0, 196630, 28, 0, 196631, 28, 0, 196632, 28, 0, 196633, 28, 0, 196634, 28, 0, 196635, 28, 0, 196636, 28, 0, 196637, 28, 0, 196638, 28, 0, 196639, 28, 0, 196640, 28, 0, 196641, 28, 0, 196642, 28, 0, 196643, 28, 0, 196644, 28, 0, 196645, 37, 0, 196646, 36, 0, 196647, 28, 0, 262144, 28, 0, 262145, 28, 0, 262146, 28, 0, 262147, 28, 0, 262162, 32, 0, 262163, 65, 0, 262164, 65, 0, 262165, 33, 0, 262180, 28, 0, 262181, 37, 0, 262182, 36, 0, 262183, 28, 0, 327680, 28, 0, 327681, 28, 0, 327682, 28, 0, 327683, 28, 0, 327698, 37, 0, 327699, 67, 0, 327700, 67, 0, 327701, 36, 0, 327716, 28, 0, 327717, 37, 0, 327718, 36, 0, 327719, 28, 0, 393216, 28, 0, 393217, 28, 0, 393218, 28, 0, 393219, 28, 0, 393234, 37, 0, 393235, 67, 0, 393236, 67, 0, 393237, 36, 0, 393252, 28, 0, 393253, 37, 0, 393254, 36, 0, 393255, 28, 0, 458752, 65, 0, 458753, 65, 0, 458754, 33, 0, 458755, 28, 0, 458770, 37, 0, 458771, 67, 0, 458772, 67, 0, 458773, 36, 0, 458788, 28, 0, 458789, 37, 0, 458790, 36, 0, 458791, 28, 0, 524288, 66, 0, 524289, 67, 0, 524290, 36, 0, 524291, 28, 0, 524306, 37, 0, 524307, 67, 0, 524308, 67, 0, 524309, 36, 0, 524324, 28, 0, 524325, 37, 0, 524326, 36, 0, 524327, 28, 0, 589824, 28, 0, 589825, 37, 0, 589826, 36, 0, 589827, 28, 0, 589842, 37, 0, 589843, 67, 0, 589844, 67, 0, 589845, 36, 0, 589860, 28, 0, 589861, 37, 0, 589862, 36, 0, 589863, 28, 0, 655360, 28, 0, 655361, 37, 0, 655362, 36, 0, 655363, 28, 0, 655378, 37, 0, 655379, 67, 0, 655380, 67, 0, 655381, 36, 0, 655396, 28, 0, 655397, 37, 0, 655398, 36, 0, 655399, 28, 0, 720896, 28, 0, 720897, 37, 0, 720898, 36, 0, 720899, 28, 0, 720914, 37, 0, 720915, 67, 0, 720916, 67, 0, 720917, 36, 0, 720932, 28, 0, 720933, 37, 0, 720934, 36, 0, 720935, 28, 0, 786432, 28, 0, 786433, 37, 0, 786434, 36, 0, 786435, 28, 0, 786450, 37, 0, 786451, 67, 0, 786452, 67, 0, 786453, 36, 0, 786468, 28, 0, 786469, 37, 0, 786470, 67, 0, 786471, 65, 0, 851968, 28, 0, 851969, 37, 0, 851970, 36, 0, 851971, 28, 0, 851986, 37, 0, 851987, 67, 0, 851988, 67, 0, 851989, 36, 0, 852004, 28, 0, 852005, 34, 0, 852006, 66, 0, 852007, 66, 0, 917504, 28, 0, 917505, 37, 0, 917506, 36, 0, 917507, 28, 0, 917522, 37, 0, 917523, 67, 0, 917524, 67, 0, 917525, 36, 0, 917540, 28, 0, 917541, 28, 0, 917542, 28, 0, 917543, 28, 0, 983040, 28, 0, 983041, 536870948, 0, 983042, 536870949, 0, 983043, 28, 0, 983058, 37, 0, 983059, 67, 0, 983060, 67, 0, 983061, 36, 0, 983076, 28, 0, 983077, 28, 0, 983078, 28, 0, 983079, 28, 0, 1048576, 28, 0, 1048577, 536870948, 0, 1048578, 536870949, 0, 1048579, 28, 0, 1048594, 37, 0, 1048595, 67, 0, 1048596, 67, 0, 1048597, 36, 0, 1048612, 28, 0, 1048613, 28, 0, 1048614, 28, 0, 1048615, 28, 0, 1114112, 28, 0, 1114113, 536870948, 0, 1114114, 536870949, 0, 1114115, 28, 0, 1114130, 37, 0, 1114131, 27, 0, 1114132, 26, 0, 1114133, 36, 0, 1114148, 28, 0, 1114149, 28, 0, 1114150, 28, 0, 1114151, 28, 0, 1179648, 28, 0, 1179649, 536870948, 0, 1179650, 536870949, 0, 1179651, 28, 0, 1179652, 28, 0, 1179653, 28, 0, 1179654, 28, 0, 1179655, 28, 0, 1179656, 28, 0, 1179657, 28, 0, 1179658, 28, 0, 1179659, 28, 0, 1179660, 28, 0, 1179661, 28, 0, 1179662, 28, 0, 1179663, 28, 0, 1179664, 28, 0, 1179665, 28, 0, 1179666, 34, 0, 1179667, 66, 0, 1179668, 66, 0, 1179669, 35, 0, 1179670, 28, 0, 1179671, 28, 0, 1179672, 28, 0, 1179673, 28, 0, 1179674, 28, 0, 1179675, 28, 0, 1179676, 28, 0, 1179677, 28, 0, 1179678, 28, 0, 1179679, 28, 0, 1179680, 28, 0, 1179681, 28, 0, 1179682, 28, 0, 1179683, 28, 0, 1179684, 28, 0, 1179685, 28, 0, 1179686, 28, 0, 1179687, 28, 0, 1245184, 65, 0, 1245185, 536870979, 0, 1245186, 536870979, 0, 1245187, 65, 0, 1245188, 65, 0, 1245189, 65, 0, 1245190, 65, 0, 1245191, 65, 0, 1245192, 65, 0, 1245193, 65, 0, 1245194, 65, 0, 1245195, 65, 0, 1245196, 65, 0, 1245197, 65, 0, 1245198, 65, 0, 1245199, 65, 0, 1245200, 65, 0, 1245201, 65, 0, 1245202, 65, 0, 1245203, 65, 0, 1245204, 65, 0, 1245205, 65, 0, 1245206, 65, 0, 1245207, 65, 0, 1245208, 65, 0, 1245209, 65, 0, 1245210, 65, 0, 1245211, 65, 0, 1245212, 65, 0, 1245213, 65, 0, 1245214, 65, 0, 1245215, 65, 0, 1245216, 65, 0, 1245217, 65, 0, 1245218, 65, 0, 1245219, 65, 0, 1245220, 28, 0, 1245221, 28, 0, 1245222, 28, 0, 1245223, 28, 0, 1310720, 66, 0, 1310721, 66, 0, 1310722, 66, 0, 1310723, 66, 0, 1310724, 66, 0, 1310725, 66, 0, 1310726, 66, 0, 1310727, 66, 0, 1310728, 66, 0, 1310729, 66, 0, 1310730, 66, 0, 1310731, 66, 0, 1310732, 66, 0, 1310733, 66, 0, 1310734, 66, 0, 1310735, 66, 0, 1310736, 66, 0, 1310737, 66, 0, 1310738, 66, 0, 1310739, 66, 0, 1310740, 66, 0, 1310741, 66, 0, 1310742, 66, 0, 1310743, 66, 0, 1310744, 66, 0, 1310745, 66, 0, 1310746, 66, 0, 1310747, 66, 0, 1310748, 66, 0, 1310749, 66, 0, 1310750, 66, 0, 1310751, 66, 0, 1310752, 66, 0, 1310753, 66, 0, 1310754, 66, 0, 1310755, 66, 0, 1310756, 28, 0, 1310757, 28, 0, 1310758, 28, 0, 1310759, 28, 0, 1376256, 28, 0, 1376257, 28, 0, 1376258, 28, 0, 1376259, 28, 0, 1376260, 28, 0, 1376261, 28, 0, 1376262, 28, 0, 1376263, 28, 0, 1376264, 28, 0, 1376265, 28, 0, 1376266, 28, 0, 1376267, 28, 0, 1376268, 28, 0, 1376269, 28, 0, 1376270, 28, 0, 1376271, 28, 0, 1376272, 28, 0, 1376273, 28, 0, 1376274, 28, 0, 1376275, 28, 0, 1376276, 28, 0, 1376277, 28, 0, 1376278, 28, 0, 1376279, 28, 0, 1376280, 28, 0, 1376281, 28, 0, 1376282, 28, 0, 1376283, 28, 0, 1376284, 28, 0, 1376285, 28, 0, 1376286, 28, 0, 1376287, 28, 0, 1376288, 28, 0, 1376289, 28, 0, 1376290, 28, 0, 1376291, 28, 0, 1376292, 28, 0, 1376293, 28, 0, 1376294, 28, 0, 1376295, 28, 0, 1441792, 28, 0, 1441793, 28, 0, 1441794, 28, 0, 1441795, 28, 0, 1441796, 28, 0, 1441797, 28, 0, 1441798, 28, 0, 1441799, 28, 0, 1441800, 28, 0, 1441801, 28, 0, 1441802, 28, 0, 1441803, 28, 0, 1441804, 28, 0, 1441805, 28, 0, 1441806, 28, 0, 1441807, 28, 0, 1441808, 28, 0, 1441809, 28, 0, 1441810, 28, 0, 1441811, 28, 0, 1441812, 28, 0, 1441813, 28, 0, 1441814, 28, 0, 1441815, 28, 0, 1441816, 28, 0, 1441817, 28, 0, 1441818, 28, 0, 1441819, 28, 0, 1441820, 28, 0, 1441821, 28, 0, 1441822, 28, 0, 1441823, 28, 0, 1441824, 28, 0, 1441825, 28, 0, 1441826, 28, 0, 1441827, 28, 0, 1441828, 28, 0, 1441829, 28, 0, 1441830, 28, 0, 1441831, 28, 0 )
+
+[node name="bg-obj_1" type="TileMap" parent="."]
+scale = Vector2( 1.25, 1.25 )
+tile_set = ExtResource( 9 )
+cell_size = Vector2( 8, 8 )
+format = 1
+tile_data = PoolIntArray( -65524, 68, 0, -65521, 536870980, 0, 131130, 60, 0, 2031624, 536870970, 0 )
+
+[node name="bg-obj_2" type="TileMap" parent="."]
+tile_set = ExtResource( 9 )
+cell_size = Vector2( 8, 8 )
+format = 1
+tile_data = PoolIntArray( -196595, 69, 0, -196593, 69, 0, -196591, 69, 0, -196590, 69, 0, -196588, 69, 0, -196586, 69, 0, -196584, 69, 0, 28, 77, 0, 30, 75, 0, 32, 75, 0, 34, 75, 0, 36, 75, 0, 38, 75, 0, 40, 75, 0, 42, 75, 0, 44, 75, 0, 46, 75, 0, 48, 75, 0, 50, 75, 0, 52, 75, 0, 54, 75, 0, 56, 75, 0, 58, 75, 0, 60, 75, 0, 62, 75, 0, 64, 75, 0, 66, 75, 0, 68, 75, 0, 70, 75, 0, 72, 73, 0, 65549, 70, 0, 65560, 70, 0, 327708, 77, 0, 327710, 75, 0, 327712, 75, 0, 327714, 75, 0, 327716, 75, 0, 327718, 75, 0, 327720, 75, 0, 327722, 75, 0, 327724, 75, 0, 327726, 75, 0, 327728, 75, 0, 327730, 75, 0, 327732, 75, 0, 327734, 75, 0, 327736, 75, 0, 327738, 75, 0, 327740, 75, 0, 327742, 75, 0, 327744, 75, 0, 327746, 75, 0, 327748, 75, 0, 327750, 75, 0, 327752, 72, 0, 458824, 76, 0, 589896, 76, 0, 720968, 76, 0, 851967, 75, 0, 786433, 75, 0, 786435, 75, 0, 786437, 72, 0, 852040, 76, 0, 917509, 76, 0, 983112, 76, 0, 1048581, 76, 0, 1114184, 76, 0, 1179648, 536870953, 0, 1179653, 76, 0, 1245256, 76, 0, 1376328, 76, 0, 1441797, 76, 0, 1507328, 536870953, 0, 1507400, 76, 0, 1572869, 76, 0, 1638472, 76, 0, 1703941, 76, 0, 1769544, 74, 0, 1769546, 75, 0, 1769548, 75, 0, 1769550, 75, 0, 1835008, 536870953, 0, 1835013, 76, 0, 1966085, 76, 0, 2097157, 76, 0, 2162688, 536870953, 0, 2228229, 76, 0, 2359301, 74, 0, 2359303, 75, 0, 2359305, 75, 0, 2359307, 75, 0, 2359309, 75, 0, 2359311, 75, 0, 2359313, 75, 0, 2359315, 75, 0, 2359317, 75, 0, 2359319, 75, 0, 2359321, 75, 0, 2359323, 75, 0, 2359325, 75, 0, 2359327, 75, 0, 2359329, 75, 0, 2359331, 75, 0, 2359333, 75, 0, 2359335, 75, 0, 2359337, 75, 0, 2359339, 75, 0, 2359341, 536870987, 0, 2359343, 536870987, 0, 2359345, 536870987, 0, 2359347, 536870987, 0, 2359349, 536870987, 0, 2359351, 75, 0, 2359353, 75, 0, 2359355, 75, 0, 2359357, 75, 0, 2359359, 75, 0, 2359361, 75, 0, 2359363, 75, 0, 2359365, 75, 0, 2359367, 75, 0, 2359369, 75, 0, 2359371, 75, 0, 2359373, 75, 0, 2686976, 536870987, 0, 2686978, 536870987, 0, 2686980, 536870987, 0, 2686982, 536870987, 0, 2686984, 536870987, 0, 2686991, 536870987, 0, 2686992, 536870987, 0, 2686994, 536870987, 0, 2686996, 536870987, 0, 2686998, 536870987, 0, 2687000, 536870987, 0, 2687002, 536870987, 0, 2687004, 536870987, 0, 2687006, 536870987, 0, 2687008, 536870987, 0, 2687010, 536870987, 0, 2687012, 536870987, 0, 2687014, 536870987, 0, 2687016, 536870987, 0, 2687018, 536870987, 0, 2687020, 536870987, 0, 2687022, 536870987, 0, 2687024, 536870987, 0, 2687026, 536870987, 0, 2687028, 536870987, 0, 2687030, 536870987, 0, 2687032, 536870987, 0, 2687034, 536870987, 0, 2687036, 536870987, 0, 2687038, 536870987, 0, 2687040, 536870987, 0, 2687042, 536870987, 0, 2687044, 536870987, 0, 2687046, 536870987, 0 )
+
+[node name="bg-back_2" type="TileMap" parent="."]
+position = Vector2( -6.93182, -3.32177 )
+scale = Vector2( 2, 2 )
+tile_set = ExtResource( 9 )
+cell_size = Vector2( 1, 1 )
+format = 1
+tile_data = PoolIntArray( -523986, 536870951, 0, -196569, 48, 0, -1, 45, 0, 16, 39, 0, 983038, 39, 0, 1114424, 39, 0, 2097299, 54, 0, 2097315, 53, 0, 2294067, 536870951, 0, 3014803, 57, 0, 3014819, 57, 0, 3473724, 536870951, 0, 3932307, 57, 0, 3932323, 57, 0, 4260143, 39, 0, 4587540, 39, 0, 4849811, 57, 0, 4849827, 57, 0, 5767315, 57, 0, 5767331, 57, 0, 6619448, 39, 0, 6684819, 57, 0, 6684835, 57, 0, 7536927, 536870951, 0, 7602323, 57, 0, 7602339, 57, 0, 8650899, 51, 0, 8650915, 52, 0, 9044266, 39, 0, 9765140, 39, 0, 9961463, 39, 0, 10158379, 45, 0, 10485823, 39, 0, 10485885, 39, 0, 10551421, 39, 0, 10617068, 39, 0, 10682539, 39, 0, 10747917, 536870951, 0, 11141336, 536870951, 0, 11206734, 536870951, 0, 11337843, 536870951, 0, 11534507, 45, 0 )
+
+[node name="bg-back_3" type="TileMap" parent="."]
+tile_set = ExtResource( 9 )
+cell_size = Vector2( 1, 1 )
+format = 1
+tile_data = PoolIntArray( 3539474, 536870961, 0, 13566543, 536870959, 0, 22151708, 536870959, 0, 22675998, 536870955, 0 )
+
+[node name="Portals" type="Node2D" parent="."]
+scale = Vector2( 2, 2 )
+
+[node name="PortalPair" type="Node2D" parent="Portals"]
+
+[node name="Portal1" parent="Portals/PortalPair" groups=[
+"portal1",
+] instance=ExtResource( 13 )]
+position = Vector2( 55.5, 104 )
+
+[node name="Portal2" parent="Portals/PortalPair" groups=[
+"portal2",
+] instance=ExtResource( 14 )]
+position = Vector2( 119.5, 72 )
+
+[node name="PortalPair2" type="Node2D" parent="Portals"]
+
+[node name="Portal1" parent="Portals/PortalPair2" groups=[
+"portal1",
+] instance=ExtResource( 13 )]
+position = Vector2( 199.5, 120 )
+
+[node name="Portal2" parent="Portals/PortalPair2" groups=[
+"portal2",
+] instance=ExtResource( 14 )]
+position = Vector2( 263.5, 56 )
+
+[node name="Ices" type="Node2D" parent="."]
+
+[node name="Ice" parent="Ices" groups=[
+"ice",
+] instance=ExtResource( 3 )]
+position = Vector2( -96, 32 )
+
+[node name="Players" type="Node2D" parent="."]
+position = Vector2( 32, 64 )
+
+[node name="Player1" parent="Players" groups=[
+"player",
+] instance=ExtResource( 2 )]
+position = Vector2( 79, 176 )
+
+[node name="Player2" parent="Players" groups=[
+"player",
+] instance=ExtResource( 1 )]
+position = Vector2( 463, 48 )
+
+[node name="Wall-borders" type="Node2D" parent="."]
+
+[node name="Wall_1" parent="Wall-borders" instance=ExtResource( 4 )]
+position = Vector2( 80, 80 )
+
+[node name="Wall_2" parent="Wall-borders" instance=ExtResource( 4 )]
+position = Vector2( 80, 112 )
+
+[node name="Wall_3" parent="Wall-borders" instance=ExtResource( 4 )]
+position = Vector2( 80, 80 )
+
+[node name="Wall_4" parent="Wall-borders" instance=ExtResource( 4 )]
+position = Vector2( 80, 112 )
+
+[node name="Wall_5" parent="Wall-borders" instance=ExtResource( 4 )]
+position = Vector2( 80, 144 )
+
+[node name="Wall_6" parent="Wall-borders" instance=ExtResource( 4 )]
+position = Vector2( 80, 176 )
+
+[node name="Wall_7" parent="Wall-borders" instance=ExtResource( 4 )]
+position = Vector2( 80, 208 )
+
+[node name="Wall_8" parent="Wall-borders" instance=ExtResource( 4 )]
+position = Vector2( 80, 240 )
+
+[node name="Wall_9" parent="Wall-borders" instance=ExtResource( 4 )]
+position = Vector2( 80, 272 )
+
+[node name="Wall_10" parent="Wall-borders" instance=ExtResource( 4 )]
+position = Vector2( 112, 272 )
+
+[node name="Wall_11" parent="Wall-borders" instance=ExtResource( 4 )]
+position = Vector2( 144, 272 )
+
+[node name="Wall_12" parent="Wall-borders" instance=ExtResource( 4 )]
+position = Vector2( 176, 272 )
+
+[node name="Wall_13" parent="Wall-borders" instance=ExtResource( 4 )]
+position = Vector2( 208, 272 )
+
+[node name="Wall_14" parent="Wall-borders" instance=ExtResource( 4 )]
+position = Vector2( 240, 272 )
+
+[node name="Wall_15" parent="Wall-borders" instance=ExtResource( 4 )]
+position = Vector2( 272, 272 )
+
+[node name="Wall_16" parent="Wall-borders" instance=ExtResource( 4 )]
+position = Vector2( 272, 240 )
+
+[node name="Wall_17" parent="Wall-borders" instance=ExtResource( 4 )]
+position = Vector2( 272, 208 )
+
+[node name="Wall_18" parent="Wall-borders" instance=ExtResource( 4 )]
+position = Vector2( 272, 176 )
+
+[node name="Wall_19" parent="Wall-borders" instance=ExtResource( 4 )]
+position = Vector2( 272, 144 )
+
+[node name="Wall_20" parent="Wall-borders" instance=ExtResource( 4 )]
+position = Vector2( 272, 112 )
+
+[node name="Wall_21" parent="Wall-borders" instance=ExtResource( 4 )]
+position = Vector2( 272, 80 )
+
+[node name="Wall_22" parent="Wall-borders" instance=ExtResource( 4 )]
+position = Vector2( 240, 80 )
+
+[node name="Wall_23" parent="Wall-borders" instance=ExtResource( 4 )]
+position = Vector2( 208, 80 )
+
+[node name="Wall_24" parent="Wall-borders" instance=ExtResource( 4 )]
+position = Vector2( 176, 80 )
+
+[node name="Wall_25" parent="Wall-borders" instance=ExtResource( 4 )]
+position = Vector2( 144, 80 )
+
+[node name="Wall_26" parent="Wall-borders" instance=ExtResource( 4 )]
+position = Vector2( 112, 80 )
+
+[node name="Wall_27" parent="Wall-borders" instance=ExtResource( 4 )]
+position = Vector2( 368, 80 )
+
+[node name="Wall_28" parent="Wall-borders" instance=ExtResource( 4 )]
+position = Vector2( 368, 112 )
+
+[node name="Wall_29" parent="Wall-borders" instance=ExtResource( 4 )]
+position = Vector2( 368, 80 )
+
+[node name="Wall_30" parent="Wall-borders" instance=ExtResource( 4 )]
+position = Vector2( 368, 112 )
+
+[node name="Wall_31" parent="Wall-borders" instance=ExtResource( 4 )]
+position = Vector2( 368, 144 )
+
+[node name="Wall_32" parent="Wall-borders" instance=ExtResource( 4 )]
+position = Vector2( 368, 176 )
+
+[node name="Wall_33" parent="Wall-borders" instance=ExtResource( 4 )]
+position = Vector2( 368, 208 )
+
+[node name="Wall_34" parent="Wall-borders" instance=ExtResource( 4 )]
+position = Vector2( 368, 240 )
+
+[node name="Wall_35" parent="Wall-borders" instance=ExtResource( 4 )]
+position = Vector2( 368, 272 )
+
+[node name="Wall_36" parent="Wall-borders" instance=ExtResource( 4 )]
+position = Vector2( 400, 272 )
+
+[node name="Wall_37" parent="Wall-borders" instance=ExtResource( 4 )]
+position = Vector2( 432, 272 )
+
+[node name="Wall_38" parent="Wall-borders" instance=ExtResource( 4 )]
+position = Vector2( 464, 272 )
+
+[node name="Wall_39" parent="Wall-borders" instance=ExtResource( 4 )]
+position = Vector2( 496, 272 )
+
+[node name="Wall_40" parent="Wall-borders" instance=ExtResource( 4 )]
+position = Vector2( 528, 272 )
+
+[node name="Wall_41" parent="Wall-borders" instance=ExtResource( 4 )]
+position = Vector2( 560, 272 )
+
+[node name="Wall_42" parent="Wall-borders" instance=ExtResource( 4 )]
+position = Vector2( 560, 240 )
+
+[node name="Wall_43" parent="Wall-borders" instance=ExtResource( 4 )]
+position = Vector2( 560, 208 )
+
+[node name="Wall_44" parent="Wall-borders" instance=ExtResource( 4 )]
+position = Vector2( 560, 176 )
+
+[node name="Wall_45" parent="Wall-borders" instance=ExtResource( 4 )]
+position = Vector2( 560, 144 )
+
+[node name="Wall_46" parent="Wall-borders" instance=ExtResource( 4 )]
+position = Vector2( 560, 112 )
+
+[node name="Wall_47" parent="Wall-borders" instance=ExtResource( 4 )]
+position = Vector2( 560, 80 )
+
+[node name="Wall_48" parent="Wall-borders" instance=ExtResource( 4 )]
+position = Vector2( 528, 80 )
+
+[node name="Wall_49" parent="Wall-borders" instance=ExtResource( 4 )]
+position = Vector2( 496, 80 )
+
+[node name="Wall_50" parent="Wall-borders" instance=ExtResource( 4 )]
+position = Vector2( 464, 80 )
+
+[node name="Wall_51" parent="Wall-borders" instance=ExtResource( 4 )]
+position = Vector2( 432, 80 )
+
+[node name="Wall_52" parent="Wall-borders" instance=ExtResource( 4 )]
+position = Vector2( 400, 80 )
+
+[node name="bg-border" type="TileMap" parent="."]
+scale = Vector2( 2, 2 )
+tile_set = ExtResource( 9 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( 131074, 1073741826, 0, 131075, 1073741828, 0, 131076, 1073741828, 0, 131077, 1073741828, 0, 131078, 1073741828, 0, 131079, 1073741828, 0, 131080, 1073741827, 0, 131083, 1073741826, 0, 131084, 1073741828, 0, 131085, 1073741828, 0, 131086, 1073741828, 0, 131087, 1073741828, 0, 131088, 1073741828, 0, 131089, 1073741827, 0, 196610, 0, 0, 196616, 1, 0, 196619, 0, 0, 196625, 1, 0, 262146, 0, 0, 262152, 1, 0, 262155, 0, 0, 262161, 1, 0, 327682, 0, 0, 327688, 1, 0, 327691, 0, 0, 327697, 1, 0, 393218, 0, 0, 393224, 1, 0, 393227, 0, 0, 393233, 1, 0, 458754, 0, 0, 458760, 1, 0, 458763, 0, 0, 458769, 1, 0, 524290, 2, 0, 524291, 4, 0, 524292, 4, 0, 524293, 4, 0, 524294, 4, 0, 524295, 4, 0, 524296, 3, 0, 524299, 2, 0, 524300, 4, 0, 524301, 4, 0, 524302, 4, 0, 524303, 4, 0, 524304, 4, 0, 524305, 3, 0 )
+
+[node name="Wall-ingame-queen" type="Node2D" parent="."]
+position = Vector2( 32, 64 )
+
+[node name="Wall-ingame-king" type="Node2D" parent="."]
+position = Vector2( 32, 64 )
+
+[node name="Wall_4" parent="Wall-ingame-king" instance=ExtResource( 4 )]
+position = Vector2( -120, 40 )
+
+[node name="Sidewalls" type="Node2D" parent="."]
+position = Vector2( -35, 8.5 )
+
+[node name="Sidewall" parent="Sidewalls" instance=ExtResource( 12 )]
+position = Vector2( -30, 183.5 )
+rotation = -6.28318
+
+[node name="Sidewall3" parent="Sidewalls" instance=ExtResource( 12 )]
+position = Vector2( -30, 215.5 )
+rotation = 1.57079
+
+[node name="Goals" type="Node2D" parent="."]
+position = Vector2( 32, 64 )
+
+[node name="Goal" parent="Goals" instance=ExtResource( 11 )]
+position = Vector2( 127, 32 )
+script = ExtResource( 5 )
+
+[node name="Goal2" parent="Goals" instance=ExtResource( 8 )]
+position = Vector2( 415, 160 )
+
+[node name="Fires" type="Node2D" parent="."]
+
+[node name="Fire" parent="Fires" groups=[
+"fire",
+] instance=ExtResource( 10 )]
+position = Vector2( 447, 96 )
+
+[node name="Fire2" parent="Fires" groups=[
+"fire",
+] instance=ExtResource( 10 )]
+position = Vector2( 447, 128 )
+
+[node name="Fire6" parent="Fires" groups=[
+"fire",
+] instance=ExtResource( 10 )]
+position = Vector2( 159, 224 )
+
+[node name="Fire7" parent="Fires" groups=[
+"fire",
+] instance=ExtResource( 10 )]
+position = Vector2( 159, 192 )
+
+[node name="Fire8" parent="Fires" groups=[
+"fire",
+] instance=ExtResource( 10 )]
+position = Vector2( 159, 160 )
+
+[node name="Fire9" parent="Fires" groups=[
+"fire",
+] instance=ExtResource( 10 )]
+position = Vector2( 127, 160 )
+
+[node name="Fire10" parent="Fires" groups=[
+"fire",
+] instance=ExtResource( 10 )]
+position = Vector2( 95, 160 )
+
+[node name="Fire3" parent="Fires" groups=[
+"fire",
+] instance=ExtResource( 10 )]
+position = Vector2( 447, 160 )
+
+[node name="Fire4" parent="Fires" groups=[
+"fire",
+] instance=ExtResource( 10 )]
+position = Vector2( 479, 160 )
+
+[node name="Fire5" parent="Fires" groups=[
+"fire",
+] instance=ExtResource( 10 )]
+position = Vector2( 511, 160 )
+
+[node name="WinMessage" type="CanvasLayer" parent="."]
+
+[node name="WinDialog" type="AcceptDialog" parent="WinMessage"]
+margin_left = 512.0
+margin_top = 304.0
+margin_right = 640.0
+margin_bottom = 362.0
+rect_scale = Vector2( 2, 2 )
+window_title = "Complete!"
+dialog_text = "Good job!"
+dialog_autowrap = true
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="body_entered" from="Goals/Goal2" to="Goals/Goal2" method="_on_Goal2_body_entered"]
+[connection signal="body_exited" from="Goals/Goal2" to="Goals/Goal2" method="_on_Goal2_body_exited"]
