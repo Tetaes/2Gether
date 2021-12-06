@@ -1,5 +1,9 @@
 extends KinematicBody2D
 
+#buffer variable
+var pressbuffer = true
+var thisdir
+
 #ray
 onready var ray = $RayCast2D
 
@@ -50,11 +54,44 @@ func _unhandled_input(event):
 				move(dir,1)
 	
 	if event is InputEventKey:
+		#restart
 		if event.scancode == KEY_R:
 			get_node("/root/Game").reloadlevel(get_node("../../").get_name())
-	
+		#undo
+		if event.scancode == KEY_Z:
+			if pressbuffer:
+				pressbuffer = false
+				if not get_node("/root/global").oldposqueen == [] and self.get_name() == "Player1":
+					position = get_node("/root/global").oldposqueen.pop_back()
+					$character.play(get_node("/root/global").oldfacingqueen.pop_back())
+				if not get_node("/root/global").oldposking == [] and self.get_name() == "Player2":
+					position = get_node("/root/global").oldposking.pop_back()
+					$character.play(get_node("/root/global").oldfacingking.pop_back())
+				buffer()
+
+#buffer function
+func buffer():
+	yield(get_tree().create_timer(0.1), "timeout")
+	pressbuffer = true
+
 #move function
 func move(dir,amt):
+	
+	if dir == "ui_left":
+		thisdir = "run_left"
+	elif dir == "ui_right":
+		thisdir = "run_right"
+	elif dir == "ui_down":
+		thisdir = "run_down"
+	elif dir == "ui_up":
+		thisdir = "run_up"
+	
+	if self.get_name() == "Player1":
+		get_node("/root/global").oldposqueen.append(position)
+		get_node("/root/global").oldfacingqueen.append(thisdir)
+	elif self.get_name() == "Player2":
+		get_node("/root/global").oldposking.append(position)
+		get_node("/root/global").oldfacingking.append(thisdir)
 	
 	#try to move max blocks, then max-1, max-2, until 0
 	for blocks in range(amt,0,-1):

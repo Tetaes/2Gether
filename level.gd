@@ -3,6 +3,10 @@ extends Node2D
 var game_clear = false
 var death = false
 
+func _ready():
+	get_node("/root/global").oldposking = []
+	get_node("/root/global").oldposqueen = []
+
 func _process(_delta):
 	if game_clear == false:
 		
