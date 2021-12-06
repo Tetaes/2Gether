@@ -30,7 +30,8 @@ var facing = {
 func _unhandled_input(event):
 	
 	#ignore input if tween is active
-	
+	if tween.is_active():
+		return
 		
 	#check input
 	for dir in inputs.keys():
@@ -156,6 +157,22 @@ func move(dir,amt):
 					yield(get_tree().create_timer(0.01), "timeout")
 					move(dir,1)
 					get_node(str(collider.get_path()) + "/CollisionShape2D").set_deferred("disabled", false)
+			
+			elif collider.is_in_group('player'):
+			#check if player is INSIDE another player from a previous move
+			#by making ray very small
+				
+				var playercollider = collider
+				
+				get_node(str(playercollider.get_path()) + "/CollisionShape2D").set_deferred("disabled", true)
+				yield(get_tree().create_timer(0.01), "timeout")
+				
+				ray.cast_to = move_vector*2
+				ray.force_raycast_update()
+				if not ray.is_colliding():
+					move(dir,1)
+				
+				get_node(str(playercollider.get_path()) + "/CollisionShape2D").set_deferred("disabled", false)
 			
 		#print(blocks)
 	
