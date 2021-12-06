@@ -97,7 +97,6 @@ func loadworld(name, world):
 		reloadBuffer = false
 		
 		var level
-		var reallevelname = name.split("@")
 		
 		get_node("/root/Game/" + name).queue_free()
 		get_node("/root/Game/" + name).remove_child(self)
