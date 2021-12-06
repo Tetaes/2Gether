@@ -10,5 +10,7 @@ func _on_Goal_body_exited(body):
 #if players enter goal
 func _on_Goal_body_entered(body):
 	if body.is_in_group('player'):
-		occupied = true
+		yield(get_tree().create_timer(0.05), "timeout")
+		if body.is_in_group('player'):
+			occupied = true
 
