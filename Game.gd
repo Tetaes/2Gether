@@ -9,8 +9,8 @@ extends Node2D
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#comment line 12 and 13 to see menu
-	var level = load("res://Assets/map/map_forest/forest_10.tscn").instance()
-	add_child(level)
+	#var level = load("res://Assets/map/map_forest/forest_10.tscn").instance()
+	#add_child(level)
 	pass
 
 func _on_Start_pressed():
