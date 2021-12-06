@@ -380,18 +380,6 @@ rotation = -6.28318
 position = Vector2( 499, 167.5 )
 rotation = 1.57079
 
-[node name="WinTransition" type="CanvasLayer" parent="."]
-
-[node name="WinWipe" type="ColorRect" parent="WinTransition"]
-visible = false
-margin_left = 1260.0
-margin_right = 1300.0
-margin_bottom = 40.0
-color = Color( 0, 0, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="WinMessage" type="CanvasLayer" parent="."]
 
 [node name="WinDialog" type="AcceptDialog" parent="WinMessage"]

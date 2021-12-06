@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Death.gd" type="Script" id=1]
 [ext_resource path="res://Game.gd" type="Script" id=2]
+[ext_resource path="res://Assets/map/map_forest/WinWipe.gd" type="Script" id=3]
 [ext_resource path="res://Start.gd" type="Script" id=4]
 
 [sub_resource type="Shader" id=1]
@@ -41,6 +42,56 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="WinTransition" type="CanvasLayer" parent="GlobalShaders"]
+
+[node name="WinWipe1" type="ColorRect" parent="GlobalShaders/WinTransition"]
+margin_left = 1280.0
+margin_right = 1312.0
+margin_bottom = 32.0
+grow_horizontal = 0
+grow_vertical = 0
+color = Color( 0.576471, 0.705882, 0.129412, 1 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween1" type="Tween" parent="GlobalShaders/WinTransition/WinWipe1"]
+
+[node name="Tween2" type="Tween" parent="GlobalShaders/WinTransition/WinWipe1"]
+
+[node name="WinWipe2" type="ColorRect" parent="GlobalShaders/WinTransition"]
+margin_left = 2560.0
+margin_right = 2592.0
+margin_bottom = 32.0
+grow_horizontal = 0
+grow_vertical = 0
+color = Color( 0.439216, 0.572549, 0, 1 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween1" type="Tween" parent="GlobalShaders/WinTransition/WinWipe2"]
+
+[node name="Tween2" type="Tween" parent="GlobalShaders/WinTransition/WinWipe2"]
+
+[node name="WinWipe3" type="ColorRect" parent="GlobalShaders/WinTransition"]
+margin_left = 3840.0
+margin_right = 3872.0
+margin_bottom = 32.0
+grow_horizontal = 0
+grow_vertical = 0
+color = Color( 0.427451, 0.513726, 0.129412, 1 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween1" type="Tween" parent="GlobalShaders/WinTransition/WinWipe3"]
+
+[node name="Tween2" type="Tween" parent="GlobalShaders/WinTransition/WinWipe3"]
 
 [node name="Menu" type="Control" parent="."]
 margin_right = 1280.0

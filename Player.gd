@@ -47,6 +47,11 @@ func _unhandled_input(event):
 			elif dir == "ui_up":
 				$character.play("run_up")
 				move(dir,1)
+	
+	if event is InputEventKey:
+		if event.scancode == KEY_R:
+			get_node("/root/Game").reloadlevel(get_node("../../").get_name())
+	
 #move function
 func move(dir,amt):
 	
@@ -151,8 +156,7 @@ func move(dir,amt):
 					yield(get_tree().create_timer(0.01), "timeout")
 					move(dir,1)
 					get_node(str(collider.get_path()) + "/CollisionShape2D").set_deferred("disabled", false)
-					
-					
+			
 		#print(blocks)
 	
 	#rotate and squish players

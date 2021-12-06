@@ -59,7 +59,7 @@ shader_param/wave_speed = 2.0
 shader_param/wave_freq = 10.0
 shader_param/wave_width = 0.25
 
-[node name="forest_4" type="Node2D"]
+[node name="forest_3" type="Node2D"]
 scale = Vector2( 2, 2 )
 script = ExtResource( 7 )
 
