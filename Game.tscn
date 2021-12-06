@@ -1,8 +1,7 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Death.gd" type="Script" id=1]
 [ext_resource path="res://Game.gd" type="Script" id=2]
-[ext_resource path="res://Menu.gd" type="Script" id=3]
 [ext_resource path="res://Start.gd" type="Script" id=4]
 
 [sub_resource type="Shader" id=1]
@@ -46,7 +45,6 @@ __meta__ = {
 [node name="Menu" type="Control" parent="."]
 margin_right = 1280.0
 margin_bottom = 720.0
-script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -65,5 +63,5 @@ __meta__ = {
 
 [node name="Tween" type="Tween" parent="Menu/Start"]
 
-[connection signal="pressed" from="Menu/Start" to="Menu" method="_on_Start_pressed"]
+[connection signal="pressed" from="Menu/Start" to="." method="_on_Start_pressed"]
 [connection signal="tween_all_completed" from="Menu/Start/Tween" to="Menu/Start" method="_on_Tween_tween_all_completed"]
