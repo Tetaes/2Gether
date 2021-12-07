@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Ice.png-6b7dd7fd11a14ee4697a704adc6c618f.stex"
+path="res://.import/TilesA2.png-a81c7eb14d28388a208566f72a44bd28.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/map/map_winter/assets/Ice.png"
-dest_files=[ "res://.import/Ice.png-6b7dd7fd11a14ee4697a704adc6c618f.stex" ]
+source_file="res://Assets/map/map_winter/assets/TilesA2.png"
+dest_files=[ "res://.import/TilesA2.png-a81c7eb14d28388a208566f72a44bd28.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
@@ -31,5 +31,5 @@ process/invert_color=false
 process/normal_map_invert_y=false
 stream=false
 size_limit=0
-detect_3d=true
+detect_3d=false
 svg/scale=1.0

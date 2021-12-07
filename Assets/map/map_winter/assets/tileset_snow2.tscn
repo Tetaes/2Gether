@@ -1,0 +1,294 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Assets/map/map_winter/assets/TilesA3.png" type="Texture" id=1]
+[ext_resource path="res://Assets/map/map_winter/assets/TilesA2.png" type="Texture" id=2]
+[ext_resource path="res://Assets/map/map_winter/assets/SnowyCliffs.png" type="Texture" id=3]
+
+[node name="Tileset" type="Node2D"]
+
+[node name="Wall1" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 64, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Wall1"]
+
+[node name="Wall2" type="Sprite" parent="."]
+position = Vector2( 80, 8 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 64, 16, 48 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Wall2"]
+
+[node name="Wall3" type="Sprite" parent="."]
+position = Vector2( 104, 8 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 48, 64, 16, 48 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Wall3"]
+
+[node name="Wall4" type="Sprite" parent="."]
+position = Vector2( 8, 80 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 64, 64, 8 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Wall4"]
+
+[node name="Wall5" type="Sprite" parent="."]
+position = Vector2( 8, 96 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 112, 64, 16 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Wall5"]
+
+[node name="Wall6" type="Sprite" parent="."]
+position = Vector2( 352, 8 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 72, 16, 40 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Wall6"]
+
+[node name="Wall7" type="Sprite" parent="."]
+position = Vector2( 376, 8 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 48, 72, 16, 40 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Wall7"]
+
+[node name="Wall8" type="Sprite" parent="."]
+position = Vector2( 400, 136 )
+texture = ExtResource( 3 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 8, 0, 32, 24 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Wall8"]
+
+[node name="Wall9" type="Sprite" parent="."]
+position = Vector2( 400, 168 )
+texture = ExtResource( 3 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 8, 32, 32, 16 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Wall9"]
+
+[node name="Wall10" type="Sprite" parent="."]
+position = Vector2( 400, 200 )
+texture = ExtResource( 3 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 8, 48, 32, 16 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Wall10"]
+
+[node name="Wall11" type="Sprite" parent="."]
+position = Vector2( 440, 200 )
+texture = ExtResource( 3 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 8, 8, 32, 16 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Wall11"]
+
+[node name="Wall12" type="Sprite" parent="."]
+position = Vector2( 440, 224 )
+texture = ExtResource( 3 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 8, 0, 32, 16 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Wall12"]
+
+[node name="Base1" type="Sprite" parent="."]
+position = Vector2( 136, 8 )
+texture = ExtResource( 2 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 160, 0, 32, 32 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Base1"]
+
+[node name="Base2" type="Sprite" parent="."]
+position = Vector2( 184, 8 )
+texture = ExtResource( 2 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 128, 0, 32, 32 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Base2"]
+
+[node name="Base3" type="Sprite" parent="."]
+position = Vector2( 88, 64 )
+texture = ExtResource( 2 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 128, 32, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Base3"]
+
+[node name="Base4" type="Sprite" parent="."]
+position = Vector2( 176, 64 )
+texture = ExtResource( 2 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 272, 32, 32, 32 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Base4"]
+
+[node name="Base5" type="Sprite" parent="."]
+position = Vector2( 224, 64 )
+texture = ExtResource( 2 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 224, 0, 32, 32 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Base5"]
+
+[node name="Base6" type="Sprite" parent="."]
+position = Vector2( 264, 8 )
+texture = ExtResource( 2 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 128, 128, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Base6"]
+
+[node name="Base7" type="Sprite" parent="."]
+position = Vector2( 8, 144 )
+texture = ExtResource( 2 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 128, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Base7"]
+
+[node name="Base8" type="Sprite" parent="."]
+position = Vector2( 88, 144 )
+texture = ExtResource( 2 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 128, 96, 32, 32 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Base8"]
+
+[node name="Base9" type="Sprite" parent="."]
+position = Vector2( 136, 144 )
+texture = ExtResource( 2 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 96, 32, 32 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Base9"]
+
+[node name="Base10" type="Sprite" parent="."]
+position = Vector2( 184, 144 )
+texture = ExtResource( 2 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 64, 0, 32, 32 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Base10"]
+
+[node name="Base11" type="Sprite" parent="."]
+position = Vector2( 232, 144 )
+texture = ExtResource( 2 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 128, 32, 32 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Base11"]
+
+[node name="Base12" type="Sprite" parent="."]
+position = Vector2( 272, 144 )
+texture = ExtResource( 2 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 32, 128, 32, 32 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Base12"]
+
+[node name="Base13" type="Sprite" parent="."]
+position = Vector2( 272, 184 )
+texture = ExtResource( 2 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 32, 160, 32, 32 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Base13"]
+
+[node name="Base14" type="Sprite" parent="."]
+position = Vector2( 232, 184 )
+texture = ExtResource( 2 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 160, 32, 32 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Base14"]
+
+[node name="Base15" type="Sprite" parent="."]
+position = Vector2( 344, 80 )
+texture = ExtResource( 2 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 144, 48, 32, 32 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Base15"]
+
+[node name="Base16" type="Sprite" parent="."]
+position = Vector2( 360, 128 )
+texture = ExtResource( 2 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 168, 32, 24, 24 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Base16"]
+
+[node name="Base17" type="Sprite" parent="."]
+position = Vector2( 360, 168 )
+texture = ExtResource( 2 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 168, 72, 24, 24 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Base17"]
+
+[node name="Base18" type="Sprite" parent="."]
+position = Vector2( 320, 168 )
+texture = ExtResource( 2 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 128, 72, 24, 24 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Base18"]
+
+[node name="Base19" type="Sprite" parent="."]
+position = Vector2( 320, 128 )
+texture = ExtResource( 2 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 128, 32, 24, 24 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Base19"]
+
+[node name="Base20" type="Sprite" parent="."]
+position = Vector2( 472, 136 )
+texture = ExtResource( 2 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 192, 0, 32, 32 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Base20"]
