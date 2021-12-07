@@ -1,5 +1,9 @@
 extends KinematicBody2D
 
+#buffer variable
+var pressbuffer = true
+var thisdir
+
 #ray
 onready var ray = $RayCast2D
 
@@ -30,7 +34,8 @@ var facing = {
 func _unhandled_input(event):
 	
 	#ignore input if tween is active
-	
+	if tween.is_active():
+		return
 		
 	#check input
 	for dir in inputs.keys():
@@ -47,8 +52,46 @@ func _unhandled_input(event):
 			elif dir == "ui_up":
 				$character.play("run_up")
 				move(dir,1)
+	
+	if event is InputEventKey:
+		#restart
+		if event.scancode == KEY_R:
+			get_node("/root/Game").reloadlevel(get_node("../../").get_name())
+		#undo
+		if event.scancode == KEY_Z:
+			if pressbuffer:
+				pressbuffer = false
+				if not get_node("/root/global").oldposqueen == [] and self.get_name() == "Player1":
+					position = get_node("/root/global").oldposqueen.pop_back()
+					$character.play(get_node("/root/global").oldfacingqueen.pop_back())
+				if not get_node("/root/global").oldposking == [] and self.get_name() == "Player2":
+					position = get_node("/root/global").oldposking.pop_back()
+					$character.play(get_node("/root/global").oldfacingking.pop_back())
+				buffer()
+
+#buffer function
+func buffer():
+	yield(get_tree().create_timer(0.1), "timeout")
+	pressbuffer = true
+
 #move function
 func move(dir,amt):
+	
+	if dir == "ui_left":
+		thisdir = "run_left"
+	elif dir == "ui_right":
+		thisdir = "run_right"
+	elif dir == "ui_down":
+		thisdir = "run_down"
+	elif dir == "ui_up":
+		thisdir = "run_up"
+	
+	if self.get_name() == "Player1":
+		get_node("/root/global").oldposqueen.append(position)
+		get_node("/root/global").oldfacingqueen.append(thisdir)
+	elif self.get_name() == "Player2":
+		get_node("/root/global").oldposking.append(position)
+		get_node("/root/global").oldfacingking.append(thisdir)
 	
 	#try to move max blocks, then max-1, max-2, until 0
 	for blocks in range(amt,0,-1):
@@ -120,7 +163,54 @@ func move(dir,amt):
 				#restart
 				get_node("/root/Game").reloadlevel(get_node("../../").get_name())
 				break
+			
+			#if it's a portal
+			elif collider.is_in_group('portal2') or collider.is_in_group('portal1'):
 				
+				#check if player is INSIDE the portal from a previous move
+				#by making ray very small
+				ray.cast_to = move_vector*0.1
+				ray.force_raycast_update()
+				
+				if not ray.is_colliding():
+					
+					ray.cast_to = move_vector
+					ray.force_raycast_update()
+					
+					if collider.is_in_group('portal2'):
+						var path = str(collider.get_path())
+						path.erase(path.length() - 1, 1)
+						move_teleport(get_node(path + "1").get_position() * 2.0 + Vector2(-32,-64))
+						break
+					
+					elif collider.is_in_group('portal1'):
+						var path = str(collider.get_path())
+						path.erase(path.length() - 1, 1)
+						move_teleport(get_node(path + "2").get_position() * 2.0 + Vector2(-32,-64))
+						break
+				
+				else:
+					get_node(str(collider.get_path()) + "/CollisionShape2D").set_deferred("disabled", true)
+					yield(get_tree().create_timer(0.01), "timeout")
+					move(dir,1)
+					get_node(str(collider.get_path()) + "/CollisionShape2D").set_deferred("disabled", false)
+			
+			elif collider.is_in_group('player'):
+			#check if player is INSIDE another player from a previous move
+			#by making ray very small
+				
+				var playercollider = collider
+				
+				get_node(str(playercollider.get_path()) + "/CollisionShape2D").set_deferred("disabled", true)
+				yield(get_tree().create_timer(0.01), "timeout")
+				
+				ray.cast_to = move_vector*2
+				ray.force_raycast_update()
+				if not ray.is_colliding():
+					move(dir,1)
+				
+				get_node(str(playercollider.get_path()) + "/CollisionShape2D").set_deferred("disabled", false)
+			
 		#print(blocks)
 	
 	#rotate and squish players
@@ -131,6 +221,12 @@ func move(dir,amt):
 func move_tween(dir,mult):
 	tween.interpolate_property(self, 'position',
 		position, position + inputs[dir] * grid_size * mult,
+		1.0/speed, Tween.TRANS_CIRC, Tween.EASE_IN_OUT)
+	tween.start()
+
+func move_teleport(newpos):
+	tween.interpolate_property(self, 'position',
+		position, newpos,
 		1.0/speed, Tween.TRANS_CIRC, Tween.EASE_IN_OUT)
 	tween.start()
 

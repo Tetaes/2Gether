@@ -1,0 +1,138 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://WorldSelect.gd" type="Script" id=1]
+
+[sub_resource type="Theme" id=3]
+
+[sub_resource type="Shader" id=4]
+code = "shader_type canvas_item;
+
+uniform float color;
+
+void fragment(){
+	COLOR = vec4(0.0,0.0,1.0,0.0);
+}"
+
+[sub_resource type="ShaderMaterial" id=5]
+shader = SubResource( 4 )
+shader_param/color = null
+
+[sub_resource type="DynamicFontData" id=1]
+font_path = "res://Fonts/Renogare-Regular.otf"
+
+[sub_resource type="DynamicFont" id=2]
+size = 80
+font_data = SubResource( 1 )
+
+[node name="SelectScreen" type="Node2D"]
+
+[node name="Background" type="ColorRect" parent="."]
+margin_right = 1282.0
+margin_bottom = 720.0
+color = Color( 0.286275, 0.286275, 0.286275, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Select" type="Control" parent="."]
+margin_right = 1282.0
+margin_bottom = 720.0
+theme = SubResource( 3 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Forest" type="Control" parent="Select"]
+margin_left = 114.0
+margin_top = 224.0
+margin_right = 432.0
+margin_bottom = 480.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="Select/Forest"]
+margin_left = -32.0
+margin_top = -32.0
+margin_right = 288.0
+margin_bottom = 288.0
+color = Color( 0.384314, 0.603922, 0.341176, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Forest" type="Button" parent="Select/Forest"]
+material = SubResource( 5 )
+margin_left = -32.0
+margin_top = -32.0
+margin_right = 288.0
+margin_bottom = 288.0
+custom_fonts/font = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Winter" type="Control" parent="Select"]
+margin_left = 514.0
+margin_top = 224.0
+margin_right = 832.0
+margin_bottom = 480.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="Select/Winter"]
+margin_left = -32.0
+margin_top = -32.0
+margin_right = 288.0
+margin_bottom = 288.0
+color = Color( 0.341176, 0.498039, 0.603922, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Winter" type="Button" parent="Select/Winter"]
+material = SubResource( 5 )
+margin_left = -32.0
+margin_top = -32.0
+margin_right = 288.0
+margin_bottom = 288.0
+custom_fonts/font = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Desert" type="Control" parent="Select"]
+margin_left = 914.0
+margin_top = 224.0
+margin_right = 1232.0
+margin_bottom = 480.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="Select/Desert"]
+margin_left = -32.0
+margin_top = -32.0
+margin_right = 288.0
+margin_bottom = 288.0
+color = Color( 0.603922, 0.407843, 0.341176, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Desert" type="Button" parent="Select/Desert"]
+material = SubResource( 5 )
+margin_left = -32.0
+margin_top = -32.0
+margin_right = 288.0
+margin_bottom = 288.0
+custom_fonts/font = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="Select/Forest/Forest" to="Select" method="_on_Forest_pressed"]
+[connection signal="pressed" from="Select/Winter/Winter" to="Select" method="_on_Winter_pressed"]
+[connection signal="pressed" from="Select/Desert/Desert" to="Select" method="_on_Desert_pressed"]
