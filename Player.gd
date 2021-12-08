@@ -58,16 +58,16 @@ func _unhandled_input(event):
 		if event.scancode == KEY_R:
 			get_node("/root/Game").reloadlevel(get_node("../../").get_name())
 		#undo
-		if event.scancode == KEY_Z:
-			if pressbuffer:
-				pressbuffer = false
-				if not get_node("/root/global").oldposqueen == [] and self.get_name() == "Player1":
-					position = get_node("/root/global").oldposqueen.pop_back()
-					$character.play(get_node("/root/global").oldfacingqueen.pop_back())
-				if not get_node("/root/global").oldposking == [] and self.get_name() == "Player2":
-					position = get_node("/root/global").oldposking.pop_back()
-					$character.play(get_node("/root/global").oldfacingking.pop_back())
-				buffer()
+		#if event.scancode == KEY_Z:
+		#	if pressbuffer:
+		#		pressbuffer = false
+		#		if not get_node("/root/global").oldposqueen == [] and self.get_name() == "Player1":
+		#			position = get_node("/root/global").oldposqueen.pop_back()
+		#			$character.play(get_node("/root/global").oldfacingqueen.pop_back())
+		#		if not get_node("/root/global").oldposking == [] and self.get_name() == "Player2":
+		#			position = get_node("/root/global").oldposking.pop_back()
+		#			$character.play(get_node("/root/global").oldfacingking.pop_back())
+		#		buffer()
 
 #buffer function
 func buffer():
@@ -86,12 +86,12 @@ func move(dir,amt):
 	elif dir == "ui_up":
 		thisdir = "run_up"
 	
-	if self.get_name() == "Player1":
-		get_node("/root/global").oldposqueen.append(position)
-		get_node("/root/global").oldfacingqueen.append(thisdir)
-	elif self.get_name() == "Player2":
-		get_node("/root/global").oldposking.append(position)
-		get_node("/root/global").oldfacingking.append(thisdir)
+	#if self.get_name() == "Player1":
+	#	get_node("/root/global").oldposqueen.append(position)
+	#	get_node("/root/global").oldfacingqueen.append(thisdir)
+	#elif self.get_name() == "Player2":
+	#	get_node("/root/global").oldposking.append(position)
+	#	get_node("/root/global").oldfacingking.append(thisdir)
 	
 	#try to move max blocks, then max-1, max-2, until 0
 	for blocks in range(amt,0,-1):
@@ -201,15 +201,16 @@ func move(dir,amt):
 				
 				var playercollider = collider
 				
-				get_node(str(playercollider.get_path()) + "/CollisionShape2D").set_deferred("disabled", true)
-				yield(get_tree().create_timer(0.01), "timeout")
-				
-				ray.cast_to = move_vector*2
-				ray.force_raycast_update()
-				if not ray.is_colliding():
-					move(dir,1)
-				
-				get_node(str(playercollider.get_path()) + "/CollisionShape2D").set_deferred("disabled", false)
+				if playercollider.get_name() != self.get_name():
+					get_node(str(playercollider.get_path()) + "/CollisionShape2D").set_deferred("disabled", true)
+					yield(get_tree().create_timer(0.01), "timeout")
+					
+					ray.cast_to = move_vector*2
+					ray.force_raycast_update()
+					if not ray.is_colliding():
+						move(dir,1)
+					
+					get_node(str(playercollider.get_path()) + "/CollisionShape2D").set_deferred("disabled", false)
 			
 		#print(blocks)
 	
