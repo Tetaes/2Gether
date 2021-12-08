@@ -30,8 +30,9 @@ func reloadlevel(name):
 		var level
 		var reallevelname = name.split("@")
 		
-		get_node("/root/Game/" + name).queue_free()
-		get_node("/root/Game/" + name).remove_child(self)
+		if get_node("/root/Game/" + name).is_inside_tree():
+			get_node("/root/Game/" + name).queue_free()
+			self.remove_child(get_node("/root/Game/" + name))
 		
 		#print("res://Assets/map/map_"+ (reallevelname[0].split("_"))[0] + "/" + reallevelname[0] + ".tscn")
 		#print(reallevelname)
@@ -45,7 +46,7 @@ func reloadlevel(name):
 		
 		get_node("/root/Game/GlobalShaders/Death").visible = true
 		get_node("/root/Game/GlobalShaders/Death").resetclock() 
-		yield(get_tree().create_timer(1.0), "timeout")
+		yield(get_tree().create_timer(0.5), "timeout")
 		get_node("/root/Game/GlobalShaders/Death").visible = false
 
 func nextlevel(name):
@@ -86,8 +87,9 @@ func nextlevel(name):
 		
 		add_child(level)
 		
-		get_node("/root/Game/" + name).queue_free()
-		get_node("/root/Game/" + name).remove_child(self)
+		if get_node("/root/Game/" + name).is_inside_tree():
+			get_node("/root/Game/" + name).queue_free()
+			self.remove_child(get_node("/root/Game/" + name))
 		
 		buffer()
 
@@ -99,8 +101,9 @@ func loadworld(name, world):
 		
 		var level
 		
-		get_node("/root/Game/" + name).queue_free()
-		get_node("/root/Game/" + name).remove_child(self)
+		if get_node("/root/Game/" + name).is_inside_tree():
+			get_node("/root/Game/" + name).queue_free()
+			self.remove_child(get_node("/root/Game/" + name))
 		
 		if world == "forest":
 			level = load("res://Assets/map/map_forest/forest_1.tscn").instance()

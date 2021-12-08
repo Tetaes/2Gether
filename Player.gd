@@ -52,11 +52,7 @@ func _unhandled_input(event):
 			elif dir == "ui_up":
 				$character.play("run_up")
 				move(dir,1)
-	
-	if event is InputEventKey:
-		#restart
-		if event.scancode == KEY_R:
-			get_node("/root/Game").reloadlevel(get_node("../../").get_name())
+				
 		#undo
 		#if event.scancode == KEY_Z:
 		#	if pressbuffer:
@@ -71,7 +67,7 @@ func _unhandled_input(event):
 
 #buffer function
 func buffer():
-	yield(get_tree().create_timer(0.1), "timeout")
+	yield(get_tree().create_timer(0.05), "timeout")
 	pressbuffer = true
 
 #move function
@@ -220,22 +216,25 @@ func move(dir,amt):
 
 #move with smooth tween
 func move_tween(dir,mult):
-	tween.interpolate_property(self, 'position',
-		position, position + inputs[dir] * grid_size * mult,
-		1.0/speed, Tween.TRANS_CIRC, Tween.EASE_IN_OUT)
-	tween.start()
+	if tween.is_inside_tree():
+		tween.interpolate_property(self, 'position',
+			position, position + inputs[dir] * grid_size * mult,
+			1.0/speed, Tween.TRANS_CIRC, Tween.EASE_IN_OUT)
+		tween.start()
 
 func move_teleport(newpos):
-	tween.interpolate_property(self, 'position',
-		position, newpos,
-		1.0/speed, Tween.TRANS_CIRC, Tween.EASE_IN_OUT)
-	tween.start()
+	if tween.is_inside_tree():
+		tween.interpolate_property(self, 'position',
+			position, newpos,
+			1.0/speed, Tween.TRANS_CIRC, Tween.EASE_IN_OUT)
+		tween.start()
 
 #squish with smooth tween
 var squish = Vector2(0.8,1.25) #squish vertically
 func squish_tween(dir):
-	if dir == 'ui_left' or dir == 'ui_right': squish = Vector2(1.25,0.8) #squish horizontally
-	tween.interpolate_property(self, 'scale',
-		squish, Vector2(1.0,1.0),
-		1.0/speed, Tween.TRANS_BACK, Tween.EASE_IN_OUT)
-	tween.start()
+	if tween.is_inside_tree():
+		if dir == 'ui_left' or dir == 'ui_right': squish = Vector2(1.25,0.8) #squish horizontally
+		tween.interpolate_property(self, 'scale',
+			squish, Vector2(1.0,1.0),
+			1.0/speed, Tween.TRANS_BACK, Tween.EASE_IN_OUT)
+		tween.start()
