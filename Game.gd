@@ -9,12 +9,19 @@ extends Node2D
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#comment line 12 and 13 to see menu
-	var level = load("res://Assets/map/map_forest/forest_8.tscn").instance()
-	add_child(level)
+	#var level = load("res://Assets/map/map_forest/forest_8.tscn").instance()
+	#add_child(level)
 	pass
 
 func _on_Start_pressed():
 	#select which level to start on after menu
+	
+	get_node("/root/Game/GlobalShaders/WinTransition/WinWipe1").menuwipe(Color(0.6,0.6,0.7,1))
+	yield(get_tree().create_timer(0.15), "timeout")
+	get_node("/root/Game/GlobalShaders/WinTransition/WinWipe2").menuwipe(Color(0.45,0.45,0.55,1))
+	yield(get_tree().create_timer(0.15), "timeout")
+	get_node("/root/Game/GlobalShaders/WinTransition/WinWipe3").menuwipelong(Color(0.3,0.3,0.4,1))
+	
 	var level = load("res://WorldSelect.tscn").instance()
 	add_child(level)
 	#pass
@@ -101,16 +108,34 @@ func loadworld(name, world):
 		
 		var level
 		
+		if world == "forest":
+			get_node("/root/Game/GlobalShaders/WinTransition/WinWipe1").menuwipe(Color(0.57,0.7,0.12,1))
+			yield(get_tree().create_timer(0.2), "timeout")
+			get_node("/root/Game/GlobalShaders/WinTransition/WinWipe2").menuwipe(Color(0.43,0.57,0.12,1))
+			yield(get_tree().create_timer(0.2), "timeout")
+			get_node("/root/Game/GlobalShaders/WinTransition/WinWipe3").menuwipelong(Color(0.3,0.53,0.12,1))
+			yield(get_tree().create_timer(0.4), "timeout")
+			level = load("res://Assets/map/map_forest/forest_1.tscn").instance()
+		elif world == "desert":
+			get_node("/root/Game/GlobalShaders/WinTransition/WinWipe1").menuwipe(Color(0.7,0.57,0.12,1))
+			yield(get_tree().create_timer(0.2), "timeout")
+			get_node("/root/Game/GlobalShaders/WinTransition/WinWipe2").menuwipe(Color(0.57,0.43,0.12,1))
+			yield(get_tree().create_timer(0.2), "timeout")
+			get_node("/root/Game/GlobalShaders/WinTransition/WinWipe3").menuwipelong(Color(0.53,0.3,0.12,1))
+			yield(get_tree().create_timer(0.4), "timeout")
+			level = load("res://Assets/map/map_desert/desert_1.tscn").instance()
+		elif world == "winter":
+			get_node("/root/Game/GlobalShaders/WinTransition/WinWipe1").menuwipe(Color(0.12,0.57,0.7,1))
+			yield(get_tree().create_timer(0.2), "timeout")
+			get_node("/root/Game/GlobalShaders/WinTransition/WinWipe2").menuwipe(Color(0.12,0.43,0.57,1))
+			yield(get_tree().create_timer(0.2), "timeout")
+			get_node("/root/Game/GlobalShaders/WinTransition/WinWipe3").menuwipelong(Color(0.12,0.3,0.53,1))
+			yield(get_tree().create_timer(0.4), "timeout")
+			level = load("res://Assets/map/map_winter/winter_1.tscn").instance()
+		
 		if get_node("/root/Game/" + name).is_inside_tree():
 			get_node("/root/Game/" + name).queue_free()
 			self.remove_child(get_node("/root/Game/" + name))
-		
-		if world == "forest":
-			level = load("res://Assets/map/map_forest/forest_1.tscn").instance()
-		elif world == "desert":
-			level = load("res://Assets/map/map_desert/desert_1.tscn").instance()
-		elif world == "winter":
-			level = load("res://Assets/map/map_winter/winter_1.tscn").instance()
 		
 		add_child(level)
 		

@@ -2,9 +2,9 @@
 
 [ext_resource path="res://WorldSelect.gd" type="Script" id=1]
 
-[sub_resource type="Theme" id=3]
+[sub_resource type="Theme" id=1]
 
-[sub_resource type="Shader" id=4]
+[sub_resource type="Shader" id=2]
 code = "shader_type canvas_item;
 
 uniform float color;
@@ -13,16 +13,16 @@ void fragment(){
 	COLOR = vec4(0.0,0.0,1.0,0.0);
 }"
 
-[sub_resource type="ShaderMaterial" id=5]
-shader = SubResource( 4 )
+[sub_resource type="ShaderMaterial" id=3]
+shader = SubResource( 2 )
 shader_param/color = null
 
-[sub_resource type="DynamicFontData" id=1]
+[sub_resource type="DynamicFontData" id=4]
 font_path = "res://Fonts/Renogare-Regular.otf"
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=5]
 size = 80
-font_data = SubResource( 1 )
+font_data = SubResource( 4 )
 
 [node name="SelectScreen" type="Node2D"]
 
@@ -37,7 +37,7 @@ __meta__ = {
 [node name="Select" type="Control" parent="."]
 margin_right = 1282.0
 margin_bottom = 720.0
-theme = SubResource( 3 )
+theme = SubResource( 1 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -63,12 +63,12 @@ __meta__ = {
 }
 
 [node name="Forest" type="Button" parent="Select/Forest"]
-material = SubResource( 5 )
+material = SubResource( 3 )
 margin_left = -32.0
 margin_top = -32.0
 margin_right = 288.0
 margin_bottom = 288.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -93,12 +93,12 @@ __meta__ = {
 }
 
 [node name="Winter" type="Button" parent="Select/Winter"]
-material = SubResource( 5 )
+material = SubResource( 3 )
 margin_left = -32.0
 margin_top = -32.0
 margin_right = 288.0
 margin_bottom = 288.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -123,12 +123,12 @@ __meta__ = {
 }
 
 [node name="Desert" type="Button" parent="Select/Desert"]
-material = SubResource( 5 )
+material = SubResource( 3 )
 margin_left = -32.0
 margin_top = -32.0
 margin_right = 288.0
 margin_bottom = 288.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
