@@ -1,14 +1,12 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Assets/map/map_winter/assets/Snow Tiles.png" type="Texture" id=1]
 [ext_resource path="res://Assets/map/map_winter/assets/TilesetCasas-export.png" type="Texture" id=2]
 [ext_resource path="res://Assets/map/map_winter/assets/SnowyCliffs.png" type="Texture" id=3]
-
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 16, 16 )
-
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 16, 16 )
+[ext_resource path="res://Assets/map/map_winter/assets/[A]Snow_pipo.png" type="Texture" id=4]
+[ext_resource path="res://Assets/map/map_winter/assets/[A]Snow_Dirt4_pipo.png" type="Texture" id=5]
+[ext_resource path="res://Assets/map/map_forest/assets/[Base]BaseChip_pipo.png" type="Texture" id=6]
+[ext_resource path="res://Assets/map/map_winter/assets/[A]Snow_Grass4_pipo.png" type="Texture" id=7]
 
 [node name="Tileset" type="Node2D"]
 
@@ -18,16 +16,12 @@ centered = false
 region_enabled = true
 region_rect = Rect2( 0, 64, 32, 32 )
 
-[node name="StaticBody2D" type="StaticBody2D" parent="base"]
-
 [node name="ice" type="Sprite" parent="."]
 position = Vector2( 32, 0 )
 texture = ExtResource( 1 )
 centered = false
 region_enabled = true
 region_rect = Rect2( 32, 64, 32, 32 )
-
-[node name="StaticBody2D" type="StaticBody2D" parent="ice"]
 
 [node name="env" type="Sprite" parent="."]
 position = Vector2( 64, 0 )
@@ -36,11 +30,341 @@ centered = false
 region_enabled = true
 region_rect = Rect2( 64, 64, 32, 32 )
 
-[node name="StaticBody2D" type="StaticBody2D" parent="env"]
+[node name="snow_1" type="Sprite" parent="."]
+position = Vector2( 224, 144 )
+texture = ExtResource( 4 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 80, 0, 16, 16 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="env/StaticBody2D"]
-position = Vector2( 16, 16 )
-shape = SubResource( 1 )
+[node name="snow_2" type="Sprite" parent="."]
+position = Vector2( 224, 176 )
+texture = ExtResource( 4 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 80, 32, 16, 16 )
+
+[node name="snow_3" type="Sprite" parent="."]
+position = Vector2( 256, 176 )
+texture = ExtResource( 4 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 112, 32, 16, 16 )
+
+[node name="snow_4" type="Sprite" parent="."]
+position = Vector2( 256, 144 )
+texture = ExtResource( 4 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 112, 0, 16, 16 )
+
+[node name="snow_5" type="Sprite" parent="."]
+position = Vector2( 240, 144 )
+texture = ExtResource( 4 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 96, 0, 16, 16 )
+
+[node name="snow_6" type="Sprite" parent="."]
+position = Vector2( 240, 176 )
+texture = ExtResource( 4 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 96, 32, 16, 16 )
+
+[node name="snow_7" type="Sprite" parent="."]
+position = Vector2( 224, 160 )
+texture = ExtResource( 4 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 80, 16, 16, 16 )
+
+[node name="snow_8" type="Sprite" parent="."]
+position = Vector2( 256, 160 )
+texture = ExtResource( 4 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 112, 16, 16, 16 )
+
+[node name="snow_9" type="Sprite" parent="."]
+position = Vector2( 240, 160 )
+texture = ExtResource( 4 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 96, 16, 16, 16 )
+
+[node name="snow_in_1" type="Sprite" parent="."]
+position = Vector2( 384, 160 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 160, 192, 32, 32 )
+
+[node name="snow_in_2" type="Sprite" parent="."]
+position = Vector2( 384, 208 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 160, 256, 32, 32 )
+
+[node name="snow_in_3" type="Sprite" parent="."]
+position = Vector2( 432, 208 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 224, 256, 32, 32 )
+
+[node name="snow_in_4" type="Sprite" parent="."]
+position = Vector2( 432, 160 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 224, 192, 32, 32 )
+
+[node name="snow_in_5" type="Sprite" parent="."]
+position = Vector2( 416, 160 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 192, 192, 16, 32 )
+
+[node name="snow_in_6" type="Sprite" parent="."]
+position = Vector2( 416, 208 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 192, 256, 16, 32 )
+
+[node name="snow_in_7" type="Sprite" parent="."]
+position = Vector2( 384, 192 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 160, 224, 32, 16 )
+
+[node name="snow_in_8" type="Sprite" parent="."]
+position = Vector2( 432, 192 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 224, 224, 32, 16 )
+
+[node name="snow_in_9" type="Sprite" parent="."]
+position = Vector2( 416, 192 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 192, 224, 16, 16 )
+
+[node name="snow_dirt_1" type="Sprite" parent="."]
+position = Vector2( 288, 144 )
+texture = ExtResource( 5 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 80, 0, 16, 16 )
+
+[node name="snow_dirt_2" type="Sprite" parent="."]
+position = Vector2( 288, 176 )
+texture = ExtResource( 5 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 80, 32, 16, 16 )
+
+[node name="snow_dirt_3" type="Sprite" parent="."]
+position = Vector2( 320, 176 )
+texture = ExtResource( 5 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 112, 32, 16, 16 )
+
+[node name="snow_dirt_4" type="Sprite" parent="."]
+position = Vector2( 320, 144 )
+texture = ExtResource( 5 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 112, 0, 16, 16 )
+
+[node name="snow_dirt_5" type="Sprite" parent="."]
+position = Vector2( 304, 144 )
+texture = ExtResource( 5 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 96, 0, 16, 16 )
+
+[node name="snow_dirt_6" type="Sprite" parent="."]
+position = Vector2( 304, 176 )
+texture = ExtResource( 5 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 96, 32, 16, 16 )
+
+[node name="snow_dirt_7" type="Sprite" parent="."]
+position = Vector2( 288, 160 )
+texture = ExtResource( 5 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 80, 16, 16, 16 )
+
+[node name="snow_dirt_8" type="Sprite" parent="."]
+position = Vector2( 320, 160 )
+texture = ExtResource( 5 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 112, 16, 16, 16 )
+
+[node name="snow_dirt_9" type="Sprite" parent="."]
+position = Vector2( 304, 160 )
+texture = ExtResource( 5 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 96, 16, 16, 16 )
+
+[node name="snow_grass_1" type="Sprite" parent="."]
+position = Vector2( 320, 240 )
+texture = ExtResource( 7 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 80, 0, 16, 16 )
+
+[node name="snow_grass_2" type="Sprite" parent="."]
+position = Vector2( 320, 272 )
+texture = ExtResource( 7 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 80, 32, 16, 16 )
+
+[node name="snow_grass_3" type="Sprite" parent="."]
+position = Vector2( 352, 272 )
+texture = ExtResource( 7 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 112, 32, 16, 16 )
+
+[node name="snow_grass_4" type="Sprite" parent="."]
+position = Vector2( 352, 240 )
+texture = ExtResource( 7 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 112, 0, 16, 16 )
+
+[node name="snow_grass_5" type="Sprite" parent="."]
+position = Vector2( 336, 240 )
+texture = ExtResource( 7 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 96, 0, 16, 16 )
+
+[node name="snow_grass_6" type="Sprite" parent="."]
+position = Vector2( 336, 272 )
+texture = ExtResource( 7 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 96, 32, 16, 16 )
+
+[node name="snow_grass_7" type="Sprite" parent="."]
+position = Vector2( 320, 256 )
+texture = ExtResource( 7 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 80, 16, 16, 16 )
+
+[node name="snow_grass_8" type="Sprite" parent="."]
+position = Vector2( 352, 256 )
+texture = ExtResource( 7 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 112, 16, 16, 16 )
+
+[node name="snow_grass_9" type="Sprite" parent="."]
+position = Vector2( 336, 256 )
+texture = ExtResource( 7 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 96, 16, 16, 16 )
+
+[node name="box_snow_1" type="Sprite" parent="."]
+position = Vector2( 224, 208 )
+texture = ExtResource( 6 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 96, 3024, 16, 16 )
+
+[node name="box_snow_2" type="Sprite" parent="."]
+position = Vector2( 224, 224 )
+texture = ExtResource( 6 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 96, 3040, 16, 16 )
+
+[node name="box_snow_3" type="Sprite" parent="."]
+position = Vector2( 224, 240 )
+texture = ExtResource( 6 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 96, 3056, 16, 16 )
+
+[node name="bg_box_left" type="Sprite" parent="."]
+position = Vector2( 256, 240 )
+texture = ExtResource( 6 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 112, 3040, 16, 16 )
+
+[node name="bg_box_up" type="Sprite" parent="."]
+position = Vector2( 256, 224 )
+texture = ExtResource( 6 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 112, 3024, 16, 16 )
+
+[node name="bg_midwall_1" type="Sprite" parent="."]
+position = Vector2( 144, 256 )
+texture = ExtResource( 6 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 32, 2928, 16, 16 )
+
+[node name="bg_midwall_2" type="Sprite" parent="."]
+position = Vector2( 160, 256 )
+texture = ExtResource( 6 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 48, 2928, 16, 16 )
+
+[node name="bg_midwall_3" type="Sprite" parent="."]
+position = Vector2( 144, 240 )
+texture = ExtResource( 6 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 32, 2912, 16, 16 )
+
+[node name="bg_midwall_4" type="Sprite" parent="."]
+position = Vector2( 160, 240 )
+texture = ExtResource( 6 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 48, 2912, 16, 16 )
+
+[node name="bg_midwall_5" type="Sprite" parent="."]
+position = Vector2( 144, 288 )
+texture = ExtResource( 6 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 2928, 16, 16 )
+
+[node name="bg_midwall_6" type="Sprite" parent="."]
+position = Vector2( 128, 272 )
+texture = ExtResource( 6 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 16, 2928, 16, 16 )
+
+[node name="bg_midwall_7" type="Sprite" parent="."]
+position = Vector2( 128, 256 )
+texture = ExtResource( 6 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 16, 2912, 16, 16 )
 
 [node name="wall" type="Sprite" parent="."]
 position = Vector2( 96, 0 )
@@ -49,12 +373,6 @@ centered = false
 region_enabled = true
 region_rect = Rect2( 96, 64, 32, 32 )
 
-[node name="StaticBody2D" type="StaticBody2D" parent="wall"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="wall/StaticBody2D"]
-position = Vector2( 16, 16 )
-shape = SubResource( 2 )
-
 [node name="obj1" type="Sprite" parent="."]
 position = Vector2( 0, 32 )
 texture = ExtResource( 1 )
@@ -62,7 +380,12 @@ centered = false
 region_enabled = true
 region_rect = Rect2( 0, 0, 32, 64 )
 
-[node name="StaticBody2D" type="StaticBody2D" parent="obj1"]
+[node name="obj1-1" type="Sprite" parent="."]
+position = Vector2( 0, 144 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 32, 0, 32, 32 )
 
 [node name="obj2" type="Sprite" parent="."]
 position = Vector2( 32, 32 )
@@ -71,16 +394,12 @@ centered = false
 region_enabled = true
 region_rect = Rect2( 32, 32, 32, 32 )
 
-[node name="StaticBody2D" type="StaticBody2D" parent="obj2"]
-
 [node name="obj3" type="Sprite" parent="."]
 position = Vector2( 32, 64 )
 texture = ExtResource( 1 )
 centered = false
 region_enabled = true
 region_rect = Rect2( 64, 32, 32, 32 )
-
-[node name="StaticBody2D" type="StaticBody2D" parent="obj3"]
 
 [node name="obj4" type="Sprite" parent="."]
 position = Vector2( 64, 32 )
@@ -89,8 +408,6 @@ centered = false
 region_enabled = true
 region_rect = Rect2( 64, 0, 32, 32 )
 
-[node name="StaticBody2D" type="StaticBody2D" parent="obj4"]
-
 [node name="obj5" type="Sprite" parent="."]
 position = Vector2( 64, 64 )
 texture = ExtResource( 1 )
@@ -98,7 +415,40 @@ centered = false
 region_enabled = true
 region_rect = Rect2( 96, 0, 32, 32 )
 
-[node name="StaticBody2D" type="StaticBody2D" parent="obj5"]
+[node name="obj11" type="Sprite" parent="."]
+position = Vector2( 48, 128 )
+texture = ExtResource( 6 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 3344, 48, 48 )
+
+[node name="obj12" type="Sprite" parent="."]
+position = Vector2( 48, 176 )
+texture = ExtResource( 6 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 96, 3328, 16, 32 )
+
+[node name="obj13" type="Sprite" parent="."]
+position = Vector2( 80, 176 )
+texture = ExtResource( 6 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 112, 3328, 16, 32 )
+
+[node name="obj14" type="Sprite" parent="."]
+position = Vector2( 112, 176 )
+texture = ExtResource( 6 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 96, 3360, 32, 32 )
+
+[node name="obj15" type="Sprite" parent="."]
+position = Vector2( 160, 176 )
+texture = ExtResource( 6 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 48, 2816, 16, 32 )
 
 [node name="wall2" type="Sprite" parent="."]
 position = Vector2( 96, 32 )
@@ -107,16 +457,12 @@ centered = false
 region_enabled = true
 region_rect = Rect2( 480, 112, 16, 32 )
 
-[node name="StaticBody2D" type="StaticBody2D" parent="wall2"]
-
 [node name="wall3" type="Sprite" parent="."]
 position = Vector2( 120, 32 )
 texture = ExtResource( 1 )
 centered = false
 region_enabled = true
 region_rect = Rect2( 560, 112, 16, 32 )
-
-[node name="StaticBody2D" type="StaticBody2D" parent="wall3"]
 
 [node name="wall11" type="Sprite" parent="."]
 position = Vector2( 120, 32 )
@@ -125,16 +471,12 @@ centered = false
 region_enabled = true
 region_rect = Rect2( 560, 112, 16, 32 )
 
-[node name="StaticBody2D" type="StaticBody2D" parent="wall11"]
-
 [node name="wall4" type="Sprite" parent="."]
 position = Vector2( 0, 96 )
 texture = ExtResource( 1 )
 centered = false
 region_enabled = true
 region_rect = Rect2( 592, 112, 8, 8 )
-
-[node name="StaticBody2D" type="StaticBody2D" parent="wall4"]
 
 [node name="wall5" type="Sprite" parent="."]
 position = Vector2( 16, 96 )
@@ -143,16 +485,12 @@ centered = false
 region_enabled = true
 region_rect = Rect2( 616, 112, 8, 8 )
 
-[node name="StaticBody2D" type="StaticBody2D" parent="wall5"]
-
 [node name="wall6" type="Sprite" parent="."]
 position = Vector2( 0, 112 )
 texture = ExtResource( 1 )
 centered = false
 region_enabled = true
 region_rect = Rect2( 592, 136, 8, 8 )
-
-[node name="StaticBody2D" type="StaticBody2D" parent="wall6"]
 
 [node name="wall7" type="Sprite" parent="."]
 position = Vector2( 16, 112 )
@@ -161,16 +499,12 @@ centered = false
 region_enabled = true
 region_rect = Rect2( 616, 136, 8, 8 )
 
-[node name="StaticBody2D" type="StaticBody2D" parent="wall7"]
-
 [node name="wall8" type="Sprite" parent="."]
 position = Vector2( 32, 96 )
 texture = ExtResource( 1 )
 centered = false
 region_enabled = true
 region_rect = Rect2( 592, 160, 32, 16 )
-
-[node name="StaticBody2D" type="StaticBody2D" parent="wall8"]
 
 [node name="wall9" type="Sprite" parent="."]
 position = Vector2( 72, 96 )
@@ -179,97 +513,12 @@ centered = false
 region_enabled = true
 region_rect = Rect2( 576, 176, 16, 16 )
 
-[node name="StaticBody2D" type="StaticBody2D" parent="wall9"]
-
 [node name="wall10" type="Sprite" parent="."]
 position = Vector2( 104, 96 )
 texture = ExtResource( 1 )
 centered = false
 region_enabled = true
 region_rect = Rect2( 624, 176, 16, 16 )
-
-[node name="StaticBody2D" type="StaticBody2D" parent="wall10"]
-
-[node name="base2" type="Sprite" parent="."]
-position = Vector2( 144, 32 )
-texture = ExtResource( 1 )
-centered = false
-region_enabled = true
-region_rect = Rect2( 24, 216, 16, 32 )
-
-[node name="StaticBody2D" type="StaticBody2D" parent="base2"]
-
-[node name="base3" type="Sprite" parent="."]
-position = Vector2( 168, 32 )
-texture = ExtResource( 1 )
-centered = false
-region_enabled = true
-region_rect = Rect2( 48, 216, 16, 32 )
-
-[node name="StaticBody2D" type="StaticBody2D" parent="base3"]
-
-[node name="base4" type="Sprite" parent="."]
-position = Vector2( 144, 72 )
-texture = ExtResource( 1 )
-centered = false
-region_enabled = true
-region_rect = Rect2( 32, 216, 8, 8 )
-
-[node name="StaticBody2D" type="StaticBody2D" parent="base4"]
-
-[node name="base5" type="Sprite" parent="."]
-position = Vector2( 128, 88 )
-texture = ExtResource( 1 )
-centered = false
-region_enabled = true
-region_rect = Rect2( 96, 192, 32, 32 )
-
-[node name="StaticBody2D" type="StaticBody2D" parent="base5"]
-
-[node name="base6" type="Sprite" parent="."]
-position = Vector2( 160, 88 )
-texture = ExtResource( 1 )
-centered = false
-region_enabled = true
-region_rect = Rect2( 128, 192, 32, 32 )
-
-[node name="StaticBody2D" type="StaticBody2D" parent="base6"]
-
-[node name="base7" type="Sprite" parent="."]
-position = Vector2( 160, 120 )
-texture = ExtResource( 1 )
-centered = false
-region_enabled = true
-region_rect = Rect2( 128, 224, 32, 32 )
-
-[node name="StaticBody2D" type="StaticBody2D" parent="base7"]
-
-[node name="base8" type="Sprite" parent="."]
-position = Vector2( 128, 120 )
-texture = ExtResource( 1 )
-centered = false
-region_enabled = true
-region_rect = Rect2( 96, 224, 32, 32 )
-
-[node name="StaticBody2D" type="StaticBody2D" parent="base8"]
-
-[node name="env2" type="Sprite" parent="."]
-position = Vector2( 160, 72 )
-texture = ExtResource( 1 )
-centered = false
-region_enabled = true
-region_rect = Rect2( 184, 216, 8, 8 )
-
-[node name="StaticBody2D" type="StaticBody2D" parent="env2"]
-
-[node name="ice2" type="Sprite" parent="."]
-position = Vector2( 176, 72 )
-texture = ExtResource( 1 )
-centered = false
-region_enabled = true
-region_rect = Rect2( 448, 240, 8, 8 )
-
-[node name="StaticBody2D" type="StaticBody2D" parent="ice2"]
 
 [node name="obj6" type="Sprite" parent="."]
 position = Vector2( 208, 8 )
@@ -278,16 +527,12 @@ centered = false
 region_enabled = true
 region_rect = Rect2( 16, 8, 96, 104 )
 
-[node name="StaticBody2D" type="StaticBody2D" parent="obj6"]
-
 [node name="obj7" type="Sprite" parent="."]
 position = Vector2( 320, 16 )
 texture = ExtResource( 2 )
 centered = false
 region_enabled = true
 region_rect = Rect2( 168, 8, 64, 104 )
-
-[node name="StaticBody2D" type="StaticBody2D" parent="obj7"]
 
 [node name="obj8" type="Sprite" parent="."]
 position = Vector2( 400, 32 )
@@ -296,16 +541,12 @@ centered = false
 region_enabled = true
 region_rect = Rect2( 120, 32, 32, 80 )
 
-[node name="StaticBody2D" type="StaticBody2D" parent="obj8"]
-
 [node name="obj9" type="Sprite" parent="."]
 position = Vector2( 448, 16 )
 texture = ExtResource( 3 )
 centered = false
 region_enabled = true
 region_rect = Rect2( 48, 0, 32, 48 )
-
-[node name="StaticBody2D" type="StaticBody2D" parent="obj9"]
 
 [node name="obj10" type="Sprite" parent="."]
 position = Vector2( 448, 80 )
@@ -314,4 +555,65 @@ centered = false
 region_enabled = true
 region_rect = Rect2( 0, 0, 48, 64 )
 
-[node name="StaticBody2D" type="StaticBody2D" parent="obj10"]
+[node name="obj16" type="Sprite" parent="."]
+position = Vector2( 208, 320 )
+texture = ExtResource( 6 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 32, 2896, 16, 16 )
+
+[node name="obj17" type="Sprite" parent="."]
+position = Vector2( 208, 304 )
+texture = ExtResource( 6 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 32, 2880, 16, 16 )
+
+[node name="obj18" type="Sprite" parent="."]
+position = Vector2( 224, 304 )
+texture = ExtResource( 6 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 48, 2880, 16, 16 )
+
+[node name="obj19" type="Sprite" parent="."]
+position = Vector2( 224, 320 )
+texture = ExtResource( 6 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 48, 2896, 16, 16 )
+
+[node name="obj20" type="Sprite" parent="."]
+position = Vector2( 256, 320 )
+texture = ExtResource( 6 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 64, 2880, 16, 16 )
+
+[node name="obj21" type="Sprite" parent="."]
+position = Vector2( 272, 320 )
+texture = ExtResource( 6 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 64, 2896, 16, 16 )
+
+[node name="obj22" type="Sprite" parent="."]
+position = Vector2( 288, 320 )
+texture = ExtResource( 6 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 2896, 16, 16 )
+
+[node name="obj23" type="Sprite" parent="."]
+position = Vector2( 320, 320 )
+texture = ExtResource( 6 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 16, 2896, 16, 16 )
+
+[node name="obj24" type="Sprite" parent="."]
+position = Vector2( 352, 320 )
+texture = ExtResource( 6 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 3024, 48, 48 )

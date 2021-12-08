@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/MountainPlants,TreesAndOther.png-435ea030c9e2fbed1ed264412079dd79.stex"
+path="res://.import/[A]Snow_Grass4_pipo.png-1995142e9ff4858623f457349ced24da.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/map/map_winter/assets/MountainPlants,TreesAndOther.png"
-dest_files=[ "res://.import/MountainPlants,TreesAndOther.png-435ea030c9e2fbed1ed264412079dd79.stex" ]
+source_file="res://Assets/map/map_winter/assets/[A]Snow_Grass4_pipo.png"
+dest_files=[ "res://.import/[A]Snow_Grass4_pipo.png-1995142e9ff4858623f457349ced24da.stex" ]
 
 [params]
 
