@@ -20,7 +20,7 @@ func _process(_delta):
 		for i in $Goals.get_children():
 			if i.occupied:
 				goals -= 1
-		
+		print(goals)
 		#if all goals have players
 		if goals == 0:
 			#$WinMessage/WinDialog.popup()
