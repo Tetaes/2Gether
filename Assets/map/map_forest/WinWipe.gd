@@ -60,7 +60,7 @@ func menuwipelong(newcolor):
 		0.8, Tween.TRANS_CIRC, Tween.EASE_OUT)
 	$Tween1.start()
 	
-	yield(get_tree().create_timer(0.4), "timeout")
+	yield(get_tree().create_timer(0.25), "timeout")
 	
 	$Tween2.interpolate_property(self, 'rect_size',
 		Vector2(1280,1000), Vector2(1280,0),

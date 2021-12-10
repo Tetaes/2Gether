@@ -86,6 +86,11 @@ func nextlevel(name):
 		nextlevelname.erase(nextlevelname.length() - 1, 1)
 		nextlevelname = nextlevelname + nextnumber
 		
+		if nextlevelname in ["forest_8","forest_9","forest_10"]:
+			get_node("/root/Game/GlobalShaders/blur/bridge").visible = true
+		else:
+			get_node("/root/Game/GlobalShaders/blur/bridge").visible = false
+		
 		var nextlevelpath = "res://Assets/map/map_"+ (nextlevelname.split("_"))[0] + "/" + nextlevelname + ".tscn"
 		
 		var directory = Directory.new();
@@ -120,7 +125,7 @@ func loadworld(name, world):
 			yield(get_tree().create_timer(0.2), "timeout")
 			get_node("/root/Game/GlobalShaders/WinTransition/WinWipe3").menuwipelong(Color(0.3,0.53,0.12,1))
 			yield(get_tree().create_timer(0.4), "timeout")
-			level = load("res://Assets/map/map_forest/forest_1.tscn").instance()
+			level = load("res://LevelSelectForest.tscn").instance()
 		elif world == "desert":
 			get_node("/root/Game/GlobalShaders/WinTransition/WinWipe1").menuwipe(Color(0.7,0.57,0.12,1))
 			yield(get_tree().create_timer(0.2), "timeout")
@@ -128,7 +133,7 @@ func loadworld(name, world):
 			yield(get_tree().create_timer(0.2), "timeout")
 			get_node("/root/Game/GlobalShaders/WinTransition/WinWipe3").menuwipelong(Color(0.53,0.3,0.12,1))
 			yield(get_tree().create_timer(0.4), "timeout")
-			level = load("res://Assets/map/map_desert/desert_1.tscn").instance()
+			level = load("res://LevelSelectDesert.tscn").instance()
 		elif world == "winter":
 			get_node("/root/Game/GlobalShaders/WinTransition/WinWipe1").menuwipe(Color(0.12,0.57,0.7,1))
 			yield(get_tree().create_timer(0.2), "timeout")
@@ -136,7 +141,7 @@ func loadworld(name, world):
 			yield(get_tree().create_timer(0.2), "timeout")
 			get_node("/root/Game/GlobalShaders/WinTransition/WinWipe3").menuwipelong(Color(0.12,0.3,0.53,1))
 			yield(get_tree().create_timer(0.4), "timeout")
-			level = load("res://Assets/map/map_winter/winter_1.tscn").instance()
+			level = load("res://LevelSelectWinter.tscn").instance()
 		
 		if get_node("/root/Game/" + name).is_inside_tree():
 			get_node("/root/Game/" + name).queue_free()
@@ -144,7 +149,28 @@ func loadworld(name, world):
 		
 		add_child(level)
 		
+		buffer()
+
+func levelselect(name, world):
+	
+	if reloadBuffer:
+		
+		reloadBuffer = false
+		
+		var level
+		
+		level = load("res://Assets/map/map_" + world + "/" + world + "_" + name + ".tscn").instance()
+		
+		if get_node("/root/Game/LevelSelect").is_inside_tree():
+			get_node("/root/Game/LevelSelect").queue_free()
+			self.remove_child(get_node("/root/Game/LevelSelect"))
+		
+		add_child(level)
+		
 		get_node("/root/Game/GlobalShaders/blur/blur").visible = true
+		
+		if world == "forest" and int(name) >= 8:
+			get_node("/root/Game/GlobalShaders/blur/bridge").visible = true
 		
 		buffer()
 

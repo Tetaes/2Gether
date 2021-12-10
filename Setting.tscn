@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://SettingButton.gd" type="Script" id=1]
+[ext_resource path="res://Fonts/Renogare-Regular.otf" type="DynamicFontData" id=2]
 
 [sub_resource type="Shader" id=2]
 code = "shader_type canvas_item;
@@ -15,6 +16,10 @@ void fragment(){
 shader = SubResource( 2 )
 shader_param/color = null
 
+[sub_resource type="DynamicFont" id=6]
+size = 33
+font_data = ExtResource( 2 )
+
 [node name="Setting" type="Node2D"]
 
 [node name="Button" type="Control" parent="."]
@@ -27,7 +32,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ColorRect" type="ColorRect" parent="Button"]
+[node name="SettingButton" type="ColorRect" parent="Button"]
 margin_left = -32.0
 margin_top = -16.0
 margin_right = 48.0
@@ -47,4 +52,75 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Menu" type="Control" parent="."]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MenuBackground" type="ColorRect" parent="Menu"]
+margin_left = 400.0
+margin_top = 112.0
+margin_right = 880.0
+margin_bottom = 608.0
+rect_pivot_offset = Vector2( -704, -16 )
+color = Color( 0.592157, 0.631373, 0.658824, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Close" type="ColorRect" parent="Menu"]
+margin_left = 816.0
+margin_top = 128.0
+margin_right = 864.0
+margin_bottom = 176.0
+rect_pivot_offset = Vector2( -1200, -32 )
+color = Color( 0.811765, 0.6, 0.556863, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CloseButton" type="Button" parent="Menu/Close"]
+material = SubResource( 5 )
+margin_right = 48.0
+margin_bottom = 48.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Back" type="ColorRect" parent="Menu"]
+margin_left = 448.0
+margin_top = 480.0
+margin_right = 832.0
+margin_bottom = 560.0
+rect_pivot_offset = Vector2( -1200, -32 )
+color = Color( 0.313726, 0.329412, 0.333333, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BackButton" type="Button" parent="Menu/Back"]
+material = SubResource( 5 )
+margin_left = -32.0
+margin_right = 352.0
+margin_bottom = 80.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Menu/Back"]
+margin_top = 22.0
+margin_right = 384.0
+margin_bottom = 74.0
+custom_fonts/font = SubResource( 6 )
+text = "Back to Title Screen"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="pressed" from="Button/Button" to="Button" method="_on_Button_pressed"]
+[connection signal="pressed" from="Menu/Close/CloseButton" to="Button" method="_on_CloseButton_pressed"]
+[connection signal="pressed" from="Menu/Back/BackButton" to="Button" method="_on_BackButton_pressed"]

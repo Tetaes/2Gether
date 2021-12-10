@@ -4,7 +4,7 @@
 
 [sub_resource type="Theme" id=1]
 
-[sub_resource type="Shader" id=2]
+[sub_resource type="Shader" id=6]
 code = "shader_type canvas_item;
 
 uniform float color;
@@ -14,15 +14,15 @@ void fragment(){
 }"
 
 [sub_resource type="ShaderMaterial" id=3]
-shader = SubResource( 2 )
+shader = SubResource( 6 )
 shader_param/color = null
 
-[sub_resource type="DynamicFontData" id=4]
+[sub_resource type="DynamicFontData" id=7]
 font_path = "res://Fonts/Renogare-Regular.otf"
 
 [sub_resource type="DynamicFont" id=5]
 size = 80
-font_data = SubResource( 4 )
+font_data = SubResource( 7 )
 
 [node name="SelectScreen" type="Node2D"]
 
