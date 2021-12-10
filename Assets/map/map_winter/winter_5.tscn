@@ -3,7 +3,7 @@
 [ext_resource path="res://Assets/map/map_winter/assets/tileset_snow.tres" type="TileSet" id=1]
 [ext_resource path="res://Goal2.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Character/Queen.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Assets/map/map_winter/assets/Wall_winter.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Assets/map/map_winter/assets/Wall_winter.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Goal.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Character/King.tscn" type="PackedScene" id=7]
 [ext_resource path="res://ice.tscn" type="PackedScene" id=8]
@@ -55,7 +55,7 @@ shader_param/wave_speed = 2.0
 shader_param/wave_freq = 10.0
 shader_param/wave_width = 0.25
 
-[node name="winter_2" type="Node2D"]
+[node name="winter_5" type="Node2D"]
 scale = Vector2( 2, 2 )
 script = ExtResource( 14 )
 
@@ -145,215 +145,164 @@ tile_data = PoolIntArray( -3014089, 4, 0, -3014088, 4, 0, -3014087, 4, 0, -28180
 
 [node name="Ices" type="Node2D" parent="."]
 
-[node name="Ice3" parent="Ices" groups=["ice"] instance=ExtResource( 8 )]
-position = Vector2( 96, 192 )
+[node name="Ice" parent="Ices" groups=["ice"] instance=ExtResource( 8 )]
+position = Vector2( 156, 96 )
 
-[node name="Ice4" parent="Ices" groups=["ice"] instance=ExtResource( 8 )]
-position = Vector2( 96, 160 )
-
-[node name="Ice5" parent="Ices" groups=["ice"] instance=ExtResource( 8 )]
-position = Vector2( 160, 96 )
-
-[node name="Ice6" parent="Ices" groups=["ice"] instance=ExtResource( 8 )]
-position = Vector2( 128, 96 )
-
-[node name="Ice7" parent="Ices" groups=["ice"] instance=ExtResource( 8 )]
-position = Vector2( 192, 224 )
-
-[node name="Ice9" parent="Ices" groups=["ice"] instance=ExtResource( 8 )]
-position = Vector2( 160, 224 )
-
-[node name="Ice13" parent="Ices" groups=["ice"] instance=ExtResource( 8 )]
-position = Vector2( 224, 128 )
-
-[node name="Ice18" parent="Ices" groups=["ice"] instance=ExtResource( 8 )]
-position = Vector2( 224, 160 )
-
-[node name="Ice10" parent="Ices" groups=["ice"] instance=ExtResource( 8 )]
-position = Vector2( 416, 96 )
-
-[node name="Ice12" parent="Ices" groups=["ice"] instance=ExtResource( 8 )]
-position = Vector2( 448, 96 )
-
-[node name="Ice16" parent="Ices" groups=["ice"] instance=ExtResource( 8 )]
-position = Vector2( 512, 128 )
-
-[node name="Ice17" parent="Ices" groups=["ice"] instance=ExtResource( 8 )]
-position = Vector2( 512, 160 )
-
-[node name="Ice19" parent="Ices" groups=["ice"] instance=ExtResource( 8 )]
-position = Vector2( 512, 192 )
-
-[node name="Ice8" parent="Ices" groups=["ice"] instance=ExtResource( 8 )]
+[node name="Ice2" parent="Ices" groups=["ice"] instance=ExtResource( 8 )]
 position = Vector2( 448, 224 )
-
-[node name="Ice14" parent="Ices" groups=["ice"] instance=ExtResource( 8 )]
-position = Vector2( 384, 160 )
-
-[node name="Ice20" parent="Ices" groups=["ice"] instance=ExtResource( 8 )]
-position = Vector2( 448, 160 )
-
-[node name="Ice21" parent="Ices" groups=["ice"] instance=ExtResource( 8 )]
-position = Vector2( 160, 160 )
-
-[node name="Ice15" parent="Ices" groups=["ice"] instance=ExtResource( 8 )]
-position = Vector2( 384, 192 )
-
-[node name="Ice11" parent="Ices" groups=["ice"] instance=ExtResource( 8 )]
-position = Vector2( 480, 224 )
 
 [node name="Players" type="Node2D" parent="."]
 
 [node name="Player1" parent="Players" groups=["player"] instance=ExtResource( 3 )]
-position = Vector2( 112, 240 )
+position = Vector2( 112, 112 )
 
 [node name="Player2" parent="Players" groups=["player"] instance=ExtResource( 7 )]
 position = Vector2( 528, 240 )
 
 [node name="Walls-border" type="Node2D" parent="."]
 
-[node name="Wall_1" parent="Walls-border" instance=ExtResource( 4 )]
+[node name="Wall_1" parent="Walls-border" instance=ExtResource( 5 )]
 position = Vector2( 80, 80 )
 
-[node name="Wall_2" parent="Walls-border" instance=ExtResource( 4 )]
+[node name="Wall_2" parent="Walls-border" instance=ExtResource( 5 )]
 position = Vector2( 80, 112 )
 
-[node name="Wall_3" parent="Walls-border" instance=ExtResource( 4 )]
+[node name="Wall_3" parent="Walls-border" instance=ExtResource( 5 )]
 position = Vector2( 80, 144 )
 
-[node name="Wall_4" parent="Walls-border" instance=ExtResource( 4 )]
+[node name="Wall_4" parent="Walls-border" instance=ExtResource( 5 )]
 position = Vector2( 80, 176 )
 
-[node name="Wall_5" parent="Walls-border" instance=ExtResource( 4 )]
+[node name="Wall_5" parent="Walls-border" instance=ExtResource( 5 )]
 position = Vector2( 80, 208 )
 
-[node name="Wall_6" parent="Walls-border" instance=ExtResource( 4 )]
+[node name="Wall_6" parent="Walls-border" instance=ExtResource( 5 )]
 position = Vector2( 80, 240 )
 
-[node name="Wall_7" parent="Walls-border" instance=ExtResource( 4 )]
+[node name="Wall_7" parent="Walls-border" instance=ExtResource( 5 )]
 position = Vector2( 80, 272 )
 
-[node name="Wall_8" parent="Walls-border" instance=ExtResource( 4 )]
+[node name="Wall_8" parent="Walls-border" instance=ExtResource( 5 )]
 position = Vector2( 112, 272 )
 
-[node name="Wall_9" parent="Walls-border" instance=ExtResource( 4 )]
+[node name="Wall_9" parent="Walls-border" instance=ExtResource( 5 )]
 position = Vector2( 144, 272 )
 
-[node name="Wall_10" parent="Walls-border" instance=ExtResource( 4 )]
+[node name="Wall_10" parent="Walls-border" instance=ExtResource( 5 )]
 position = Vector2( 176, 272 )
 
-[node name="Wall_11" parent="Walls-border" instance=ExtResource( 4 )]
+[node name="Wall_11" parent="Walls-border" instance=ExtResource( 5 )]
 position = Vector2( 208, 272 )
 
-[node name="Wall_12" parent="Walls-border" instance=ExtResource( 4 )]
+[node name="Wall_12" parent="Walls-border" instance=ExtResource( 5 )]
 position = Vector2( 240, 272 )
 
-[node name="Wall_13" parent="Walls-border" instance=ExtResource( 4 )]
+[node name="Wall_13" parent="Walls-border" instance=ExtResource( 5 )]
 position = Vector2( 272, 272 )
 
-[node name="Wall_14" parent="Walls-border" instance=ExtResource( 4 )]
+[node name="Wall_14" parent="Walls-border" instance=ExtResource( 5 )]
 position = Vector2( 272, 240 )
 
-[node name="Wall_15" parent="Walls-border" instance=ExtResource( 4 )]
+[node name="Wall_15" parent="Walls-border" instance=ExtResource( 5 )]
 position = Vector2( 272, 208 )
 
-[node name="Wall_16" parent="Walls-border" instance=ExtResource( 4 )]
+[node name="Wall_16" parent="Walls-border" instance=ExtResource( 5 )]
 position = Vector2( 272, 176 )
 
-[node name="Wall_17" parent="Walls-border" instance=ExtResource( 4 )]
+[node name="Wall_17" parent="Walls-border" instance=ExtResource( 5 )]
 position = Vector2( 272, 144 )
 
-[node name="Wall_18" parent="Walls-border" instance=ExtResource( 4 )]
+[node name="Wall_18" parent="Walls-border" instance=ExtResource( 5 )]
 position = Vector2( 272, 112 )
 
-[node name="Wall_19" parent="Walls-border" instance=ExtResource( 4 )]
+[node name="Wall_19" parent="Walls-border" instance=ExtResource( 5 )]
 position = Vector2( 272, 80 )
 
-[node name="Wall_20" parent="Walls-border" instance=ExtResource( 4 )]
+[node name="Wall_20" parent="Walls-border" instance=ExtResource( 5 )]
 position = Vector2( 240, 80 )
 
-[node name="Wall_21" parent="Walls-border" instance=ExtResource( 4 )]
+[node name="Wall_21" parent="Walls-border" instance=ExtResource( 5 )]
 position = Vector2( 208, 80 )
 
-[node name="Wall_22" parent="Walls-border" instance=ExtResource( 4 )]
+[node name="Wall_22" parent="Walls-border" instance=ExtResource( 5 )]
 position = Vector2( 176, 80 )
 
-[node name="Wall_23" parent="Walls-border" instance=ExtResource( 4 )]
+[node name="Wall_23" parent="Walls-border" instance=ExtResource( 5 )]
 position = Vector2( 144, 80 )
 
-[node name="Wall_24" parent="Walls-border" instance=ExtResource( 4 )]
+[node name="Wall_24" parent="Walls-border" instance=ExtResource( 5 )]
 position = Vector2( 112, 80 )
 
-[node name="Wall_25" parent="Walls-border" instance=ExtResource( 4 )]
+[node name="Wall_25" parent="Walls-border" instance=ExtResource( 5 )]
 position = Vector2( 368, 80 )
 
-[node name="Wall_26" parent="Walls-border" instance=ExtResource( 4 )]
+[node name="Wall_26" parent="Walls-border" instance=ExtResource( 5 )]
 position = Vector2( 368, 112 )
 
-[node name="Wall_27" parent="Walls-border" instance=ExtResource( 4 )]
+[node name="Wall_27" parent="Walls-border" instance=ExtResource( 5 )]
 position = Vector2( 368, 144 )
 
-[node name="Wall_28" parent="Walls-border" instance=ExtResource( 4 )]
+[node name="Wall_28" parent="Walls-border" instance=ExtResource( 5 )]
 position = Vector2( 368, 176 )
 
-[node name="Wall_29" parent="Walls-border" instance=ExtResource( 4 )]
+[node name="Wall_29" parent="Walls-border" instance=ExtResource( 5 )]
 position = Vector2( 368, 208 )
 
-[node name="Wall_30" parent="Walls-border" instance=ExtResource( 4 )]
+[node name="Wall_30" parent="Walls-border" instance=ExtResource( 5 )]
 position = Vector2( 368, 240 )
 
-[node name="Wall_31" parent="Walls-border" instance=ExtResource( 4 )]
+[node name="Wall_31" parent="Walls-border" instance=ExtResource( 5 )]
 position = Vector2( 368, 272 )
 
-[node name="Wall_32" parent="Walls-border" instance=ExtResource( 4 )]
+[node name="Wall_32" parent="Walls-border" instance=ExtResource( 5 )]
 position = Vector2( 400, 272 )
 
-[node name="Wall_33" parent="Walls-border" instance=ExtResource( 4 )]
+[node name="Wall_33" parent="Walls-border" instance=ExtResource( 5 )]
 position = Vector2( 432, 272 )
 
-[node name="Wall_34" parent="Walls-border" instance=ExtResource( 4 )]
+[node name="Wall_34" parent="Walls-border" instance=ExtResource( 5 )]
 position = Vector2( 464, 272 )
 
-[node name="Wall_35" parent="Walls-border" instance=ExtResource( 4 )]
+[node name="Wall_35" parent="Walls-border" instance=ExtResource( 5 )]
 position = Vector2( 496, 272 )
 
-[node name="Wall_36" parent="Walls-border" instance=ExtResource( 4 )]
+[node name="Wall_36" parent="Walls-border" instance=ExtResource( 5 )]
 position = Vector2( 528, 272 )
 
-[node name="Wall_37" parent="Walls-border" instance=ExtResource( 4 )]
+[node name="Wall_37" parent="Walls-border" instance=ExtResource( 5 )]
 position = Vector2( 560, 272 )
 
-[node name="Wall_38" parent="Walls-border" instance=ExtResource( 4 )]
+[node name="Wall_38" parent="Walls-border" instance=ExtResource( 5 )]
 position = Vector2( 560, 240 )
 
-[node name="Wall_39" parent="Walls-border" instance=ExtResource( 4 )]
+[node name="Wall_39" parent="Walls-border" instance=ExtResource( 5 )]
 position = Vector2( 560, 208 )
 
-[node name="Wall_40" parent="Walls-border" instance=ExtResource( 4 )]
+[node name="Wall_40" parent="Walls-border" instance=ExtResource( 5 )]
 position = Vector2( 560, 176 )
 
-[node name="Wall_41" parent="Walls-border" instance=ExtResource( 4 )]
+[node name="Wall_41" parent="Walls-border" instance=ExtResource( 5 )]
 position = Vector2( 560, 144 )
 
-[node name="Wall_42" parent="Walls-border" instance=ExtResource( 4 )]
+[node name="Wall_42" parent="Walls-border" instance=ExtResource( 5 )]
 position = Vector2( 560, 112 )
 
-[node name="Wall_43" parent="Walls-border" instance=ExtResource( 4 )]
+[node name="Wall_43" parent="Walls-border" instance=ExtResource( 5 )]
 position = Vector2( 560, 80 )
 
-[node name="Wall_44" parent="Walls-border" instance=ExtResource( 4 )]
+[node name="Wall_44" parent="Walls-border" instance=ExtResource( 5 )]
 position = Vector2( 528, 80 )
 
-[node name="Wall_45" parent="Walls-border" instance=ExtResource( 4 )]
+[node name="Wall_45" parent="Walls-border" instance=ExtResource( 5 )]
 position = Vector2( 496, 80 )
 
-[node name="Wall_46" parent="Walls-border" instance=ExtResource( 4 )]
+[node name="Wall_46" parent="Walls-border" instance=ExtResource( 5 )]
 position = Vector2( 464, 80 )
 
-[node name="Wall_47" parent="Walls-border" instance=ExtResource( 4 )]
+[node name="Wall_47" parent="Walls-border" instance=ExtResource( 5 )]
 position = Vector2( 432, 80 )
 
-[node name="Wall_48" parent="Walls-border" instance=ExtResource( 4 )]
+[node name="Wall_48" parent="Walls-border" instance=ExtResource( 5 )]
 position = Vector2( 400, 80 )
 
 [node name="bg-border" type="TileMap" parent="."]
@@ -365,43 +314,46 @@ tile_data = PoolIntArray( 131074, 51, 0, 131075, 51, 0, 131076, 51, 0, 131077, 5
 
 [node name="Walls-queen" type="Node2D" parent="."]
 
-[node name="Wall_1" parent="Walls-queen" instance=ExtResource( 4 )]
-position = Vector2( 176, 144 )
+[node name="Wall_1" parent="Walls-queen" instance=ExtResource( 5 )]
+position = Vector2( 172, 176 )
 
-[node name="Wall_2" parent="Walls-queen" instance=ExtResource( 4 )]
-position = Vector2( 208, 176 )
+[node name="Wall_2" parent="Walls-queen" instance=ExtResource( 5 )]
+position = Vector2( 172, 144 )
 
-[node name="Wall_3" parent="Walls-queen" instance=ExtResource( 4 )]
-position = Vector2( 176, 208 )
+[node name="Wall_3" parent="Walls-queen" instance=ExtResource( 5 )]
+position = Vector2( 140, 176 )
 
-[node name="Wall_4" parent="Walls-queen" instance=ExtResource( 4 )]
-position = Vector2( 144, 176 )
+[node name="Wall_4" parent="Walls-queen" instance=ExtResource( 5 )]
+position = Vector2( 204, 176 )
+
+[node name="Wall_5" parent="Walls-queen" instance=ExtResource( 5 )]
+position = Vector2( 172, 208 )
 
 [node name="Walls-king" type="Node2D" parent="."]
 
-[node name="Wall_1" parent="Walls-king" instance=ExtResource( 4 )]
-position = Vector2( 432, 176 )
+[node name="Wall_1" parent="Walls-king" instance=ExtResource( 5 )]
+position = Vector2( 464, 176 )
 
-[node name="Wall_2" parent="Walls-king" instance=ExtResource( 4 )]
-position = Vector2( 464, 144 )
+[node name="Wall_2" parent="Walls-king" instance=ExtResource( 5 )]
+position = Vector2( 432, 144 )
 
-[node name="Wall_3" parent="Walls-king" instance=ExtResource( 4 )]
-position = Vector2( 496, 176 )
+[node name="Wall_3" parent="Walls-king" instance=ExtResource( 5 )]
+position = Vector2( 496, 144 )
 
-[node name="Wall_4" parent="Walls-king" instance=ExtResource( 4 )]
+[node name="Wall_4" parent="Walls-king" instance=ExtResource( 5 )]
+position = Vector2( 432, 208 )
+
+[node name="Wall_5" parent="Walls-king" instance=ExtResource( 5 )]
 position = Vector2( 496, 208 )
-
-[node name="Wall_5" parent="Walls-king" instance=ExtResource( 4 )]
-position = Vector2( 464, 208 )
 
 [node name="Goals" type="Node2D" parent="."]
 
 [node name="Goal1" parent="Goals" instance=ExtResource( 6 )]
-position = Vector2( 192, 128 )
+position = Vector2( 188, 192 )
 script = ExtResource( 11 )
 
 [node name="Goal2" parent="Goals" instance=ExtResource( 2 )]
-position = Vector2( 416, 128 )
+position = Vector2( 448, 128 )
 
 [node name="WinMessage" type="CanvasLayer" parent="."]
 
