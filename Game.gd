@@ -9,8 +9,11 @@ extends Node2D
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#comment line 12 and 13 to see menu
-	var level = load("res://Assets/map/map_winter/winter_10.tscn").instance()
-	add_child(level)
+	#var level = load("res://Assets/map/map_desert/desert_1.tscn").instance()
+	#add_child(level)
+	
+	var setting = load("res://Setting.tscn").instance()
+	add_child(setting)
 	pass
 
 func _on_Start_pressed():
@@ -24,6 +27,8 @@ func _on_Start_pressed():
 	
 	var level = load("res://WorldSelect.tscn").instance()
 	add_child(level)
+	
+	reloadsetting()
 	#pass
 
 var reloadBuffer = true
@@ -139,11 +144,23 @@ func loadworld(name, world):
 		
 		add_child(level)
 		
+		get_node("/root/Game/GlobalShaders/blur/blur").visible = true
+		
 		buffer()
 
 func buffer():
+	reloadsetting()
 	yield(get_tree().create_timer(0.05), "timeout")
 	reloadBuffer = true
+
+func reloadsetting():
+	if get_node("/root/Game/Setting").is_inside_tree():
+		get_node("/root/Game/Setting").queue_free()
+		self.remove_child(get_node("/root/Game/Setting"))
+		
+	var setting = load("res://Setting.tscn").instance()
+	add_child(setting)
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass

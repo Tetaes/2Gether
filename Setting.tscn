@@ -1,0 +1,50 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://SettingButton.gd" type="Script" id=1]
+
+[sub_resource type="Shader" id=2]
+code = "shader_type canvas_item;
+
+uniform float color;
+
+void fragment(){
+	COLOR = vec4(0.0,0.0,1.0,0.0);
+}"
+
+[sub_resource type="ShaderMaterial" id=5]
+shader = SubResource( 2 )
+shader_param/color = null
+
+[node name="Setting" type="Node2D"]
+
+[node name="Button" type="Control" parent="."]
+margin_left = 1200.0
+margin_top = 624.0
+margin_right = 1339.0
+margin_bottom = 736.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="Button"]
+margin_left = -32.0
+margin_top = -16.0
+margin_right = 48.0
+margin_bottom = 64.0
+color = Color( 0.560784, 0.568627, 0.588235, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="Button"]
+material = SubResource( 5 )
+margin_left = -32.0
+margin_top = -16.0
+margin_right = 48.0
+margin_bottom = 64.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="Button/Button" to="Button" method="_on_Button_pressed"]

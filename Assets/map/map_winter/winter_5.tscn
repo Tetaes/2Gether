@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Assets/map/map_winter/assets/tileset_snow.tres" type="TileSet" id=1]
 [ext_resource path="res://Goal2.tscn" type="PackedScene" id=2]
@@ -11,88 +11,9 @@
 [ext_resource path="res://GoalDetect.gd" type="Script" id=11]
 [ext_resource path="res://level.gd" type="Script" id=14]
 
-[sub_resource type="Shader" id=1]
-code = "shader_type canvas_item;
-
-uniform float wave_speed = 0.0; //wave loop speed
-uniform float wave_freq = 4.0; //wave vertical freq
-uniform float wave_width = 0.0; //wave width 
-void fragment(){
-	vec2 scale_UV = SCREEN_UV;
-	vec2 wave_uv_offset;
-	wave_uv_offset.x = cos((TIME*wave_speed)+UV.x+UV.y*wave_freq*4.0)*wave_width*0.01;
-	wave_uv_offset.y = sin((TIME*wave_speed)+UV.x+UV.y*wave_freq*2.0)*wave_width*0.01;
-	//COLOR = vec4(wave_uv_offset,0.0,1.0);
-	vec3 col1 = textureLod(SCREEN_TEXTURE,scale_UV+wave_uv_offset, 1.0).xyz;
-	vec3 col2 = vec3(0.15,0.15,0.15);
-	COLOR = vec4((col1-col2),1.0);
-}"
-
-[sub_resource type="ShaderMaterial" id=2]
-shader = SubResource( 1 )
-shader_param/wave_speed = 0.0
-shader_param/wave_freq = 4.0
-shader_param/wave_width = 0.0
-
-[sub_resource type="Shader" id=3]
-code = "shader_type canvas_item;
-
-uniform float wave_speed = 2.0; //wave loop speed
-uniform float wave_freq = 10.0; //wave vertical freq
-uniform float wave_width = 0.25; //wave width 
-void fragment(){
-	vec2 scale_UV = SCREEN_UV;
-	vec2 wave_uv_offset;
-	wave_uv_offset.x = cos((TIME*wave_speed)+UV.x+UV.y*wave_freq*2.0)*wave_width*0.01;
-	wave_uv_offset.y = sin((TIME*wave_speed)+UV.x+UV.y*wave_freq*2.0)*wave_width*0.01;
-	//COLOR = vec4(wave_uv_offset,0.0,1.0);
-	COLOR = texture(SCREEN_TEXTURE,scale_UV);
-}"
-
-[sub_resource type="ShaderMaterial" id=4]
-shader = SubResource( 3 )
-shader_param/wave_speed = 2.0
-shader_param/wave_freq = 10.0
-shader_param/wave_width = 0.25
-
 [node name="winter_5" type="Node2D"]
 scale = Vector2( 2, 2 )
 script = ExtResource( 14 )
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="blur" type="ColorRect" parent="CanvasLayer"]
-material = SubResource( 2 )
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_bottom = -16.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="king" type="ColorRect" parent="CanvasLayer"]
-material = SubResource( 4 )
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 704.0
-margin_top = 128.0
-margin_right = -128.0
-margin_bottom = -144.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="queen" type="ColorRect" parent="CanvasLayer"]
-material = SubResource( 4 )
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 128.0
-margin_top = 128.0
-margin_right = -704.0
-margin_bottom = -144.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="bg-back" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )
@@ -145,18 +66,26 @@ tile_data = PoolIntArray( -3014089, 4, 0, -3014088, 4, 0, -3014087, 4, 0, -28180
 
 [node name="Ices" type="Node2D" parent="."]
 
-[node name="Ice" parent="Ices" groups=["ice"] instance=ExtResource( 8 )]
+[node name="Ice" parent="Ices" groups=[
+"ice",
+] instance=ExtResource( 8 )]
 position = Vector2( 156, 96 )
 
-[node name="Ice2" parent="Ices" groups=["ice"] instance=ExtResource( 8 )]
+[node name="Ice2" parent="Ices" groups=[
+"ice",
+] instance=ExtResource( 8 )]
 position = Vector2( 448, 224 )
 
 [node name="Players" type="Node2D" parent="."]
 
-[node name="Player1" parent="Players" groups=["player"] instance=ExtResource( 3 )]
+[node name="Player1" parent="Players" groups=[
+"player",
+] instance=ExtResource( 3 )]
 position = Vector2( 112, 112 )
 
-[node name="Player2" parent="Players" groups=["player"] instance=ExtResource( 7 )]
+[node name="Player2" parent="Players" groups=[
+"player",
+] instance=ExtResource( 7 )]
 position = Vector2( 528, 240 )
 
 [node name="Walls-border" type="Node2D" parent="."]
