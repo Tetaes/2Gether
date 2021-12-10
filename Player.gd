@@ -189,7 +189,8 @@ func move(dir,amt):
 					get_node(str(collider.get_path()) + "/CollisionShape2D").set_deferred("disabled", true)
 					yield(get_tree().create_timer(0.01), "timeout")
 					move(dir,1)
-					get_node(str(collider.get_path()) + "/CollisionShape2D").set_deferred("disabled", false)
+					if collider.is_inside_tree():
+						get_node(str(collider.get_path()) + "/CollisionShape2D").set_deferred("disabled", false)
 			
 			elif collider.is_in_group('player'):
 			#check if player is INSIDE another player from a previous move
