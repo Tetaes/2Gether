@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Assets/map/map_winter/assets/tileset_snow.tres" type="TileSet" id=1]
 [ext_resource path="res://Goal2.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Character/Queen.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Fire-blue.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Assets/map/map_winter/assets/Wall_winter.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Goal.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Character/King.tscn" type="PackedScene" id=7]
@@ -145,18 +146,26 @@ tile_data = PoolIntArray( -3014089, 4, 0, -3014088, 4, 0, -3014087, 4, 0, -28180
 
 [node name="Ices" type="Node2D" parent="."]
 
-[node name="Ice" parent="Ices" groups=["ice"] instance=ExtResource( 8 )]
+[node name="Ice" parent="Ices" groups=[
+"ice",
+] instance=ExtResource( 8 )]
 position = Vector2( 160, 160 )
 
-[node name="Ice2" parent="Ices" groups=["ice"] instance=ExtResource( 8 )]
+[node name="Ice2" parent="Ices" groups=[
+"ice",
+] instance=ExtResource( 8 )]
 position = Vector2( 448, 160 )
 
 [node name="Players" type="Node2D" parent="."]
 
-[node name="Player1" parent="Players" groups=["player"] instance=ExtResource( 3 )]
+[node name="Player1" parent="Players" groups=[
+"player",
+] instance=ExtResource( 3 )]
 position = Vector2( 112, 112 )
 
-[node name="Player2" parent="Players" groups=["player"] instance=ExtResource( 7 )]
+[node name="Player2" parent="Players" groups=[
+"player",
+] instance=ExtResource( 7 )]
 position = Vector2( 528, 240 )
 
 [node name="Walls-border" type="Node2D" parent="."]
@@ -376,6 +385,13 @@ script = ExtResource( 9 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Fire" type="Node2D" parent="."]
+
+[node name="Fire_1" parent="Fire" groups=[
+"fire",
+] instance=ExtResource( 4 )]
+position = Vector2( 192, 192 )
 
 [connection signal="body_entered" from="Goals/Goal2" to="Goals/Goal2" method="_on_Goal2_body_entered"]
 [connection signal="body_exited" from="Goals/Goal2" to="Goals/Goal2" method="_on_Goal2_body_exited"]
