@@ -18,8 +18,11 @@ func _ready():
 
 
 func _on_Button_pressed():
+	get_node("/root/Game/SweepSound").play()
+	get_node("/root/Game/BGMMenu").stop()
 	get_node("/root/Game/GlobalShaders/WinTransition/WinWipe1").menuwipe(Color(0.7,0.57,0.12,1))
 	yield(get_tree().create_timer(0.2), "timeout")
+	get_node("/root/Game/BGMDesert").play()
 	get_node("/root/Game/GlobalShaders/WinTransition/WinWipe2").menuwipe(Color(0.57,0.43,0.12,1))
 	yield(get_tree().create_timer(0.2), "timeout")
 	get_node("/root/Game/GlobalShaders/WinTransition/WinWipe3").menuwipelong(Color(0.53,0.3,0.12,1))

@@ -21,6 +21,8 @@ func _on_Start_pressed():
 	
 	get_node("Menu/Start").disabled = true
 	
+	get_node("/root/Game/SweepSound").play()
+	
 	get_node("/root/Game/GlobalShaders/WinTransition/WinWipe1").menuwipe(Color(0.6,0.6,0.7,1))
 	yield(get_tree().create_timer(0.15), "timeout")
 	get_node("/root/Game/GlobalShaders/WinTransition/WinWipe2").menuwipe(Color(0.45,0.45,0.55,1))
@@ -116,6 +118,10 @@ func nextlevel(name):
 		
 		else:
 			level = load("res://WorldSelect.tscn").instance()
+			get_node("/root/Game/BGMForest").stop()
+			get_node("/root/Game/BGMDesert").stop()
+			get_node("/root/Game/BGMWinter").stop()
+			get_node("/root/Game/GlobalShaders/blur/blur").visible = false
 		
 		add_child(level)
 		
@@ -132,6 +138,7 @@ func loadworld(name, world):
 		reloadBuffer = false
 		
 		var level
+		get_node("/root/Game/SweepSound").play()
 		
 		if world == "forest":
 			get_node("/root/Game/GlobalShaders/WinTransition/WinWipe1").menuwipe(Color(0.57,0.7,0.12,1))

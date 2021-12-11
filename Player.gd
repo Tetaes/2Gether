@@ -159,6 +159,10 @@ func move(dir,amt):
 					
 			#if it's fire
 			elif collider.is_in_group('fire'):
+				
+				get_node("/root/Game/FireSound").play()
+				get_node("/root/Game/FireSound").pitch_scale = 1+randf()*0.4
+				
 				#restart
 				get_node("/root/Game").reloadlevel(get_node("../../").get_name())
 				break

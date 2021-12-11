@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/winter.ogg-701f242d8637536c6655cdecb20e139e.oggstr"
+
+[deps]
+
+source_file="res://Assets/sound/winter.ogg"
+dest_files=[ "res://.import/winter.ogg-701f242d8637536c6655cdecb20e139e.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

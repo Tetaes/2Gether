@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://Death.gd" type="Script" id=1]
 [ext_resource path="res://Game.gd" type="Script" id=2]
@@ -13,6 +13,12 @@
 [ext_resource path="res://Fire-torche.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Assets/bg-start/tileset_start.tres" type="TileSet" id=12]
 [ext_resource path="res://Assets/sound/victory.ogg" type="AudioStream" id=13]
+[ext_resource path="res://Assets/sound/forest.ogg" type="AudioStream" id=14]
+[ext_resource path="res://Assets/sound/desert.ogg" type="AudioStream" id=15]
+[ext_resource path="res://Assets/sound/sweep.ogg" type="AudioStream" id=16]
+[ext_resource path="res://Assets/sound/winter.ogg" type="AudioStream" id=17]
+[ext_resource path="res://Assets/sound/menu.ogg" type="AudioStream" id=18]
+[ext_resource path="res://Assets/sound/fire.ogg" type="AudioStream" id=19]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -428,11 +434,36 @@ __meta__ = {
 
 [node name="MoveSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
-volume_db = -35.0
+volume_db = -27.0
+
+[node name="FireSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 19 )
+volume_db = -10.0
 
 [node name="VictorySound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 13 )
 volume_db = -5.0
+
+[node name="SweepSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 16 )
+volume_db = -20.0
+
+[node name="BGMForest" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 14 )
+volume_db = -18.0
+
+[node name="BGMDesert" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 15 )
+volume_db = -20.0
+
+[node name="BGMWinter" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 17 )
+volume_db = -26.0
+
+[node name="BGMMenu" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 18 )
+volume_db = -25.0
+autoplay = true
 
 [connection signal="pressed" from="Menu/Start" to="." method="_on_Start_pressed"]
 [connection signal="tween_all_completed" from="Menu/Start/Tween" to="Menu/Start" method="_on_Tween_tween_all_completed"]
