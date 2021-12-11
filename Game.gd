@@ -98,9 +98,9 @@ func nextlevel(name):
 		elif nextlevelname.left(6) == "winter":
 			get_node("/root/global").winterunlocked.append(int(nextnumber))
 		
-		if nextlevelname == "desert_5":
+		if nextlevelname == "desert_6":
 			get_node("/root/global").worldunlocked.append("Winter")
-		elif nextlevelname == "winter_5":
+		elif nextlevelname == "winter_6":
 			get_node("/root/global").worldunlocked.append("Forest")
 		
 		if nextlevelname in ["forest_8","forest_9","forest_10"]:
