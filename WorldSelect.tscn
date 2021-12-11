@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://WorldSelect.gd" type="Script" id=1]
+[ext_resource path="res://Fonts/Renogare-Regular.otf" type="DynamicFontData" id=2]
 
 [sub_resource type="Theme" id=1]
 
@@ -23,6 +24,10 @@ font_path = "res://Fonts/Renogare-Regular.otf"
 [sub_resource type="DynamicFont" id=5]
 size = 80
 font_data = SubResource( 4 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 35
+font_data = ExtResource( 2 )
 
 [node name="SelectScreen" type="Node2D"]
 
@@ -52,12 +57,22 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ColorRect" type="ColorRect" parent="Select/Forest"]
+[node name="Unlocked" type="ColorRect" parent="Select/Forest"]
 margin_left = -32.0
 margin_top = -32.0
 margin_right = 288.0
 margin_bottom = 288.0
 color = Color( 0.384314, 0.603922, 0.341176, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Locked" type="ColorRect" parent="Select/Forest"]
+margin_left = -32.0
+margin_top = -32.0
+margin_right = 288.0
+margin_bottom = 288.0
+color = Color( 0.490196, 0.490196, 0.490196, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -69,6 +84,20 @@ margin_top = -32.0
 margin_right = 288.0
 margin_bottom = 288.0
 custom_fonts/font = SubResource( 5 )
+disabled = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Select/Forest"]
+margin_top = 88.0
+margin_right = 259.0
+margin_bottom = 175.0
+rect_pivot_offset = Vector2( 144, 56 )
+custom_fonts/font = SubResource( 6 )
+text = "Beat Winter-5
+to unlock!"
+align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -83,11 +112,21 @@ __meta__ = {
 }
 
 [node name="ColorRect" type="ColorRect" parent="Select/Winter"]
-margin_left = -32.0
+margin_left = -34.0
 margin_top = -32.0
-margin_right = 288.0
+margin_right = 286.0
 margin_bottom = 288.0
 color = Color( 0.341176, 0.498039, 0.603922, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Locked" type="ColorRect" parent="Select/Winter"]
+margin_left = -34.0
+margin_top = -32.0
+margin_right = 286.0
+margin_bottom = 288.0
+color = Color( 0.490196, 0.490196, 0.490196, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -99,6 +138,21 @@ margin_top = -32.0
 margin_right = 286.0
 margin_bottom = 288.0
 custom_fonts/font = SubResource( 5 )
+disabled = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Select/Winter"]
+margin_left = -2.0
+margin_top = 88.0
+margin_right = 257.0
+margin_bottom = 175.0
+rect_pivot_offset = Vector2( 144, 56 )
+custom_fonts/font = SubResource( 6 )
+text = "Beat Desert-5
+to unlock!"
+align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -122,6 +176,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Locked" type="ColorRect" parent="Select/Desert"]
+margin_left = -32.0
+margin_top = -32.0
+margin_right = 288.0
+margin_bottom = 288.0
+color = Color( 0.490196, 0.490196, 0.490196, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Desert" type="Button" parent="Select/Desert"]
 material = SubResource( 3 )
 margin_left = -32.0
@@ -129,6 +193,21 @@ margin_top = -32.0
 margin_right = 288.0
 margin_bottom = 288.0
 custom_fonts/font = SubResource( 5 )
+disabled = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Select/Desert"]
+visible = false
+margin_top = 88.0
+margin_right = 262.0
+margin_bottom = 175.0
+rect_pivot_offset = Vector2( 144, 56 )
+custom_fonts/font = SubResource( 6 )
+text = "Unlocked
+by default."
+align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }

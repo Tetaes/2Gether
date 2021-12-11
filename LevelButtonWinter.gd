@@ -8,7 +8,9 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	if int(self.get_name()) in get_node("/root/global").winterunlocked:
+		$Locked.visible = false
+		$Button.disabled = false
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

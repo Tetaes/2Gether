@@ -88,6 +88,19 @@ func nextlevel(name):
 		nextlevelname.erase(nextlevelname.length() - 1, 1)
 		nextlevelname = nextlevelname + nextnumber
 		
+		#level unlock shenanigans
+		if nextlevelname.left(6) == "desert":
+			get_node("/root/global").desertunlocked.append(int(nextnumber))
+		elif nextlevelname.left(6) == "forest":
+			get_node("/root/global").forestunlocked.append(int(nextnumber))
+		elif nextlevelname.left(6) == "winter":
+			get_node("/root/global").winterunlocked.append(int(nextnumber))
+		
+		if nextlevelname == "desert_5":
+			get_node("/root/global").worldunlocked.append("Winter")
+		elif nextlevelname == "winter_5":
+			get_node("/root/global").worldunlocked.append("Forest")
+		
 		if nextlevelname in ["forest_8","forest_9","forest_10"]:
 			get_node("/root/Game/GlobalShaders/blur/bridge").visible = true
 		else:
