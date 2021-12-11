@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Assets/bg-start/tileset_start.tres" type="TileSet" id=1]
+
+[node name="bg-obj2" type="TileMap"]
+position = Vector2( 18, 0 )
+scale = Vector2( 3, 3 )
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( 196618, 13, 0, 196619, 13, 0, 196620, 13, 0, 196621, 13, 0, 196622, 13, 0, 196623, 13, 0, 262154, 21, 0, 262155, 21, 0, 262156, 21, 0, 262157, 21, 0, 262158, 21, 0, 262159, 21, 0, 327690, 21, 0, 327691, 21, 0, 327692, 21, 0, 327693, 21, 0, 327694, 21, 0, 327695, 21, 0, 393226, 23, 0, 393227, 26, 0, 393228, 26, 0, 393229, 26, 0, 393230, 26, 0, 393231, 25, 0, 458762, 27, 0, 458767, 28, 0, 524298, 27, 0, 524303, 28, 0 )
