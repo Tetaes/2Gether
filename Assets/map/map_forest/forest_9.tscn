@@ -15,7 +15,7 @@
 [ext_resource path="res://Portal2.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Assets/map/map_forest/assets/tileset_forest.tres" type="TileSet" id=14]
 
-[node name="forest_10" type="Node2D"]
+[node name="forest_9" type="Node2D"]
 scale = Vector2( 2, 2 )
 script = ExtResource( 2 )
 

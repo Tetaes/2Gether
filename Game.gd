@@ -121,6 +121,7 @@ func nextlevel(name):
 			get_node("/root/Game/BGMForest").stop()
 			get_node("/root/Game/BGMDesert").stop()
 			get_node("/root/Game/BGMWinter").stop()
+			get_node("/root/Game/BGMMenu").play()
 			get_node("/root/Game/GlobalShaders/blur/blur").visible = false
 		
 		add_child(level)
