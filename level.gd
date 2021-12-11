@@ -26,6 +26,9 @@ func _process(_delta):
 			#$WinMessage/WinDialog.popup()
 			game_clear = true
 			var level = self.get_name()
+			
+			get_node("/root/Game/VictorySound").play()
+			
 			if level.left(1) == '@':
 				level.erase(0,1)
 				

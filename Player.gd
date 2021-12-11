@@ -73,6 +73,9 @@ func buffer():
 #move function
 func move(dir,amt):
 	
+	get_node("/root/Game/MoveSound").play()
+	get_node("/root/Game/MoveSound").pitch_scale = 1+randf()*0.4
+	
 	if dir == "ui_left":
 		thisdir = "run_left"
 	elif dir == "ui_right":
