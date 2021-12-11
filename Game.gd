@@ -19,6 +19,8 @@ func _ready():
 func _on_Start_pressed():
 	#select which level to start on after menu
 	
+	get_node("Menu/Start").disabled = true
+	
 	get_node("/root/Game/GlobalShaders/WinTransition/WinWipe1").menuwipe(Color(0.6,0.6,0.7,1))
 	yield(get_tree().create_timer(0.15), "timeout")
 	get_node("/root/Game/GlobalShaders/WinTransition/WinWipe2").menuwipe(Color(0.45,0.45,0.55,1))
