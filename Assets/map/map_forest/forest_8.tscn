@@ -73,7 +73,7 @@ scale = Vector2( 2, 2 )
 [node name="Portal1" parent="Portals/PortalPair" groups=[
 "portal1",
 ] instance=ExtResource( 9 )]
-position = Vector2( 72, 72 )
+position = Vector2( 88, 104 )
 
 [node name="Portal2" parent="Portals/PortalPair" groups=[
 "portal2",

@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=44 format=2]
 
 [ext_resource path="res://Death.gd" type="Script" id=1]
 [ext_resource path="res://Game.gd" type="Script" id=2]
@@ -19,6 +19,10 @@
 [ext_resource path="res://Assets/sound/winter.ogg" type="AudioStream" id=17]
 [ext_resource path="res://Assets/sound/menu.ogg" type="AudioStream" id=18]
 [ext_resource path="res://Assets/sound/fire.ogg" type="AudioStream" id=19]
+[ext_resource path="res://Assets/triangle1.png" type="Texture" id=20]
+[ext_resource path="res://Fonts/DigitalDisco.ttf" type="DynamicFontData" id=21]
+[ext_resource path="res://Title.gd" type="Script" id=22]
+[ext_resource path="res://Fonts/RegularPixel.tres" type="DynamicFont" id=23]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -33,7 +37,7 @@ void fragment(){
 	wave_uv_offset.y = sin((TIME*wave_speed)+UV.x+UV.y*wave_freq*2.0)*wave_width*0.01;
 	//COLOR = vec4(wave_uv_offset,0.0,1.0);
 	vec3 col1 = textureLod(SCREEN_TEXTURE,scale_UV+wave_uv_offset, 2.0).xyz;
-	vec3 col2 = vec3(0.15,0.15,0.15);
+	vec3 col2 = vec3(0.2,0.2,0.2);
 	COLOR = vec4((col1-col2),1.0);
 }"
 
@@ -85,7 +89,37 @@ shader_param/wave_speed = 2.0
 shader_param/wave_freq = 10.0
 shader_param/wave_width = 0.25
 
-[sub_resource type="Shader" id=7]
+[sub_resource type="Shader" id=22]
+code = "shader_type canvas_item;
+
+void fragment(){
+	vec2 scale_UV = SCREEN_UV;
+	float value = distance(UV, vec2(0.5,0.3));
+	value = value*value*value*(9.0 + sin(TIME) * 2.0);
+	vec3 col1 = textureLod(SCREEN_TEXTURE,scale_UV,value).xyz;
+	vec3 col2 = vec3(value,value,value) * 0.2;
+	COLOR = vec4((col1-col2),1.0);
+}"
+
+[sub_resource type="ShaderMaterial" id=8]
+shader = SubResource( 22 )
+
+[sub_resource type="Shader" id=23]
+code = "shader_type canvas_item;
+
+void fragment(){
+	vec2 scale_UV = SCREEN_UV;
+	float value = distance(UV, vec2(0.5,0.5));
+	value = value*value*value*(4.0 + sin(TIME) * 1.0);
+	vec3 col1 = textureLod(SCREEN_TEXTURE,scale_UV,value).xyz;
+	vec3 col2 = vec3(value,value,value) * 0.2;
+	COLOR = vec4((col1-col2),1.0);
+}"
+
+[sub_resource type="ShaderMaterial" id=24]
+shader = SubResource( 23 )
+
+[sub_resource type="Shader" id=9]
 code = "shader_type canvas_item;
 uniform float curtime;
 
@@ -97,16 +131,54 @@ void fragment(){
 	
 }"
 
-[sub_resource type="ShaderMaterial" id=8]
-shader = SubResource( 7 )
+[sub_resource type="ShaderMaterial" id=10]
+shader = SubResource( 9 )
 shader_param/curtime = null
 
-[sub_resource type="DynamicFontData" id=9]
-font_path = "res://Fonts/Renogare-Regular.otf"
+[sub_resource type="Curve" id=11]
+min_value = -360.0
+max_value = 360.0
+_data = [ Vector2( 0, 267.863 ), 0.0, 0.0, 0, 0, Vector2( 1, -255.774 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="DynamicFont" id=10]
-size = 80
-font_data = SubResource( 9 )
+[sub_resource type="CurveTexture" id=19]
+curve = SubResource( 11 )
+
+[sub_resource type="Gradient" id=13]
+offsets = PoolRealArray( 0.270968, 0.709677 )
+colors = PoolColorArray( 0.523438, 1, 0.476563, 1, 0.360784, 0.6, 0.337255, 0 )
+
+[sub_resource type="GradientTexture" id=20]
+gradient = SubResource( 13 )
+
+[sub_resource type="Curve" id=15]
+_data = [ Vector2( 0, 0.351136 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=21]
+curve = SubResource( 15 )
+
+[sub_resource type="ParticlesMaterial" id=17]
+lifetime_randomness = 0.38
+emission_shape = 2
+emission_box_extents = Vector3( 700, 0, 1 )
+flag_disable_z = true
+direction = Vector3( 0, -1, 0 )
+gravity = Vector3( 0, 30, 0 )
+initial_velocity = 150.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle = 28.7
+angle_random = 1.0
+angle_curve = SubResource( 19 )
+scale = 5.0
+scale_random = 1.0
+scale_curve = SubResource( 21 )
+color_ramp = SubResource( 20 )
+hue_variation = 0.2
+hue_variation_random = 1.0
+
+[sub_resource type="DynamicFont" id=18]
+size = 55
+font_data = ExtResource( 21 )
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 2 )
@@ -350,6 +422,27 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="vignette_title" type="ColorRect" parent="GlobalShaders/blur"]
+material = SubResource( 8 )
+margin_right = 1280.0
+margin_bottom = 720.0
+rect_pivot_offset = Vector2( 18, 544 )
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="vignette_world" type="ColorRect" parent="GlobalShaders/blur"]
+visible = false
+material = SubResource( 24 )
+margin_right = 1280.0
+margin_bottom = 720.0
+rect_pivot_offset = Vector2( 18, 544 )
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="WinTransition" type="CanvasLayer" parent="GlobalShaders"]
 
 [node name="WinWipe1" type="ColorRect" parent="GlobalShaders/WinTransition"]
@@ -402,7 +495,7 @@ __meta__ = {
 
 [node name="Death" type="ColorRect" parent="GlobalShaders"]
 visible = false
-material = SubResource( 8 )
+material = SubResource( 10 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -410,6 +503,13 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="ParticlesTitle" type="Particles2D" parent="."]
+position = Vector2( 642, 752 )
+amount = 20
+lifetime = 8.0
+process_material = SubResource( 17 )
+texture = ExtResource( 20 )
 
 [node name="Menu" type="Control" parent="."]
 margin_right = 1280.0
@@ -419,11 +519,12 @@ __meta__ = {
 }
 
 [node name="Start" type="Button" parent="Menu"]
-margin_left = 456.0
-margin_top = 464.0
-margin_right = 824.0
-margin_bottom = 608.0
-custom_fonts/font = SubResource( 10 )
+anchor_right = 0.396
+margin_left = 562.0
+margin_top = 496.0
+margin_right = 215.12
+margin_bottom = 562.0
+custom_fonts/font = SubResource( 18 )
 text = "Start"
 script = ExtResource( 4 )
 __meta__ = {
@@ -432,38 +533,58 @@ __meta__ = {
 
 [node name="Tween" type="Tween" parent="Menu/Start"]
 
+[node name="Title" type="Label" parent="Menu"]
+margin_left = 274.0
+margin_top = 208.0
+margin_right = 1014.0
+margin_bottom = 408.0
+custom_fonts/font = ExtResource( 23 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0.117647, 0.117647, 0.117647, 1 )
+custom_constants/shadow_offset_x = 8
+custom_constants/shadow_offset_y = 16
+text = "2'Gether"
+align = 1
+valign = 1
+script = ExtResource( 22 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="Menu/Title"]
+
 [node name="MoveSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
-volume_db = -27.0
+volume_db = -22.0
 
 [node name="FireSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 19 )
-volume_db = -10.0
+volume_db = -5.0
 
 [node name="VictorySound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 13 )
-volume_db = -5.0
 
 [node name="SweepSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 16 )
-volume_db = -20.0
+volume_db = -17.0
 
 [node name="BGMForest" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 14 )
-volume_db = -18.0
+volume_db = -15.0
 
 [node name="BGMDesert" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 15 )
-volume_db = -20.0
+volume_db = -17.0
 
 [node name="BGMWinter" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 17 )
-volume_db = -26.0
+volume_db = -22.0
 
 [node name="BGMMenu" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 18 )
-volume_db = -25.0
+volume_db = -17.0
 autoplay = true
 
 [connection signal="pressed" from="Menu/Start" to="." method="_on_Start_pressed"]
 [connection signal="tween_all_completed" from="Menu/Start/Tween" to="Menu/Start" method="_on_Tween_tween_all_completed"]
+[connection signal="tween_all_completed" from="Menu/Title/Tween" to="Menu/Title" method="_on_Tween_tween_all_completed"]

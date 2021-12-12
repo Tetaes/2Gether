@@ -13,6 +13,7 @@ func _ready():
 	#add_child(level)
 	
 	var setting = load("res://Setting.tscn").instance()
+	setting.position = Vector2(9999,9999);
 	add_child(setting)
 	pass
 
@@ -28,6 +29,10 @@ func _on_Start_pressed():
 	get_node("/root/Game/GlobalShaders/WinTransition/WinWipe2").menuwipe(Color(0.45,0.45,0.55,1))
 	yield(get_tree().create_timer(0.15), "timeout")
 	get_node("/root/Game/GlobalShaders/WinTransition/WinWipe3").menuwipelong(Color(0.3,0.3,0.4,1))
+	
+	get_node("/root/Game/GlobalShaders/blur/vignette_title").visible = false
+	get_node("/root/Game/GlobalShaders/blur/vignette_world").visible = true
+	get_node("/root/Game/ParticlesTitle").visible = false
 	
 	var level = load("res://WorldSelect.tscn").instance()
 	add_child(level)
@@ -92,16 +97,21 @@ func nextlevel(name):
 		
 		#level unlock shenanigans
 		if nextlevelname.left(6) == "desert":
-			get_node("/root/global").desertunlocked.append(int(nextnumber))
+			if !get_node("/root/global").desertunlocked.has(int(nextnumber)):
+				get_node("/root/global").desertunlocked.append(int(nextnumber))
 		elif nextlevelname.left(6) == "forest":
-			get_node("/root/global").forestunlocked.append(int(nextnumber))
+			if !get_node("/root/global").forestunlocked.has(int(nextnumber)):
+				get_node("/root/global").forestunlocked.append(int(nextnumber))
 		elif nextlevelname.left(6) == "winter":
-			get_node("/root/global").winterunlocked.append(int(nextnumber))
+			if !get_node("/root/global").winterunlocked.has(int(nextnumber)):
+				get_node("/root/global").winterunlocked.append(int(nextnumber))
 		
 		if nextlevelname == "desert_6":
-			get_node("/root/global").worldunlocked.append("Winter")
+			if !get_node("/root/global").worldunlocked.has("Winter"):
+				get_node("/root/global").worldunlocked.append("Winter")
 		elif nextlevelname == "winter_6":
-			get_node("/root/global").worldunlocked.append("Forest")
+			if !get_node("/root/global").worldunlocked.has("Forest"):
+				get_node("/root/global").worldunlocked.append("Forest")
 		
 		if nextlevelname in ["forest_8","forest_9","forest_10"]:
 			get_node("/root/Game/GlobalShaders/blur/bridge").visible = true
@@ -190,10 +200,29 @@ func levelselect(name, world):
 		
 		add_child(level)
 		
+		get_node("/root/Game/GlobalShaders/blur/vignette_world").visible = false
 		get_node("/root/Game/GlobalShaders/blur/blur").visible = true
 		
 		if world == "forest" and int(name) >= 8:
 			get_node("/root/Game/GlobalShaders/blur/bridge").visible = true
+		
+		buffer()
+
+func backtoworld(name):
+	
+	if reloadBuffer:
+		
+		reloadBuffer = false
+		
+		var level
+		
+		level = load("res://WorldSelect.tscn").instance()
+		
+		if get_node("/root/Game/" + name).is_inside_tree():
+			get_node("/root/Game/" + name).queue_free()
+			self.remove_child(get_node("/root/Game/" + name))
+		
+		add_child(level)
 		
 		buffer()
 

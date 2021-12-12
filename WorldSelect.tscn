@@ -1,9 +1,69 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://WorldSelect.gd" type="Script" id=1]
-[ext_resource path="res://Fonts/Renogare-Regular.otf" type="DynamicFontData" id=2]
+[ext_resource path="res://Assets/ui/forest.png" type="Texture" id=2]
+[ext_resource path="res://Assets/ui/desert.png" type="Texture" id=3]
+[ext_resource path="res://Fonts/DigitalDisco.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://Assets/triangle1.png" type="Texture" id=5]
+[ext_resource path="res://Assets/ui/background.png" type="Texture" id=6]
+[ext_resource path="res://Assets/ui/winterlocked.png" type="Texture" id=7]
+[ext_resource path="res://Assets/ui/winter.png" type="Texture" id=8]
+[ext_resource path="res://Assets/ui/forestlocked.png" type="Texture" id=9]
+
+[sub_resource type="Curve" id=17]
+min_value = -360.0
+max_value = 360.0
+_data = [ Vector2( 0, 267.863 ), 0.0, 0.0, 0, 0, Vector2( 1, -255.774 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=23]
+curve = SubResource( 17 )
+
+[sub_resource type="Gradient" id=18]
+offsets = PoolRealArray( 0.193548, 0.709677 )
+colors = PoolColorArray( 1, 1, 1, 0.588235, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=24]
+gradient = SubResource( 18 )
+
+[sub_resource type="Curve" id=19]
+_data = [ Vector2( 0, 0.351136 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=25]
+curve = SubResource( 19 )
+
+[sub_resource type="ParticlesMaterial" id=20]
+lifetime_randomness = 0.38
+emission_shape = 2
+emission_box_extents = Vector3( 700, 0, 1 )
+flag_disable_z = true
+direction = Vector3( 0, -1, 0 )
+gravity = Vector3( 0, 15, 0 )
+initial_velocity = 160.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle = 28.7
+angle_random = 1.0
+angle_curve = SubResource( 23 )
+scale = 5.0
+scale_random = 1.0
+scale_curve = SubResource( 25 )
+color_ramp = SubResource( 24 )
+hue_variation = 1.0
+hue_variation_random = 1.0
 
 [sub_resource type="Theme" id=1]
+
+[sub_resource type="DynamicFont" id=22]
+size = 100
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 45
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 35
+font_data = ExtResource( 4 )
 
 [sub_resource type="Shader" id=2]
 code = "shader_type canvas_item;
@@ -25,19 +85,25 @@ font_path = "res://Fonts/Renogare-Regular.otf"
 size = 80
 font_data = SubResource( 4 )
 
-[sub_resource type="DynamicFont" id=6]
-size = 35
-font_data = ExtResource( 2 )
+[sub_resource type="DynamicFont" id=21]
+size = 96
+outline_color = Color( 0.443137, 0.611765, 0.870588, 1 )
+font_data = ExtResource( 4 )
 
 [node name="SelectScreen" type="Node2D"]
 
-[node name="Background" type="ColorRect" parent="."]
-margin_right = 1282.0
-margin_bottom = 720.0
-color = Color( 0.286275, 0.286275, 0.286275, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="background" type="Sprite" parent="."]
+position = Vector2( 640, 360 )
+texture = ExtResource( 6 )
+
+[node name="Particles" type="Particles2D" parent="."]
+position = Vector2( 642, -48 )
+rotation = -3.14159
+amount = 24
+lifetime = 16.0
+preprocess = 10.0
+process_material = SubResource( 20 )
+texture = ExtResource( 5 )
 
 [node name="Select" type="Control" parent="."]
 margin_right = 1282.0
@@ -48,36 +114,72 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Forest" type="Control" parent="Select"]
-margin_left = 912.0
-margin_top = 224.0
-margin_right = 1230.0
-margin_bottom = 480.0
+[node name="Label" type="Label" parent="Select"]
+margin_left = 2.0
+margin_top = 64.0
+margin_right = 1282.0
+margin_bottom = 164.0
+custom_fonts/font = SubResource( 22 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 6
+custom_constants/shadow_offset_y = 4
+text = "World Select"
+align = 1
+valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Unlocked" type="ColorRect" parent="Select/Forest"]
-margin_left = -32.0
-margin_top = -32.0
-margin_right = 288.0
-margin_bottom = 288.0
-color = Color( 0.384314, 0.603922, 0.341176, 1 )
+[node name="Desert" type="Control" parent="Select"]
+margin_left = 114.0
+margin_top = 256.0
+margin_right = 432.0
+margin_bottom = 512.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Locked" type="ColorRect" parent="Select/Forest"]
-margin_left = -32.0
-margin_top = -32.0
-margin_right = 288.0
-margin_bottom = 288.0
-color = Color( 0.490196, 0.490196, 0.490196, 1 )
+[node name="Unlocked" type="Node2D" parent="Select/Desert"]
+position = Vector2( -30, 304 )
+
+[node name="desert" type="Sprite" parent="Select/Desert/Unlocked"]
+position = Vector2( 158, -176 )
+scale = Vector2( 0.714286, 0.714286 )
+texture = ExtResource( 3 )
+
+[node name="levelname" type="Label" parent="Select/Desert/Unlocked"]
+margin_right = 322.0
+margin_bottom = 46.0
+rect_pivot_offset = Vector2( 144, 56 )
+custom_fonts/font = SubResource( 7 )
+custom_colors/font_color = Color( 0.870588, 0.701961, 0.443137, 1 )
+custom_constants/shadow_offset_x = 3
+custom_constants/shadow_offset_y = 2
+text = "Desert"
+align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Forest" type="Button" parent="Select/Forest"]
+[node name="count" type="Label" parent="Select/Desert/Unlocked"]
+margin_left = 2.0
+margin_top = 48.0
+margin_right = 322.0
+margin_bottom = 84.0
+custom_fonts/font = SubResource( 8 )
+custom_colors/font_color = Color( 0.870588, 0.701961, 0.443137, 1 )
+text = "0/10"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Locked" type="Node2D" parent="Select/Desert"]
+visible = false
+position = Vector2( -32, -32 )
+
+[node name="Desert" type="Button" parent="Select/Desert"]
 material = SubResource( 3 )
 margin_left = -32.0
 margin_top = -32.0
@@ -89,44 +191,70 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="Select/Forest"]
-margin_top = 88.0
-margin_right = 259.0
-margin_bottom = 175.0
+[node name="Winter" type="Control" parent="Select"]
+margin_left = 516.0
+margin_top = 256.0
+margin_right = 834.0
+margin_bottom = 512.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Unlocked" type="Node2D" parent="Select/Winter"]
+visible = false
+position = Vector2( -32, 304 )
+
+[node name="winter" type="Sprite" parent="Select/Winter/Unlocked"]
+position = Vector2( 158, -176 )
+scale = Vector2( 0.714286, 0.714286 )
+texture = ExtResource( 8 )
+
+[node name="levelname" type="Label" parent="Select/Winter/Unlocked"]
+margin_right = 322.0
+margin_bottom = 46.0
 rect_pivot_offset = Vector2( 144, 56 )
-custom_fonts/font = SubResource( 6 )
-text = "Beat Winter-5
-to unlock!"
+custom_fonts/font = SubResource( 7 )
+custom_colors/font_color = Color( 0.443137, 0.611765, 0.870588, 1 )
+custom_constants/shadow_offset_x = 3
+custom_constants/shadow_offset_y = 2
+text = "Winter"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Winter" type="Control" parent="Select"]
-margin_left = 514.0
-margin_top = 224.0
-margin_right = 832.0
-margin_bottom = 480.0
+[node name="count" type="Label" parent="Select/Winter/Unlocked"]
+margin_left = 2.0
+margin_top = 48.0
+margin_right = 322.0
+margin_bottom = 84.0
+custom_fonts/font = SubResource( 8 )
+custom_colors/font_color = Color( 0.443137, 0.611765, 0.870588, 1 )
+text = "0/10"
+align = 1
+valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ColorRect" type="ColorRect" parent="Select/Winter"]
-margin_left = -34.0
-margin_top = -32.0
-margin_right = 286.0
-margin_bottom = 288.0
-color = Color( 0.341176, 0.498039, 0.603922, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Locked" type="Node2D" parent="Select/Winter"]
+position = Vector2( 126, 128 )
+scale = Vector2( 0.714286, 0.714286 )
 
-[node name="Locked" type="ColorRect" parent="Select/Winter"]
-margin_left = -34.0
-margin_top = -32.0
-margin_right = 286.0
-margin_bottom = 288.0
-color = Color( 0.490196, 0.490196, 0.490196, 1 )
+[node name="Locked" type="Sprite" parent="Select/Winter/Locked"]
+scale = Vector2( 1, 1 )
+texture = ExtResource( 7 )
+
+[node name="Requirement" type="Label" parent="Select/Winter/Locked"]
+margin_left = -221.2
+margin_top = -44.8
+margin_right = 226.8
+margin_bottom = 27.2
+custom_fonts/font = SubResource( 21 )
+custom_colors/font_color = Color( 0.580392, 0.662745, 0.717647, 1 )
+text = "0/5"
+align = 1
+valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -143,50 +271,77 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="Select/Winter"]
-margin_left = -2.0
-margin_top = 88.0
-margin_right = 257.0
-margin_bottom = 175.0
+[node name="Forest" type="Control" parent="Select"]
+margin_left = 914.0
+margin_top = 256.0
+margin_right = 1232.0
+margin_bottom = 512.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Unlocked" type="Node2D" parent="Select/Forest"]
+visible = false
+position = Vector2( -430, 304 )
+
+[node name="forest" type="Sprite" parent="Select/Forest/Unlocked"]
+position = Vector2( 558, -176 )
+scale = Vector2( 0.714286, 0.714286 )
+texture = ExtResource( 2 )
+
+[node name="levelname" type="Label" parent="Select/Forest/Unlocked"]
+margin_left = 400.0
+margin_right = 722.0
+margin_bottom = 46.0
 rect_pivot_offset = Vector2( 144, 56 )
-custom_fonts/font = SubResource( 6 )
-text = "Beat Desert-5
-to unlock!"
+custom_fonts/font = SubResource( 7 )
+custom_colors/font_color = Color( 0.443137, 0.870588, 0.529412, 1 )
+custom_constants/shadow_offset_x = 3
+custom_constants/shadow_offset_y = 2
+text = "Forest"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Desert" type="Control" parent="Select"]
-margin_left = 112.0
-margin_top = 224.0
-margin_right = 430.0
-margin_bottom = 480.0
+[node name="count" type="Label" parent="Select/Forest/Unlocked"]
+margin_left = 402.0
+margin_top = 48.0
+margin_right = 722.0
+margin_bottom = 84.0
+custom_fonts/font = SubResource( 8 )
+custom_colors/font_color = Color( 0.443137, 0.870588, 0.529412, 1 )
+text = "0/10"
+align = 1
+valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ColorRect" type="ColorRect" parent="Select/Desert"]
-margin_left = -32.0
-margin_top = -32.0
-margin_right = 288.0
-margin_bottom = 288.0
-color = Color( 0.603922, 0.407843, 0.341176, 1 )
+[node name="Locked" type="Node2D" parent="Select/Forest"]
+position = Vector2( -272, 128 )
+scale = Vector2( 0.714286, 0.714286 )
+
+[node name="Locked" type="Sprite" parent="Select/Forest/Locked"]
+position = Vector2( 560, 0 )
+scale = Vector2( 1, 1 )
+texture = ExtResource( 9 )
+
+[node name="Requirement" type="Label" parent="Select/Forest/Locked"]
+margin_left = 338.8
+margin_top = -44.8
+margin_right = 786.8
+margin_bottom = 51.2
+custom_fonts/font = SubResource( 21 )
+custom_colors/font_color = Color( 0.580392, 0.717647, 0.619608, 1 )
+text = "0/10"
+align = 1
+valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Locked" type="ColorRect" parent="Select/Desert"]
-margin_left = -32.0
-margin_top = -32.0
-margin_right = 288.0
-margin_bottom = 288.0
-color = Color( 0.490196, 0.490196, 0.490196, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Desert" type="Button" parent="Select/Desert"]
+[node name="Forest" type="Button" parent="Select/Forest"]
 material = SubResource( 3 )
 margin_left = -32.0
 margin_top = -32.0
@@ -198,20 +353,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="Select/Desert"]
-visible = false
-margin_top = 88.0
-margin_right = 262.0
-margin_bottom = 175.0
-rect_pivot_offset = Vector2( 144, 56 )
-custom_fonts/font = SubResource( 6 )
-text = "Unlocked
-by default."
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[connection signal="pressed" from="Select/Forest/Forest" to="Select" method="_on_Forest_pressed"]
-[connection signal="pressed" from="Select/Winter/Winter" to="Select" method="_on_Winter_pressed"]
 [connection signal="pressed" from="Select/Desert/Desert" to="Select" method="_on_Desert_pressed"]
+[connection signal="pressed" from="Select/Winter/Winter" to="Select" method="_on_Winter_pressed"]
+[connection signal="pressed" from="Select/Forest/Forest" to="Select" method="_on_Forest_pressed"]

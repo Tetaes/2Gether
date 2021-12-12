@@ -1,6 +1,13 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://LevelButtonDesert.gd" type="Script" id=1]
+[ext_resource path="res://Assets/ui/desertlevel.png" type="Texture" id=2]
+[ext_resource path="res://Assets/ui/desertlevellocked.png" type="Texture" id=3]
+[ext_resource path="res://Fonts/DigitalDisco.ttf" type="DynamicFontData" id=4]
+
+[sub_resource type="DynamicFont" id=5]
+size = 96
+font_data = ExtResource( 4 )
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -32,21 +39,29 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Unlocked" type="ColorRect" parent="."]
-margin_right = 126.0
-margin_bottom = 128.0
-color = Color( 0.603922, 0.407843, 0.341176, 1 )
+[node name="Unlocked" type="Sprite" parent="."]
+position = Vector2( 64, 64 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = -21.0
+margin_top = -1.0
+margin_right = 155.0
+margin_bottom = 143.0
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0.870588, 0.701961, 0.443137, 1 )
+text = "1"
+align = 1
+valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Locked" type="ColorRect" parent="."]
-margin_right = 126.0
-margin_bottom = 128.0
-color = Color( 0.580392, 0.580392, 0.580392, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Locked" type="Sprite" parent="."]
+position = Vector2( 64, 64 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 3 )
 
 [node name="Button" type="Button" parent="."]
 material = SubResource( 2 )

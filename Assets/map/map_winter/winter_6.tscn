@@ -19,7 +19,7 @@ script = ExtResource( 14 )
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 16, 16 )
 format = 1
-tile_data = PoolIntArray( 0, 536870912, 0, 2, 536870912, 0, 4, 536870912, 0, 6, 536870912, 0, 8, 536870912, 0, 10, 536870912, 0, 12, 536870912, 0, 14, 536870912, 0, 16, 536870912, 0, 18, 536870912, 0, 20, 536870912, 0, 22, 536870912, 0, 24, 536870912, 0, 26, 536870912, 0, 28, 536870912, 0, 30, 536870912, 0, 32, 536870912, 0, 34, 536870912, 0, 36, 536870912, 0, 38, 536870912, 0, 131072, 536870912, 0, 131074, 536870912, 0, 131076, 536870912, 0, 131078, 536870912, 0, 131080, 536870912, 0, 131082, 536870912, 0, 131084, 536870912, 0, 131086, 536870912, 0, 131088, 536870912, 0, 131090, 536870912, 0, 131092, 536870912, 0, 131094, 536870912, 0, 131096, 536870912, 0, 131098, 536870912, 0, 131100, 536870912, 0, 131102, 536870912, 0, 131104, 536870912, 0, 131106, 536870912, 0, 131108, 536870912, 0, 131110, 536870912, 0, 262144, 536870912, 0, 262146, 536870912, 0, 262178, 536870912, 0, 262180, 536870912, 0, 262182, 536870912, 0, 393216, 536870912, 0, 393218, 536870912, 0, 393252, 536870912, 0, 393254, 536870912, 0, 524288, 536870912, 0, 524290, 536870912, 0, 524324, 536870912, 0, 524326, 536870912, 0, 655360, 536870912, 0, 655362, 536870912, 0, 655396, 536870912, 0, 655398, 536870912, 0, 786432, 536870912, 0, 786434, 536870912, 0, 786468, 536870912, 0, 786470, 536870912, 0, 917504, 536870912, 0, 917506, 536870912, 0, 917540, 536870912, 0, 917542, 536870912, 0, 1048576, 536870912, 0, 1048578, 536870912, 0, 1048612, 536870912, 0, 1048614, 536870912, 0, 1179648, 536870912, 0, 1179650, 536870912, 0, 1179652, 536870912, 0, 1179654, 536870912, 0, 1179656, 536870912, 0, 1179658, 536870912, 0, 1179660, 536870912, 0, 1179662, 536870912, 0, 1179664, 536870912, 0, 1179666, 536870912, 0, 1179668, 536870912, 0, 1179670, 536870912, 0, 1179672, 536870912, 0, 1179674, 536870912, 0, 1179676, 536870912, 0, 1179678, 536870912, 0, 1179680, 536870912, 0, 1179682, 536870912, 0, 1179683, 536870912, 0, 1179684, 536870912, 0, 1179686, 536870912, 0, 1310720, 536870912, 0, 1310722, 536870912, 0, 1310724, 536870912, 0, 1310726, 536870912, 0, 1310728, 536870912, 0, 1310730, 536870912, 0, 1310732, 536870912, 0, 1310734, 536870912, 0, 1310736, 536870912, 0, 1310738, 536870912, 0, 1310740, 536870912, 0, 1310742, 536870912, 0, 1310744, 536870912, 0, 1310746, 536870912, 0, 1310748, 536870912, 0, 1310750, 536870912, 0, 1310752, 536870912, 0, 1310754, 536870912, 0, 1310756, 536870912, 0, 1310758, 536870912, 0 )
+tile_data = PoolIntArray( 0, 536870912, 0, 2, 536870912, 0, 4, 536870912, 0, 6, 536870912, 0, 8, 536870912, 0, 10, 536870912, 0, 12, 536870912, 0, 14, 536870912, 0, 16, 536870912, 0, 18, 536870912, 0, 20, 536870912, 0, 22, 536870912, 0, 24, 536870912, 0, 26, 536870912, 0, 28, 536870912, 0, 30, 536870912, 0, 32, 536870912, 0, 34, 536870912, 0, 36, 536870912, 0, 38, 536870912, 0, 131072, 536870912, 0, 131074, 536870912, 0, 131076, 536870912, 0, 131078, 536870912, 0, 131080, 536870912, 0, 131082, 536870912, 0, 131084, 536870912, 0, 131086, 536870912, 0, 131088, 536870912, 0, 131090, 536870912, 0, 131092, 536870912, 0, 131094, 536870912, 0, 131096, 536870912, 0, 131098, 536870912, 0, 131100, 536870912, 0, 131102, 536870912, 0, 131104, 536870912, 0, 131106, 536870912, 0, 131108, 536870912, 0, 131110, 536870912, 0, 262144, 536870912, 0, 262146, 536870912, 0, 262178, 536870912, 0, 262180, 536870912, 0, 262182, 536870912, 0, 393216, 536870912, 0, 393218, 536870912, 0, 393252, 536870912, 0, 393254, 536870912, 0, 524288, 536870912, 0, 524290, 536870912, 0, 524324, 536870912, 0, 524326, 536870912, 0, 655360, 536870912, 0, 655362, 536870912, 0, 655396, 536870912, 0, 655398, 536870912, 0, 786432, 536870912, 0, 786434, 536870912, 0, 786468, 536870912, 0, 786470, 536870912, 0, 917504, 536870912, 0, 917506, 536870912, 0, 917540, 536870912, 0, 917542, 536870912, 0, 1048576, 536870912, 0, 1048578, 536870912, 0, 1048612, 536870912, 0, 1048614, 536870912, 0, 1179648, 536870912, 0, 1179650, 536870912, 0, 1179652, 536870912, 0, 1179654, 536870912, 0, 1179656, 536870912, 0, 1179658, 536870912, 0, 1179660, 536870912, 0, 1179662, 536870912, 0, 1179664, 536870912, 0, 1179666, 536870912, 0, 1179668, 536870912, 0, 1179670, 536870912, 0, 1179672, 536870912, 0, 1179674, 536870912, 0, 1179676, 536870912, 0, 1179678, 536870912, 0, 1179680, 536870912, 0, 1179682, 536870912, 0, 1179683, 536870912, 0, 1179684, 536870912, 0, 1179686, 536870912, 0, 1310720, 536870912, 0, 1310722, 536870912, 0, 1310724, 536870912, 0, 1310726, 536870912, 0, 1310728, 536870912, 0, 1310730, 536870912, 0, 1310732, 536870912, 0, 1310734, 536870912, 0, 1310736, 536870912, 0, 1310738, 536870912, 0, 1310740, 536870912, 0, 1310742, 536870912, 0, 1310744, 536870912, 0, 1310746, 536870912, 0, 1310748, 536870912, 0, 1310750, 536870912, 0, 1310752, 536870912, 0, 1310754, 536870912, 0, 1310756, 536870912, 0, 1310758, 536870912, 0, 1441792, 0, 0, 1441794, 0, 0, 1441796, 0, 0, 1441798, 0, 0, 1441800, 0, 0, 1441802, 0, 0, 1441804, 0, 0, 1441806, 0, 0, 1441808, 0, 0, 1441810, 0, 0, 1441812, 0, 0, 1441814, 0, 0, 1441816, 0, 0, 1441818, 0, 0, 1441820, 0, 0, 1441822, 0, 0, 1441824, 0, 0, 1441826, 0, 0, 1441828, 0, 0, 1441830, 0, 0 )
 
 [node name="bg-back2" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )
@@ -69,77 +69,122 @@ tile_data = PoolIntArray( -3014089, 4, 0, -3014088, 4, 0, -3014087, 4, 0, -28180
 [node name="Ice" parent="Ices" groups=[
 "ice",
 ] instance=ExtResource( 8 )]
-position = Vector2( 128, 160 )
+position = Vector2( 160, 128 )
 
 [node name="Ice2" parent="Ices" groups=[
 "ice",
 ] instance=ExtResource( 8 )]
-position = Vector2( 128, 128 )
+position = Vector2( 160, 192 )
 
 [node name="Ice3" parent="Ices" groups=[
 "ice",
 ] instance=ExtResource( 8 )]
-position = Vector2( 160, 128 )
+position = Vector2( 192, 160 )
 
 [node name="Ice4" parent="Ices" groups=[
 "ice",
 ] instance=ExtResource( 8 )]
-position = Vector2( 192, 128 )
-
-[node name="Ice5" parent="Ices" groups=[
-"ice",
-] instance=ExtResource( 8 )]
-position = Vector2( 192, 160 )
-
-[node name="Ice6" parent="Ices" groups=[
-"ice",
-] instance=ExtResource( 8 )]
-position = Vector2( 192, 192 )
+position = Vector2( 128, 160 )
 
 [node name="Ice7" parent="Ices" groups=[
 "ice",
 ] instance=ExtResource( 8 )]
-position = Vector2( 160, 192 )
+position = Vector2( 96, 192 )
 
 [node name="Ice8" parent="Ices" groups=[
 "ice",
 ] instance=ExtResource( 8 )]
-position = Vector2( 128, 192 )
+position = Vector2( 128, 224 )
 
 [node name="Ice9" parent="Ices" groups=[
 "ice",
 ] instance=ExtResource( 8 )]
-position = Vector2( 416, 160 )
+position = Vector2( 192, 224 )
 
 [node name="Ice10" parent="Ices" groups=[
 "ice",
 ] instance=ExtResource( 8 )]
-position = Vector2( 416, 128 )
+position = Vector2( 224, 192 )
 
 [node name="Ice11" parent="Ices" groups=[
 "ice",
 ] instance=ExtResource( 8 )]
-position = Vector2( 448, 128 )
+position = Vector2( 224, 128 )
 
 [node name="Ice12" parent="Ices" groups=[
 "ice",
 ] instance=ExtResource( 8 )]
-position = Vector2( 480, 128 )
+position = Vector2( 192, 96 )
 
 [node name="Ice13" parent="Ices" groups=[
 "ice",
 ] instance=ExtResource( 8 )]
-position = Vector2( 480, 192 )
+position = Vector2( 128, 96 )
+
+[node name="Ice24" parent="Ices" groups=[
+"ice",
+] instance=ExtResource( 8 )]
+position = Vector2( 96, 128 )
+
+[node name="Ice5" parent="Ices" groups=[
+"ice",
+] instance=ExtResource( 8 )]
+position = Vector2( 448, 160 )
+
+[node name="Ice6" parent="Ices" groups=[
+"ice",
+] instance=ExtResource( 8 )]
+position = Vector2( 448, 96 )
+
+[node name="Ice23" parent="Ices" groups=[
+"ice",
+] instance=ExtResource( 8 )]
+position = Vector2( 384, 96 )
 
 [node name="Ice14" parent="Ices" groups=[
 "ice",
 ] instance=ExtResource( 8 )]
-position = Vector2( 448, 192 )
+position = Vector2( 384, 160 )
 
 [node name="Ice15" parent="Ices" groups=[
 "ice",
 ] instance=ExtResource( 8 )]
 position = Vector2( 416, 192 )
+
+[node name="Ice16" parent="Ices" groups=[
+"ice",
+] instance=ExtResource( 8 )]
+position = Vector2( 384, 224 )
+
+[node name="Ice17" parent="Ices" groups=[
+"ice",
+] instance=ExtResource( 8 )]
+position = Vector2( 448, 224 )
+
+[node name="Ice18" parent="Ices" groups=[
+"ice",
+] instance=ExtResource( 8 )]
+position = Vector2( 480, 192 )
+
+[node name="Ice19" parent="Ices" groups=[
+"ice",
+] instance=ExtResource( 8 )]
+position = Vector2( 512, 224 )
+
+[node name="Ice20" parent="Ices" groups=[
+"ice",
+] instance=ExtResource( 8 )]
+position = Vector2( 512, 160 )
+
+[node name="Ice21" parent="Ices" groups=[
+"ice",
+] instance=ExtResource( 8 )]
+position = Vector2( 480, 128 )
+
+[node name="Ice22" parent="Ices" groups=[
+"ice",
+] instance=ExtResource( 8 )]
+position = Vector2( 512, 96 )
 
 [node name="Players" type="Node2D" parent="."]
 
@@ -151,7 +196,7 @@ position = Vector2( 112, 112 )
 [node name="Player2" parent="Players" groups=[
 "player",
 ] instance=ExtResource( 7 )]
-position = Vector2( 528, 112 )
+position = Vector2( 400, 112 )
 
 [node name="Walls-border" type="Node2D" parent="."]
 
@@ -308,37 +353,19 @@ tile_data = PoolIntArray( 131074, 51, 0, 131075, 51, 0, 131076, 51, 0, 131077, 5
 
 [node name="Walls-queen" type="Node2D" parent="."]
 
-[node name="Wall_1" parent="Walls-queen" instance=ExtResource( 5 )]
-position = Vector2( 240, 112 )
-
-[node name="Wall_2" parent="Walls-queen" instance=ExtResource( 5 )]
-position = Vector2( 240, 240 )
-
-[node name="Wall_3" parent="Walls-queen" instance=ExtResource( 5 )]
-position = Vector2( 112, 240 )
-
 [node name="Walls-king" type="Node2D" parent="."]
 
 [node name="Wall_1" parent="Walls-king" instance=ExtResource( 5 )]
-position = Vector2( 464, 112 )
-
-[node name="Wall_2" parent="Walls-king" instance=ExtResource( 5 )]
-position = Vector2( 400, 176 )
-
-[node name="Wall_3" parent="Walls-king" instance=ExtResource( 5 )]
-position = Vector2( 464, 240 )
-
-[node name="Wall_4" parent="Walls-king" instance=ExtResource( 5 )]
-position = Vector2( 528, 176 )
+position = Vector2( 432, 144 )
 
 [node name="Goals" type="Node2D" parent="."]
 
 [node name="Goal1" parent="Goals" instance=ExtResource( 6 )]
-position = Vector2( 160, 160 )
+position = Vector2( 160, 224 )
 script = ExtResource( 11 )
 
 [node name="Goal2" parent="Goals" instance=ExtResource( 2 )]
-position = Vector2( 448, 160 )
+position = Vector2( 416, 160 )
 
 [node name="WinMessage" type="CanvasLayer" parent="."]
 

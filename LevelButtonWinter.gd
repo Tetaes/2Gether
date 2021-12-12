@@ -11,6 +11,7 @@ func _ready():
 	if int(self.get_name()) in get_node("/root/global").winterunlocked:
 		$Locked.visible = false
 		$Button.disabled = false
+		$Label.text = self.get_name()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

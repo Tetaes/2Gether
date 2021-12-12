@@ -1,16 +1,72 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://LevelButtonDesert.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/ui/desertbg.png" type="Texture" id=2]
+[ext_resource path="res://Assets/triangle1.png" type="Texture" id=3]
+[ext_resource path="res://Fonts/DigitalDisco.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://Assets/ui/back.png" type="Texture" id=5]
+[ext_resource path="res://LevelSelectDesert.gd" type="Script" id=6]
+
+[sub_resource type="Curve" id=17]
+min_value = -360.0
+max_value = 360.0
+_data = [ Vector2( 0, 267.863 ), 0.0, 0.0, 0, 0, Vector2( 1, -255.774 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=22]
+curve = SubResource( 17 )
+
+[sub_resource type="Gradient" id=18]
+offsets = PoolRealArray( 0.212903, 0.83871 )
+colors = PoolColorArray( 0.567383, 0.352675, 0.22385, 1, 0.457031, 0.299118, 0.183884, 0 )
+
+[sub_resource type="GradientTexture" id=23]
+gradient = SubResource( 18 )
+
+[sub_resource type="Curve" id=19]
+_data = [ Vector2( 0, 0.351136 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=24]
+curve = SubResource( 19 )
+
+[sub_resource type="ParticlesMaterial" id=20]
+lifetime_randomness = 0.38
+emission_shape = 2
+emission_box_extents = Vector3( 700, 0, 1 )
+flag_disable_z = true
+direction = Vector3( 0, -1, 0 )
+gravity = Vector3( 0, 15, 0 )
+initial_velocity = 160.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle = 28.7
+angle_random = 1.0
+angle_curve = SubResource( 22 )
+scale = 5.0
+scale_random = 1.0
+scale_curve = SubResource( 24 )
+color_ramp = SubResource( 23 )
+hue_variation = 0.24
+hue_variation_random = 0.56
+
+[sub_resource type="DynamicFont" id=21]
+size = 1
+font_data = ExtResource( 4 )
 
 [node name="LevelSelect" type="Node2D"]
+script = ExtResource( 6 )
 
-[node name="Background" type="ColorRect" parent="."]
-margin_right = 1282.0
-margin_bottom = 720.0
-color = Color( 0.286275, 0.286275, 0.286275, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="desertbg" type="Sprite" parent="."]
+position = Vector2( 640, 360 )
+texture = ExtResource( 2 )
+
+[node name="Particles" type="Particles2D" parent="."]
+position = Vector2( 642, -48 )
+rotation = -3.14159
+amount = 20
+lifetime = 16.0
+preprocess = 10.0
+process_material = SubResource( 20 )
+texture = ExtResource( 3 )
 
 [node name="Levels" type="Control" parent="."]
 margin_left = 16.0
@@ -81,3 +137,33 @@ margin_top = 432.0
 margin_right = 1120.0
 margin_bottom = 560.0
 rect_pivot_offset = Vector2( 208, -32 )
+
+[node name="Back" type="Control" parent="."]
+margin_left = 1026.0
+margin_top = 616.0
+margin_right = 1066.0
+margin_bottom = 656.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="Back"]
+anchor_left = 0.4
+anchor_top = 0.4
+anchor_right = 0.4
+anchor_bottom = 0.4
+margin_left = 24.0
+margin_top = -24.0
+margin_right = 104.0
+margin_bottom = 56.0
+custom_fonts/font = SubResource( 21 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="back" type="Sprite" parent="Back"]
+position = Vector2( 80, 32 )
+scale = Vector2( 5, 5 )
+texture = ExtResource( 5 )
+
+[connection signal="pressed" from="Back/Button" to="." method="_on_Button_pressed"]

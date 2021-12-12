@@ -11,9 +11,26 @@ func _ready():
 	for world in get_node("/root/global").worldunlocked:
 		get_node(world + "/Locked").visible = false
 		get_node(world + "/" + world).disabled = false
-		get_node(world + "/Label").visible = false
-
-
+		get_node(world + "/Unlocked").visible = true
+	
+	var desertcount = len(get_node("/root/global").desertunlocked) - 1
+	var wintercount = len(get_node("/root/global").winterunlocked) - 1
+	var forestcount = len(get_node("/root/global").forestunlocked) - 1
+	
+	get_node("Desert/Unlocked/count").text = str(desertcount) + "/10"
+	get_node("Winter/Unlocked/count").text = str(wintercount) + "/10"
+	get_node("Forest/Unlocked/count").text = str(forestcount) + "/10"
+	
+	get_node("Winter/Locked/Requirement").text = str(desertcount+wintercount+forestcount) + "/5"
+	get_node("Forest/Locked/Requirement").text = str(desertcount+wintercount+forestcount) + "/10"
+	
+	if desertcount == 10:
+		$Desert/Unlocked/count.set("custom_colors/font_color",Color(1,1,0))
+	if wintercount == 10:
+		$Winter/Unlocked/count.set("custom_colors/font_color",Color(1,1,0))
+	if forestcount == 10:
+		$Forest/Unlocked/count.set("custom_colors/font_color",Color(1,1,0))
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
