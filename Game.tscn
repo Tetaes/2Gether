@@ -89,7 +89,7 @@ shader_param/wave_speed = 2.0
 shader_param/wave_freq = 10.0
 shader_param/wave_width = 0.25
 
-[sub_resource type="Shader" id=22]
+[sub_resource type="Shader" id=7]
 code = "shader_type canvas_item;
 
 void fragment(){
@@ -102,9 +102,9 @@ void fragment(){
 }"
 
 [sub_resource type="ShaderMaterial" id=8]
-shader = SubResource( 22 )
+shader = SubResource( 7 )
 
-[sub_resource type="Shader" id=23]
+[sub_resource type="Shader" id=9]
 code = "shader_type canvas_item;
 
 void fragment(){
@@ -116,10 +116,10 @@ void fragment(){
 	COLOR = vec4((col1-col2),1.0);
 }"
 
-[sub_resource type="ShaderMaterial" id=24]
-shader = SubResource( 23 )
+[sub_resource type="ShaderMaterial" id=10]
+shader = SubResource( 9 )
 
-[sub_resource type="Shader" id=9]
+[sub_resource type="Shader" id=11]
 code = "shader_type canvas_item;
 uniform float curtime;
 
@@ -131,32 +131,32 @@ void fragment(){
 	
 }"
 
-[sub_resource type="ShaderMaterial" id=10]
-shader = SubResource( 9 )
+[sub_resource type="ShaderMaterial" id=12]
+shader = SubResource( 11 )
 shader_param/curtime = null
 
-[sub_resource type="Curve" id=11]
+[sub_resource type="Curve" id=13]
 min_value = -360.0
 max_value = 360.0
 _data = [ Vector2( 0, 267.863 ), 0.0, 0.0, 0, 0, Vector2( 1, -255.774 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=19]
-curve = SubResource( 11 )
+[sub_resource type="CurveTexture" id=14]
+curve = SubResource( 13 )
 
-[sub_resource type="Gradient" id=13]
+[sub_resource type="Gradient" id=15]
 offsets = PoolRealArray( 0.270968, 0.709677 )
 colors = PoolColorArray( 0.523438, 1, 0.476563, 1, 0.360784, 0.6, 0.337255, 0 )
 
-[sub_resource type="GradientTexture" id=20]
-gradient = SubResource( 13 )
+[sub_resource type="GradientTexture" id=16]
+gradient = SubResource( 15 )
 
-[sub_resource type="Curve" id=15]
+[sub_resource type="Curve" id=17]
 _data = [ Vector2( 0, 0.351136 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=21]
-curve = SubResource( 15 )
+[sub_resource type="CurveTexture" id=18]
+curve = SubResource( 17 )
 
-[sub_resource type="ParticlesMaterial" id=17]
+[sub_resource type="ParticlesMaterial" id=19]
 lifetime_randomness = 0.38
 emission_shape = 2
 emission_box_extents = Vector3( 700, 0, 1 )
@@ -168,15 +168,15 @@ orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 angle = 28.7
 angle_random = 1.0
-angle_curve = SubResource( 19 )
+angle_curve = SubResource( 14 )
 scale = 5.0
 scale_random = 1.0
-scale_curve = SubResource( 21 )
-color_ramp = SubResource( 20 )
+scale_curve = SubResource( 18 )
+color_ramp = SubResource( 16 )
 hue_variation = 0.2
 hue_variation_random = 1.0
 
-[sub_resource type="DynamicFont" id=18]
+[sub_resource type="DynamicFont" id=20]
 size = 55
 font_data = ExtResource( 21 )
 
@@ -434,7 +434,7 @@ __meta__ = {
 
 [node name="vignette_world" type="ColorRect" parent="GlobalShaders/blur"]
 visible = false
-material = SubResource( 24 )
+material = SubResource( 10 )
 margin_right = 1280.0
 margin_bottom = 720.0
 rect_pivot_offset = Vector2( 18, 544 )
@@ -495,7 +495,7 @@ __meta__ = {
 
 [node name="Death" type="ColorRect" parent="GlobalShaders"]
 visible = false
-material = SubResource( 10 )
+material = SubResource( 12 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -508,7 +508,7 @@ __meta__ = {
 position = Vector2( 642, 752 )
 amount = 20
 lifetime = 8.0
-process_material = SubResource( 17 )
+process_material = SubResource( 19 )
 texture = ExtResource( 20 )
 
 [node name="Menu" type="Control" parent="."]
@@ -524,7 +524,7 @@ margin_left = 562.0
 margin_top = 496.0
 margin_right = 215.12
 margin_bottom = 562.0
-custom_fonts/font = SubResource( 18 )
+custom_fonts/font = SubResource( 20 )
 text = "Start"
 script = ExtResource( 4 )
 __meta__ = {

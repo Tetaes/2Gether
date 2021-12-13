@@ -83,12 +83,14 @@ func nextlevel(name):
 		
 		if len(reallevelname) == 1:
 			nextlevelname = reallevelname[0]
-			nextnumber = nextlevelname.right(len(nextlevelname)-1)
-			nextnumber = str(int(nextnumber) + 1)
 		else:
 			nextlevelname = reallevelname[1]
+		
+		if len(nextlevelname) == 8:
 			nextnumber = nextlevelname.right(len(nextlevelname)-1)
-			nextnumber = str(int(nextnumber) + 1)
+		else:
+			nextnumber = nextlevelname.right(len(nextlevelname)-2)
+		nextnumber = str(int(nextnumber) + 1)
 		
 		yield(get_tree().create_timer(0.3), "timeout")
 			

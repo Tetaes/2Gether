@@ -12,6 +12,9 @@ var desertunlocked = [1]
 var forestunlocked = [1]
 var winterunlocked = [1]
 
+var musicvol = 100
+var sfxvol = 100
+
 func _ready():
 	#unlockalllevels()
 	pass
