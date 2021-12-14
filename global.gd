@@ -20,7 +20,6 @@ func _ready():
 	pass
 
 func unlockalllevels():
-	worldunlocked = ["Desert", "Winter", "Forest"]
 	desertunlocked = [1,2,3,4,5,6,7,8,9,10,11]
 	forestunlocked = [1,2,3,4,5,6,7,8,9,10,11]
 	winterunlocked = [1,2,3,4,5,6,7,8,9,10,11]

@@ -8,14 +8,22 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	for world in get_node("/root/global").worldunlocked:
-		get_node(world + "/Locked").visible = false
-		get_node(world + "/" + world).disabled = false
-		get_node(world + "/Unlocked").visible = true
 	
 	var desertcount = len(get_node("/root/global").desertunlocked) - 1
 	var wintercount = len(get_node("/root/global").winterunlocked) - 1
 	var forestcount = len(get_node("/root/global").forestunlocked) - 1
+	
+	if desertcount+wintercount+forestcount >= 5:
+		if !get_node("/root/global").worldunlocked.has("Winter"):
+			get_node("/root/global").worldunlocked.append("Winter")
+	if desertcount+wintercount+forestcount >= 10:
+		if !get_node("/root/global").worldunlocked.has("Forest"):
+			get_node("/root/global").worldunlocked.append("Forest")
+	
+	for world in get_node("/root/global").worldunlocked:
+		get_node(world + "/Locked").visible = false
+		get_node(world + "/" + world).disabled = false
+		get_node(world + "/Unlocked").visible = true
 	
 	get_node("Desert/Unlocked/count").text = str(desertcount) + "/10"
 	get_node("Winter/Unlocked/count").text = str(wintercount) + "/10"

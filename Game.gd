@@ -108,13 +108,6 @@ func nextlevel(name):
 			if !get_node("/root/global").winterunlocked.has(int(nextnumber)):
 				get_node("/root/global").winterunlocked.append(int(nextnumber))
 		
-		if nextlevelname == "desert_6":
-			if !get_node("/root/global").worldunlocked.has("Winter"):
-				get_node("/root/global").worldunlocked.append("Winter")
-		elif nextlevelname == "winter_6":
-			if !get_node("/root/global").worldunlocked.has("Forest"):
-				get_node("/root/global").worldunlocked.append("Forest")
-		
 		if nextlevelname in ["forest_8","forest_9","forest_10"]:
 			get_node("/root/Game/GlobalShaders/blur/bridge").visible = true
 		else:
